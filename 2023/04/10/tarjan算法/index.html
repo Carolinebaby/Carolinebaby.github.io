@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="算法学习, 图">
+    
+    <meta name="author" content="卡布叻_米菲">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://carolinebaby.github.io/2023/04/10/tarjan算法/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="学习图论ing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论Tarjan算法">
+<meta property="og:url" content="https://carolinebaby.github.io/2023/04/10/tarjan%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Caroline&#39;s World">
+<meta property="og:description" content="学习图论ing">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-b06934dc0dccf224a8575007535ba72c_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-69d14f7ee63e2eb2f913331fcb639206_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-1ee69fda43f2f259e69196c86bf05175_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-982771c34df616d9ba6dcfebb56e888a_b.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-1bb53360d6bf83944deb8dd49b9ce514_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-952dc1ef3f9d318829b5be4378cc88da_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-f0cfe5afc683abe08fa5324a2571141a_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-e7e7a4b03fac528b20756592334e03e2_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-1b0818d2abbcfea950fd1390ad586015_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-e2b4c99d05ef1eaf70694e84faa3e5d6_b.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-66181d0d7c5bc2cdb00d115f40b10400_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-77a2155112072f2fd9705d77a9c5f1c2_b.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-9ee5d25070ba745ba6479898b4eb8b63_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-b9d5bb59070317978fbfff3b224f3402_b.jpg">
+<meta property="article:published_time" content="2023-04-10T05:05:00.000Z">
+<meta property="article:modified_time" content="2023-04-26T14:02:28.848Z">
+<meta property="article:author" content="Caroline">
+<meta property="article:tag" content="算法学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-b06934dc0dccf224a8575007535ba72c_b.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#0072BC">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            图论Tarjan算法 -
+        
+        卡布叻_米菲的世界
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        卡布叻_米菲的世界
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"carolinebaby.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"18px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#0072BC","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/2.jpg","dark":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/5.jpg"},"title":"Welcome to Caroline's world!","subtitle":{"text":["这里是 卡布叻_米菲 的世界！"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Carolinebaby","instagram":null,"zhihu":null,"twitter":null,"email":"1474396199@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Blog":"https://carolinebaby.github.io/","Github":"https://github.com/Carolinebaby"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Hi~Welcome~","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"shuoshuo":{"path":"/shuoshuo","icon":"fa-regular fa-comment-dots"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/4/8 08:29:29"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://c-ssl.duitang.com/uploads/item/202004/28/20200428194223_rjvgr.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                卡布叻_米菲的世界
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://carolinebaby.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Carolinebaby">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://carolinebaby.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Carolinebaby">GITHUB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/shuoshuo"
+                        >
+                            <span>Shuoshuo</span>
+                            <i class="fa-regular fa-comment-dots fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">图论Tarjan算法</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://wx1.sinaimg.cn/mw2000/0078huakly1hicqpzo0aoj326z2hy1kx.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">卡布叻_米菲</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-10 13:05</span>
+        <span class="mobile">2023-04-10 13:05</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-26 22:02:28</span>
+            <span class="mobile">2023-04-26 22:02:28</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>Tarjan 算法是图论中非常实用 &#x2F; 常用的算法之一，能解决 <strong>强连通分量</strong>，<strong>双连通分量</strong>，<strong>割点</strong>和<strong>桥</strong>，求 最近公共祖先（LCA）等问题。</p>
+<p>Tarjan 算法是基于 <strong>深度优先搜索DFS</strong> 的算法，用于求解 图的连通性问题。Tarjan 算法可以在线性时间求出 无向图的割点与桥，进一步求解 无向图的双连通分量；同时，也可以求解 有向图的强连通分量、必经点与必经边。</p>
+<span id="more"></span>
+
+<h2 id="无向图的割点与桥"><a href="#无向图的割点与桥" class="headerlink" title="无向图的割点与桥"></a>无向图的割点与桥</h2><p>如果删除<strong>无向图</strong>中的某个<strong>点</strong>会使无向图的<strong>连通分量数</strong>增多，则把这个点称为<strong>割点</strong>。类似地，如果删除无向图中的某条<strong>边</strong>会使无向图的连通分量数增多，则把这个点称为<strong>割边</strong>或<strong>桥</strong>。割点与桥可以用<strong>Tarjan算法</strong>求出。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/v2-b06934dc0dccf224a8575007535ba72c_b.jpg"
+                      alt="img" style="zoom: 40%;" 
+                >
+
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-69d14f7ee63e2eb2f913331fcb639206_b.jpg"
+                      alt="img" style="zoom:40%;" 
+                >
+
+<h3 id="桥"><a href="#桥" class="headerlink" title="桥"></a>桥</h3><p>Tarjan 算法在求解无向图的割点与桥的工作原理</p>
+<p><strong>时间戳</strong>：时间戳是用来标记图中每个节点在进行深度优先搜索时被访问的时间顺序（相当于一个序号，这个序号由小到大），用 <code>dfn[x]</code> 来表示</p>
+<p><strong>搜索树</strong>：在无向图中，我们以某一个节点 x 出发进行深度优先搜索，每个节点只访问一次，所有被访问过的节点与边构成一棵树，我们可以称之为“无向连通图的搜索树”。</p>
+<p><strong>追溯值</strong>：追溯值 用来表示 从当前节点x 作为搜索树的根节点出发，能够访问到的所有节点中，时间戳最小的值 —— <code>low[x]</code>。</p>
+<p>“能够访问到的所有节点” 满足①<code>以 x 为根的搜索树的所有节点 </code>②<code>通过一条非搜索树上的边能够到达搜索树的所有结点</code> 这两点中的一点即可。</p>
+<p>断言：<strong>如果 p 是 q 的父节点，并且 low(q)&gt;dfsn(p)，那么 p↔q 是桥</strong>。如果 p↔q 不是桥，那么删掉这条边后一定有其他路径可以到达p。注意无向图没有横叉边，想要到达p只能通过子树反向边实现，那么<code>low(q)≤dfsn(p)</code>应该成立，然而这与条件矛盾。因此 p↔q 是桥。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt;&gt; bridges;</span><br><span class="line"><span class="type">int</span> dfsn[MAXN], low[MAXN], fa[MAXN], cnt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    low[p] = dfsn[p] = ++cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> to: edges[p])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfsn[to])</span><br><span class="line">        &#123;</span><br><span class="line">            fa[to] = p; <span class="comment">//记录父节点</span></span><br><span class="line">            <span class="built_in">tarjan</span>(to);</span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[to]);</span><br><span class="line">            <span class="keyword">if</span>(low[to] &gt; dfs[p])</span><br><span class="line">            	bridges.<span class="built_in">emplace_back</span>(p, to);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(fa[p] != to) <span class="comment">//排除父节点</span></span><br><span class="line">        	low[p] = <span class="built_in">min</span>(low[p], dfsn[to]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="割点问题"><a href="#割点问题" class="headerlink" title="割点问题"></a>割点问题</h3><p>设 low(u) 表示 u 所在子树中的节点经过至多一条非树边所能到达的节点中最小 dfs 序。</p>
+<p>如果 p 存在一个子节点q满足 low(q)≥dfsn(p)，说明 q 无法通过它的子树 “逃”到比 p 的dfs序更小的节点。那么，既然走子树走不通，q 如果想要达到这样的点，只能选择经过它的父节点 p。因此如果删去 p，q 的 dfs 序小于 p 点的点就分开了。</p>
+<p>这时我们一般可以说 p 是割点了，只有一种特殊情况，就是 p 是dfs生成树的根节点的情形。这时，整个连通分量都不存在比 p 的dfs序更小的点。对于根节点，它如果有两个以上子节点，那么它就是割点（显然删除根节点后这两个分支将会互不相连）。</p>
+<p>在实现时，不再需要像强连通分量一样维护一个栈</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> dfsn[MAXN], low[MAXN], cnt;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; cut; <span class="comment">//存储所有的割点</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p, <span class="type">bool</span> root = <span class="literal">true</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> tot = <span class="number">0</span>;</span><br><span class="line">    low[p] = dfsn[p] = ++cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q: edges[p])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfsn[q])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(q, <span class="literal">false</span>);</span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[q]);</span><br><span class="line">            tot += (low[q]&gt;=dfsn[p]);<span class="comment">// 统计满足low[q] &gt;= dfsn[p]的子节点数目</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], dfsn[q]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(tot &gt; root)</span><br><span class="line">        cut.<span class="built_in">push_back</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><p>对于一张<strong>有向图</strong>而言，它是<strong>强连通</strong>的当且仅当其上 <strong>每个顶点都相互可达</strong>。强连通图类似于嵌套的环，强连通图一定有环，但 n 个节点的强连通图不一定有n元环。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic2.zhimg.com/v2-1ee69fda43f2f259e69196c86bf05175_b.jpg"
+                      alt="img" style="zoom:33%;" 
+                >
+
+<p><strong>强连通分量</strong> 是 有向图的极大的强连通子图，所谓“极大”意味着，把图划分为若干个强连通分量后，不存在两个强连通分量相互可达。</p>
+<p>处理 强连通分量 的一个有力的工具是 dfs 生成树。在dfs时，每当通过某条边 e 访问到一个新节点v，就加入这个点和这条边，最后得到的便是 dfs 生成树。例如对于下面这张有向图：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-982771c34df616d9ba6dcfebb56e888a_b.jpg"
+                      alt="img" style="zoom:33%;" 
+                >
+
+<p>它的 dfs 生成树可能时这样的（黑色实线）：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/v2-1bb53360d6bf83944deb8dd49b9ce514_b.jpg"
+                      alt="img" style="zoom:33%;" 
+                >
+
+<p>除了生成树的树边外，原图剩下的边可以分为三种：</p>
+<ul>
+<li><strong>前向边</strong>（灰色虚线）：从某个点到它的某个子孙节点的边。这种边相当于提供某种“捷径”，在这个问题里不太重要，即使把它们删除对于连通性也没什么影响。</li>
+<li><strong>反向边</strong>（绿色虚线）：从某个点到它的某个祖先节点的边。这种边就是产生环的原因，如果删去所有的反向边，那么原图就会成为无环图。</li>
+<li><strong>横叉边</strong>（蓝色虚线）：从某个点到一个既非它子孙节点，也非它祖先节点的边。这种边本身不会产生环，但是它可能把两个强连通子图连接起来，形成一个更大的强连通图。</li>
+</ul>
+<p><strong>反向边</strong> 和 <strong>横叉边</strong> 都有一个特点：<strong>起点的dfs序 必然大于 终点的dfs序</strong>。</p>
+<p>结论：<strong>对于每个强连通分量，存在一个点是其他所有点的祖先。</strong>若不然，则可以把强连通分量划成 n 个分支，使各分支的祖先节点互相不为彼此的祖先，这些分支间不能通过树边相连，只能通过至少 n 条横叉边相连，但这必然违背上一段的性质。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-952dc1ef3f9d318829b5be4378cc88da_b.jpg"
+                      alt="img" style="zoom:67%;" 
+                >
+
+<p>我们把这个唯一的祖先节点称为强连通分量的<strong>根</strong>。显然，根是强连通分量中dfs序最小的节点。</p>
+<p>为了求强连通分量，我们常常使用 <strong>Tarjan 算法</strong>。首先，我们把 low(p) 定义为 p 所在子树的节点经过最多一条非树边 u→v（其中 v 可达 u）能到达的节点中最小的 dfs序。根据这样的定义，某个点 p 是强连通分量的根，等价于 <code>dfsn(p) = low(p)</code>。我们这里必须强调 v 可达 u，否则会使 low(5)&#x3D;2，但它实际应是一个强连通分量的根。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-f0cfe5afc683abe08fa5324a2571141a_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>low(p) 可以通过动态规划得到，对于以某个点p为起点的边 p→q：</p>
+<ul>
+<li>如果 q 从未访问过，则 q 在 p 所在的子树上，如果某节点 r 从 q 起可以经过最多一条反向边到达，则从 p 起也可以（先从 p 到 q，再到 r），于是先递归处理点 q，然后令 <code>low(p) = min(low(p), low(q))</code>。</li>
+<li>如果 q 已访问过，且从 q 可以到达 p，令 <code>low(p) = min(low(p), dfsn(q))</code>。</li>
+<li>如果 q 已经访问过，且从 q 不能到达 p，不做处理。（后两种情况都是非树边）</li>
+</ul>
+<p>但是我们怎么确认一个点能不能到达另一个点呢？因为 <strong>反向边</strong> 和 <strong>横向边</strong> 都是指向dfs序较小的节点，而 <strong>前向边</strong> 的存在又不影响状态转移方程，所以我们只需要确认 比该点dfs序小 的哪些点能到达该点即可，这可以用一个 <strong>栈</strong> 动态地维护。</p>
+<p>每当搜索到新店，就令它入栈。在对 p 的搜索结束时，如果 <code>low(p) = n&lt;dfsn(q)</code>，设dfs序为n的点为q，则 p 点到达 q点都可达，考虑对 q 点的搜索很可能没有结束，所以 p 应该留在栈中。如果发现 p 满足<code>low(p) = dfsn(p)</code>，则说明 p 是某个强连通分量的根，它和栈中的子孙相互可达。但同时，它可栈中子孙点也无法到达 p 的祖先节点，以及祖先节点其他尚未搜索的分支，所以不断从栈顶弹出元素，知道弹出p（注意这样维护的栈中的dfs序是单调增的），同时记录答案。</p>
+<p>举例：（这里为了方便，直接用dfs序作为点的编号）</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-e7e7a4b03fac528b20756592334e03e2_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>沿着 1 → 2 → 3 搜索（节点右上角表示当前的 low，下方为栈）：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic2.zhimg.com/v2-1b0818d2abbcfea950fd1390ad586015_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>发现反向边 3 → 1，更新 low(3)，然后回到2搜索4：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-e2b4c99d05ef1eaf70694e84faa3e5d6_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>4没有出边，返回，这时发现 low(4) &#x3D; dfsn(4) &#x3D; 4，于是出栈，标记它属于第一个强连通分量。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/v2-66181d0d7c5bc2cdb00d115f40b10400_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>回到2，它对应的子树已搜索完毕，更新 low(2)；接下来搜索 5 → 6 → 7 → 8：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-77a2155112072f2fd9705d77a9c5f1c2_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>反顺序更新它们的 low，到5发现 low(5) &#x3D; dfsn(5) &#x3D; 5，于是把它放入新的强连通分量：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic4.zhimg.com/v2-9ee5d25070ba745ba6479898b4eb8b63_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>最后回到1 ，把剩下还在栈内的节点都归入最后一个强连通分量：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-b9d5bb59070317978fbfff3b224f3402_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>代码：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="comment">// instk：是否在栈中  scc：每个点所属的强连通分量编号  cscc：强连通分量的数量</span></span><br><span class="line"><span class="type">int</span> dfsn[MAXN], low[MAXN], instk[MAXN], scc[MAXN], cnt, cscc;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    low[p] = dsfn[p] = ++cnt;</span><br><span class="line">    instk[p] = <span class="number">1</span>;</span><br><span class="line">    stk.<span class="built_in">push</span>(p);<span class="comment">//入栈</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q: edges[p])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfsn[q]) <span class="comment">//未访问过</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(q); <span class="comment">//递归搜索</span></span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[q]);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(instk[q]) <span class="comment">//访问过</span></span><br><span class="line">        	low[p] = <span class="built_in">min</span>(low[p], dfsn[q]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low[p] == dfsn[p]) <span class="comment">//发现强连通分量的根</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> top;</span><br><span class="line">        cscc++;</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">            top = stk.<span class="built_in">top</span>();</span><br><span class="line">            stk.<span class="built_in">pop</span>();</span><br><span class="line">            instk[top] = <span class="number">0</span>;</span><br><span class="line">            scc[top] = cscc;</span><br><span class="line">        &#125;<span class="keyword">while</span>(top != p) <span class="comment">//知道弹出p才停止</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>注意，由于原图并不一定是强连通图，所以不能随便找一个点作为根dfs就完事，而要保证每个点都被dfs到：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    <span class="keyword">if</span> (!dfsn[i])</span><br><span class="line">        <span class="built_in">tarjan</span>(i);</span><br></pre></td></tr></table></figure></div>
+
+<p>由于每次dfs结束后，栈都已清空，所以各次dfs并不会互相影响。</p>
+<p>在求出强连通分量后，可以进行 <strong>缩点</strong>，即：把处于同一强连通分量的点当作同一个点处理。这样，我们可以得到一张 <strong>有向无环图</strong>。此外。注意到编号较小的点不能到达编号较大的点，于是scc编号的顺序还符合拓扑序（编号越大的点拓扑序越靠前）。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> u = <span class="number">1</span>; u&lt;=n; u++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> v: edges[u])</span><br><span class="line">        <span class="keyword">if</span>(scc[u] != scc[v])</span><br><span class="line">            edges2[scc[u]].<span class="built_in">push_back</span>(scc[v]);</span><br></pre></td></tr></table></figure></div>
+
+<p>例如，在有向图中求经过的点权值之和最大的路径，就可以缩点，每个点的权值为缩之前的点的权值之和，这是因为如果一条路径经过强连通分量中的某个点，就可以经过其中的所有点。对于缩点后得到的有向无环图，可以按照拓扑序DP。</p>
+<p>再例如，求有向图中那些所有点都可达的点，也可以缩点，因为如果 p 可达 q ，那么 p 所在的强连通分量中的所有点都可达 q 。对于得到的有向无环图，只需找到唯一的出度为0的点即可。</p>
+<h2 id="模板题"><a href="#模板题" class="headerlink" title="模板题"></a>模板题</h2><h3 id="缩点"><a href="#缩点" class="headerlink" title="缩点"></a>缩点</h3><p><strong>题目描述</strong></p>
+<p>给定一个 $n$ 个点 $m$ 条边有向图，每个点有一个权值，求一条路径，使路径经过的点权值之和最大。你只需要求出这个权值和。</p>
+<p>允许多次经过一条边或者一个点，但是，重复经过的点，权值只计算一次。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行两个正整数 $n,m$</p>
+<p>第二行 $n$ 个整数，其中第 $i$ 个数 $a_i$ 表示点 $i$ 的点权。</p>
+<p>第三至 $m+2$ 行，每行两个整数 $u,v$，表示一条 $u\rightarrow v$ 的有向边。</p>
+<p><strong>输出格式</strong></p>
+<p>共一行，最大的点权之和。</p>
+<p><strong>样例输入</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2 2</span><br><span class="line">1 1</span><br><span class="line">1 2</span><br><span class="line">2 1</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>样例输出</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><strong>代码</strong></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; graph, newgraph; <span class="comment">//原来的点图 和 缩点后的图</span></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; dfsn, low, scc, indeg, weight, newwgt, dist;</span><br><span class="line"><span class="comment">//dfsn 追溯的时间戳， low 最小时间戳， scc 每个点的强连通集合的下标</span></span><br><span class="line"><span class="comment">//indeg 每个强连通集合的入度，weight 每个点的权值，newwgt 每个强连通集合权值</span></span><br><span class="line"><span class="comment">//dist 每条路径的最大权值</span></span><br><span class="line">vector&lt;<span class="type">bool</span>&gt; instk; <span class="comment">//是否在栈中</span></span><br><span class="line">stack&lt;<span class="type">int</span>&gt; stk;<span class="comment">//栈</span></span><br><span class="line"><span class="type">int</span> tot = <span class="number">0</span>, cscc = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//tot 遍历时候所经过的点数，cscc强连通集合的个数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	instk[x] = <span class="literal">true</span>;</span><br><span class="line">	dfsn[x] = low[x] = ++tot;</span><br><span class="line">	stk.<span class="built_in">emplace</span>(x);<span class="comment">//放入栈中</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> nx: graph[x])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfsn[nx]) <span class="comment">//没有访问过 </span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">tarjan</span>(nx);</span><br><span class="line">			low[x] = <span class="built_in">min</span>(low[x], low[nx]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(instk[nx]) <span class="comment">//访问过且在栈中 </span></span><br><span class="line">		&#123;</span><br><span class="line">			low[x] = <span class="built_in">min</span>(low[x], dfsn[nx]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(dfsn[x] == low[x]) <span class="comment">//特判 根起点 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> top;</span><br><span class="line">		cscc++;</span><br><span class="line">		<span class="keyword">do</span>&#123;</span><br><span class="line">			top = stk.<span class="built_in">top</span>();</span><br><span class="line">			stk.<span class="built_in">pop</span>();</span><br><span class="line">			instk[top] = <span class="literal">false</span>;</span><br><span class="line">			scc[top] = cscc; <span class="comment">//记录每个点对应的此时的强连通集合下标</span></span><br><span class="line">		&#125;<span class="keyword">while</span>(top != x); <span class="comment">//知道弹出 x 为止 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	graph.<span class="built_in">resize</span>(n+<span class="number">1</span>), dfsn.<span class="built_in">resize</span>(n+<span class="number">1</span>), dist.<span class="built_in">resize</span>(n+<span class="number">1</span>), low.<span class="built_in">resize</span>(n+<span class="number">1</span>), scc.<span class="built_in">resize</span>(n+<span class="number">1</span>), instk.<span class="built_in">resize</span>(n+<span class="number">1</span>), weight.<span class="built_in">resize</span>(n+<span class="number">1</span>);</span><br><span class="line">	instk.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="literal">false</span>), dfsn.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="number">0</span>), dist.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; weight[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> a, b;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=m; i++)  <span class="comment">//构建有向图 </span></span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		graph[a].<span class="built_in">emplace_back</span>(b);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//经典遍历操作</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfsn[i]) <span class="comment">//若没有访问此节点</span></span><br><span class="line">			<span class="built_in">tarjan</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//缩点 </span></span><br><span class="line">	newgraph.<span class="built_in">resize</span>(cscc+<span class="number">1</span>), indeg.<span class="built_in">resize</span>(cscc+<span class="number">1</span>), newwgt.<span class="built_in">resize</span>(cscc+<span class="number">1</span>);</span><br><span class="line">	indeg.<span class="built_in">assign</span>(cscc+<span class="number">1</span>, <span class="number">0</span>), newwgt.<span class="built_in">assign</span>(cscc+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	<span class="comment">//缩点建图</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> nx: graph[i])<span class="comment">//遍历该点连接的所有点</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(scc[i] != scc[nx]) <span class="comment">//如果不在同一个集合，将两个集合连接在一起</span></span><br><span class="line">			&#123;</span><br><span class="line">				newgraph[scc[i]].<span class="built_in">emplace_back</span>(scc[nx]); <span class="comment">//建新图 </span></span><br><span class="line">				indeg[scc[nx]]++; <span class="comment">//入度 </span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		newwgt[scc[i]] += weight[i]; <span class="comment">//整合集合的权值</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//类似 拓扑排序 </span></span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=cscc; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(indeg[i] == <span class="number">0</span>) <span class="comment">//入度为 0，入队</span></span><br><span class="line">		&#123;</span><br><span class="line">			q.<span class="built_in">emplace</span>(i);</span><br><span class="line">			dist[i] = newwgt[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> cur = q.<span class="built_in">front</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> nx: newgraph[cur])</span><br><span class="line">		&#123;</span><br><span class="line">			dist[nx] = <span class="built_in">max</span>(dist[nx], dist[cur]+newwgt[nx]);</span><br><span class="line">			indeg[nx]--;</span><br><span class="line">			<span class="keyword">if</span>(indeg[nx] == <span class="number">0</span>) <span class="comment">//拓扑排序</span></span><br><span class="line">			&#123;</span><br><span class="line">				q.<span class="built_in">emplace</span>(nx); </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> i: dist)</span><br><span class="line">	&#123;</span><br><span class="line">		ans = <span class="built_in">max</span>(ans, i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h3 id="割点"><a href="#割点" class="headerlink" title="割点"></a>割点</h3><p><strong>题目描述</strong></p>
+<p>给出一个 $n$ 个点，$m$ 条边的无向图，求图的割点。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行输入两个正整数 $n,m$。</p>
+<p>下面 $m$ 行每行输入两个正整数 $x,y$ 表示 $x$ 到 $y$ 有一条边。</p>
+<p><strong>输出格式</strong></p>
+<p>第一行输出割点个数。</p>
+<p>第二行按照节点编号从小到大输出节点，用空格隔开。</p>
+<p><strong>样例输入</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">6 7</span><br><span class="line">1 2</span><br><span class="line">1 3</span><br><span class="line">1 4</span><br><span class="line">2 5</span><br><span class="line">3 5</span><br><span class="line">4 5</span><br><span class="line">5 6</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>样例输出</strong></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 </span><br><span class="line">5</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><strong>解题注意点</strong></p>
+<p>判断割点：</p>
+<ul>
+<li><p>其为根，有至少两个子树，则其为割点</p>
+<p>对这种割点，显然这两个子树只有根这一条路。在遍历时，只有为被访问过的儿子才会有 child 加一</p>
+</li>
+<li><p>若 cur 不是根，但是 <code>low[nx] &gt; dfsn[cur]</code>，则其为割点。</p>
+<p>假设遍历到 cur，<code>low[nx] &gt; dfsn[cur]</code> 表示儿子 nx 点回溯可到达的最先点的时间戳大于等于 cur 的时间戳，证明不能通过 cur 以外的点与 已知点相连，那么意味着必然可以通过割去 cur 而使得已遍历点与儿子 nx 位于两个互不连通的图。</p>
+</li>
+</ul>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; graph;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; dfsn, low;</span><br><span class="line">vector&lt;<span class="type">bool</span>&gt; instk, ans;</span><br><span class="line">stack&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="type">int</span> n, m, root, tot = <span class="number">0</span>, cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> cur)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	dfsn[cur] = low[cur] = ++tot;</span><br><span class="line">	<span class="type">int</span> son = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> nx: graph[cur])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfsn[nx])</span><br><span class="line">		&#123;</span><br><span class="line">			son++;</span><br><span class="line">			<span class="built_in">tarjan</span>(nx);</span><br><span class="line">			low[cur] = <span class="built_in">min</span>(low[cur], low[nx]);</span><br><span class="line">			<span class="keyword">if</span>(low[nx] &gt;= dfsn[cur] &amp;&amp; cur != root) <span class="comment">//第二种割点</span></span><br><span class="line">			&#123;</span><br><span class="line">				cnt += !ans[cur];</span><br><span class="line">				ans[cur] = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			low[cur] = <span class="built_in">min</span>(low[cur], dfsn[nx]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(son &gt;= <span class="number">2</span> &amp;&amp; cur == root) <span class="comment">//第一种割点</span></span><br><span class="line">	&#123;</span><br><span class="line">		cnt += !ans[cur];</span><br><span class="line">		ans[cur] = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	graph.<span class="built_in">resize</span>(n+<span class="number">1</span>), dfsn.<span class="built_in">resize</span>(n+<span class="number">1</span>), low.<span class="built_in">resize</span>(n+<span class="number">1</span>), ans.<span class="built_in">resize</span>(n+<span class="number">1</span>), instk.<span class="built_in">resize</span>(n+<span class="number">1</span>);</span><br><span class="line">	dfsn.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="number">0</span>), low.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="number">0</span>), instk.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="literal">false</span>), ans.<span class="built_in">assign</span>(n+<span class="number">1</span>, <span class="literal">false</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a, b;</span><br><span class="line">		cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		graph[a].<span class="built_in">emplace_back</span>(b);</span><br><span class="line">		graph[b].<span class="built_in">emplace_back</span>(a);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfsn[i])</span><br><span class="line">		&#123;</span><br><span class="line">			root = i;</span><br><span class="line">			<span class="built_in">tarjan</span>(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; cnt &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(ans[i]) cout &lt;&lt; i &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="tarjan算法与无向图连通性"><a href="#tarjan算法与无向图连通性" class="headerlink" title="tarjan算法与无向图连通性"></a>tarjan算法与无向图连通性</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/365/" >ACWing363.B城 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p><strong>题目描述</strong><br>B 城有 n 个城镇，m 条双向道路。每条道路连结两个不同的城镇，没有重复的道路，所有城镇连通。把城镇看作节点，把道路看作边，容易发现，整个城市构成了一个无向图。</p>
+<p>输入格式：第一行包含两个整数 n 和 m。接下来 m 行，每行包含两个整数 a 和 b，表示城镇 a 和 b 之间存在一条道路。</p>
+<p><strong>输出格式</strong>：输出共 n 行，每行输出一个整数。第 i 行输出的整数表示把与节点 i 关联的所有边去掉以后（不去掉节点 i 本身），无向图有多少个有序点 (x,y)，满足 x 和 y 不连通。</p>
+<p><strong>分析</strong></p>
+<p>很容易让人想到 <code>Tarjan</code> 求割点。如果一个点不是割点，那么将它删去后其他点仍然连通，只有这个点与其它点都不连通。注意到题目要求的是有序数对，故答案为 2(n−1)。</p>
+<p>如果一个点是割点，那么将它删去后会有三种连通块：</p>
+<ol>
+<li>以满足时间戳大于等于当前节点（即割点判断标准）的子节点为代表的子树。</li>
+<li>当前节点本身。</li>
+<li>由除了上述两种连通块之外的所有节点构成的连通块。</li>
+</ol>
+<p>对于一个大小为 p 的连通块，它对答案的贡献为 p×(n-p)。我们可以在执行 <code>Tarjan</code> 算法时顺便统计子树大小和这些信息即可。</p>
+<h4 id="tarjan算法与有向图连通性"><a href="#tarjan算法与有向图连通性" class="headerlink" title="tarjan算法与有向图连通性"></a>tarjan算法与有向图连通性</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/369/" >ACWing367.学校网络 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p><strong>问题</strong>：一些学校连接在一个计算机网络上，学校之间存在软件支援协议，每个学校都有它应支援的学校名单（学校 A 支援学校 B，并不表示学校 B 一定要支援学校 A）。</p>
+<p>当某校获得一个新软件时，无论是直接获得还是通过网络获得，该校都应立即将这个软件通过网络传送给它应支援的学校。因此，一个新软件若想让所有学校都能使用，只需将其提供给一些学校即可。现在请问最少需要将一个新软件直接提供给多少个学校，才能使软件能够通过网络被传送到所有学校？最少需要添加几条新的支援关系，使得将一个新软件提供给任何一个学校，其他所有学校就都可以通过网络获得该软件？</p>
+<p><strong>输入格式</strong><br>第 1 行包含整数 N，表示学校数量。<br>第 2 … N+1 行，每行包含一个或多个整数，第 i+1 行表示学校 i 应该支援的学校名单，每行最后都有一个 0 表示名单结束（只有一个 0 即表示该学校没有需要支援的学校）。</p>
+<p><strong>输出格式</strong><br>输出两个问题的结果，每个结果占一行。</p>
+<p><strong>问题分析</strong></p>
+<p>Tarjan 缩点将原图转化为 有向无环图(DAG)，统计每个强连通分量的出度和入度，起点数量为 src，中点数量为 des。对于一个强连通分量，其中只要有一所学校获得新软件那么整个分量都能获得。</p>
+<p>问题一：</p>
+<p>结论：只要把软件给所有起点即可，答案为起点个数 src</p>
+<p>证明：所有起点都无法由别的点到达，因此每个起点必须分配一个软件，而对于其他所有点一定存在前驱，一定能由某个起点到达。总结而言，从起点出发能遍历整个图。</p>
+<p>问题二：</p>
+<p>结论：若scc_cnt &#x3D; 1（只有一个强连通分类），则不需要连新的边，答案为0。若scc_cnt&gt;1，则答案为 max(src, des)。</p>
+<p>证明：设缩点后的 有向无环图，起点（入度为0）的集合为P，终点（出度为0）的集合为Q。分以下两种情况讨论：</p>
+<ol>
+<li><p>|P|≤|Q|</p>
+<p>①若 |P| &#x3D; 1，则只有一个起点，并且这个起点能走到所有点，只要将每个终点都向这个起点连一条边，那么对于图中任意一点，都可以到达所有点，新加边的数量为|Q|</p>
+<p>②若 |P|≥2，则|Q|≥|P|≥2，此时至少存在2个起点p1，p2，2个终点q1，q2，满足p1能走到q1，p2能走到q2。此时，我们可以从q1向p2新连一条边，那么此时起点和终点的个数都会减少一个，只要以这种方式，连接新边|P|-1条，则|P’|&#x3D;1，而|Q’|&#x3D;|Q|-(|P|-1)，由①得，再连接|Q’|条新边，那么总添加的新边数量为 |P|-1+|Q|-(|P|-1)&#x3D;|Q|。</p>
+</li>
+<li><p>|Q|≤|P|，情况与1对称，此时答案为 |P|。</p>
+</li>
+</ol>
+<p>综上所述，scc_cnt &gt; 1 时，问题二的答案为 max(|P|, |Q|)，即 max(src, des)。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 图论Tarjan算法</li>
+        <li><strong>Author:</strong> 卡布叻_米菲</li>
+        <li><strong>Created at
+                :</strong> 2023-04-10 13:05:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2023-04-26 22:02:28
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://carolinebaby.github.io/2023/04/10/tarjan算法/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">#算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/04/11/%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">字符串</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/04/10/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">算法中的数学</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://caroline-world-42jy0ja18-carolinebaby.vercel.app',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">图论Tarjan算法</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E5%90%91%E5%9B%BE%E7%9A%84%E5%89%B2%E7%82%B9%E4%B8%8E%E6%A1%A5"><span class="nav-text">无向图的割点与桥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%A5"><span class="nav-text">桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E7%82%B9%E9%97%AE%E9%A2%98"><span class="nav-text">割点问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F"><span class="nav-text">强连通分量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="nav-text">模板题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%A9%E7%82%B9"><span class="nav-text">缩点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%B2%E7%82%B9"><span class="nav-text">割点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">卡布叻_米菲</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        16 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.1</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

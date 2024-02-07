@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="算法学习">
+    
+    <meta name="author" content="卡布叻_米菲">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://carolinebaby.github.io/2023/04/11/算法基础/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="content: 排序（计算排序、快速排序），前缀和，差分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法基础">
+<meta property="og:url" content="https://carolinebaby.github.io/2023/04/11/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Caroline&#39;s World">
+<meta property="og:description" content="content: 排序（计算排序、快速排序），前缀和，差分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oi-wiki.org/basic/images/prefix_sum1.png">
+<meta property="og:image" content="https://oi-wiki.org/basic/images/prefix_sum2.png">
+<meta property="article:published_time" content="2023-04-11T14:50:00.000Z">
+<meta property="article:modified_time" content="2023-04-14T14:55:27.285Z">
+<meta property="article:author" content="Caroline">
+<meta property="article:tag" content="算法学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oi-wiki.org/basic/images/prefix_sum1.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#0072BC">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            算法基础 -
+        
+        卡布叻_米菲的世界
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        卡布叻_米菲的世界
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"carolinebaby.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"18px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#0072BC","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/2.jpg","dark":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/5.jpg"},"title":"Welcome to Caroline's world!","subtitle":{"text":["这里是 卡布叻_米菲 的世界！"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Carolinebaby","instagram":null,"zhihu":null,"twitter":null,"email":"1474396199@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Blog":"https://carolinebaby.github.io/","Github":"https://github.com/Carolinebaby"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Hi~Welcome~","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"shuoshuo":{"path":"/shuoshuo","icon":"fa-regular fa-comment-dots"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/4/8 08:29:29"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://c-ssl.duitang.com/uploads/item/202004/28/20200428194223_rjvgr.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                卡布叻_米菲的世界
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://carolinebaby.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Carolinebaby">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://carolinebaby.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Carolinebaby">GITHUB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/shuoshuo"
+                        >
+                            <span>Shuoshuo</span>
+                            <i class="fa-regular fa-comment-dots fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">算法基础</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://wx1.sinaimg.cn/mw2000/0078huakly1hicqpzo0aoj326z2hy1kx.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">卡布叻_米菲</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-11 22:50</span>
+        <span class="mobile">2023-04-11 22:50</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-04-14 22:55:27</span>
+            <span class="mobile">2023-04-14 22:55:27</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>content: 排序（计算排序、快速排序），前缀和，差分</p>
+<span id="more"></span>
+
+
+
+<h2 id="1-排序"><a href="#1-排序" class="headerlink" title="1 排序"></a>1 排序</h2><h3 id="1-1-计数排序"><a href="#1-1-计数排序" class="headerlink" title="1.1 计数排序"></a>1.1 计数排序</h3><p>计数排序是一种线性时间的排序算法。工作原理是使用一个额外的数组 C，其中第 i 个元素是待排数组 A 中值等于 i 的元素的个数，然后根据 数组C来将A中的元素排到正确的位置。</p>
+<p>分为三个步骤：</p>
+<ol>
+<li>计算每个数出现几次</li>
+<li>求出每个数出现次数的前缀和</li>
+<li>利用出现次数的前缀和，从右至左计算每个数的排名。</li>
+</ol>
+<p>代码实现</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> W = <span class="number">100010</span>;</span><br><span class="line"><span class="type">int</span> n, w, a[N], cnt[N], b[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">counting_sort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(cnt, <span class="number">0</span>, <span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=n; i++) ++cnt[a[i]];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;=w; i++) cnt[i]+=cnt[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = n; i&gt;=<span class="number">1</span>; i--) b[cnt[a[i]]--] = a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="1-2-基数排序"><a href="#1-2-基数排序" class="headerlink" title="1.2 基数排序"></a>1.2 基数排序</h3><p>基数排序是一种非比较型的排序算法。基数排序将待排序的元素拆分为 k 个关键字，逐一对各个关键字排序后完成对所有元素的排序。</p>
+<p>如果从第 1 个关键字到第 k 个关键字顺序进行比较，则称为 MSD基数排序</p>
+<p>如果从第 k 个关键字到第 1 个关键字顺序进行比较，则称为 LSD基数排序</p>
+<h3 id="1-3-快速排序"><a href="#1-3-快速排序" class="headerlink" title="1.3 快速排序"></a>1.3 快速排序</h3><p>快速排序的工作原理是通过 分治 的方式来将一个数组排序。</p>
+<p>快速排序分为三个过程：</p>
+<ol>
+<li>将数列划分为两部分（要求保证相对大小关系）；</li>
+<li>递归到两个子序列中分别进行快速排序；</li>
+<li>不用合并，因为此时数列已经完全有序。</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Range</span> &#123;</span><br><span class="line">  <span class="type">int</span> start, end;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Range</span>(<span class="type">int</span> s = <span class="number">0</span>, <span class="type">int</span> e = <span class="number">0</span>) &#123; start = s, end = e; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(T arr[], <span class="type">const</span> <span class="type">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (len &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">  Range r[len];</span><br><span class="line">  <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">  r[p++] = <span class="built_in">Range</span>(<span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">while</span> (p) &#123;</span><br><span class="line">    Range range = r[--p];</span><br><span class="line">    <span class="keyword">if</span> (range.start &gt;= range.end) <span class="keyword">continue</span>;</span><br><span class="line">    T mid = arr[range.end];</span><br><span class="line">    <span class="type">int</span> left = range.start, right = range.end - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">      <span class="keyword">while</span> (arr[left] &lt; mid &amp;&amp; left &lt; right) left++;</span><br><span class="line">      <span class="keyword">while</span> (arr[right] &gt;= mid &amp;&amp; left &lt; right) right--;</span><br><span class="line">      std::<span class="built_in">swap</span>(arr[left], arr[right]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (arr[left] &gt;= arr[range.end])</span><br><span class="line">      std::<span class="built_in">swap</span>(arr[left], arr[range.end]);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      left++;</span><br><span class="line">    r[p++] = <span class="built_in">Range</span>(range.start, left - <span class="number">1</span>);</span><br><span class="line">    r[p++] = <span class="built_in">Range</span>(left + <span class="number">1</span>, range.end);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>我们需要对朴素快速排序思想加以优化。较为常见的优化思路有以下三种。</p>
+<ul>
+<li>通过 <strong>三数取中（即选取第一个、最后一个以及中间的元素中的中位数）</strong> 的方法来选择两个子序列的分界元素（即比较基准）。这样可以避免极端数据（如升序序列或降序序列）带来的退化；</li>
+<li>当序列较短时，使用 <strong>插入排序</strong> 的效率更高；</li>
+<li>每趟排序后，<strong>将与分界元素相等的元素聚集在分界元素周围</strong>，这样可以避免极端数据（如序列中大部分元素都相等）带来的退化。</li>
+</ul>
+<p>下面列举了几种较为成熟的快速排序优化方式。</p>
+<h4 id="三路快速排序"><a href="#三路快速排序" class="headerlink" title="三路快速排序"></a>三路快速排序</h4><p>三路快速排序 是快速排序和 基数排序 的混合。与原始的快速排序不同，三路快速排序在随机选取分界点 m 后，将待排数列划分为三个部分：小于 m、等于 m 以及大于 m。这样做即实现了将与分界元素相等的元素聚集在分界元素周围这一效果。三路快速排序在处理含有多个重复值的数组时，效率远高于原始快速排序。其最佳时间复杂度为 O(n)。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模板的 T 参数表示元素的类型，此类型需要定义小于（&lt;）运算</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="comment">// arr 为需要被排序的数组，len 为数组长度</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(T arr[], <span class="type">const</span> <span class="type">int</span> len)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (len &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// 随机选择基准（pivot）</span></span><br><span class="line">  <span class="type">const</span> T pivot = arr[<span class="built_in">rand</span>() % len];</span><br><span class="line">  <span class="comment">// i：当前操作的元素</span></span><br><span class="line">  <span class="comment">// j：第一个等于 pivot 的元素</span></span><br><span class="line">  <span class="comment">// k：第一个大于 pivot 的元素</span></span><br><span class="line">  <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = len;</span><br><span class="line">  <span class="comment">// 完成一趟三路快排，将序列分为：</span></span><br><span class="line">  <span class="comment">// 小于 pivot 的元素｜ 等于 pivot 的元素 ｜ 大于 pivot 的元素</span></span><br><span class="line">  <span class="keyword">while</span> (i &lt; k) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i] &lt; pivot)</span><br><span class="line">      <span class="built_in">swap</span>(arr[i++], arr[j++]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pivot &lt; arr[i])</span><br><span class="line">      <span class="built_in">swap</span>(arr[i], arr[--k]);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      i++;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 递归完成对于两个子序列的快速排序</span></span><br><span class="line">  <span class="built_in">quick_sort</span>(arr, j);</span><br><span class="line">  <span class="built_in">quick_sort</span>(arr + k, len - k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="内省排序"><a href="#内省排序" class="headerlink" title="内省排序"></a>内省排序</h4><p>内省排序 是快速排序和 堆排序 的结合。内省排序其实是对快速排序的一种优化，保证了最差时间复杂度为 O(nlog n)。sort() 函数的实现采用了内省排序算法。</p>
+<h3 id="1-4-归并排序"><a href="#1-4-归并排序" class="headerlink" title="1.4 归并排序"></a>1.4 归并排序</h3><p>归并排序 是高效的基于比较的稳定排序算法。</p>
+<p>归并排序最核心的部分是合并（merge）过程：将两个有序的数组 <code>a[i]</code> 和 <code>b[j]</code> 合并为一个有序数组 <code>c[k]</code>。</p>
+<p>从左往右枚举 <code>a[i]</code> 和 <code>b[j]</code>，找出最小的值并放入数组 <code>c[k]</code>；重复上述过程直到 <code>a[i]</code> 和 <code>b[j]</code> 有一个为空时，将另一个数组剩下的元素放入 <code>c[k]</code>。</p>
+<p>为保证排序的稳定性，前段首元素小于或等于后段首元素时（<code>a[i] &lt;= b[j]</code>）而非小于时（<code>a[i] &lt; b[j]</code>）就要作为最小值放入 <code>c[k]</code>。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">const</span> <span class="type">int</span> *a, <span class="type">size_t</span> aLen, <span class="type">const</span> <span class="type">int</span> *b, <span class="type">size_t</span> bLen, <span class="type">int</span> *c)</span> </span>&#123;</span><br><span class="line">  <span class="type">size_t</span> i = <span class="number">0</span>, j = <span class="number">0</span>, k = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; aLen &amp;&amp; j &lt; bLen) &#123;</span><br><span class="line">    <span class="keyword">if</span> (b[j] &lt; a[i]) &#123;  <span class="comment">// &lt;!&gt; 先判断 b[j] &lt; a[i]，保证稳定性</span></span><br><span class="line">      c[k] = b[j];</span><br><span class="line">      ++j;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      c[k] = a[i];</span><br><span class="line">      ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    ++k;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 此时一个数组已空，另一个数组非空，将非空的数组并入 c 中</span></span><br><span class="line">  <span class="keyword">for</span> (; i &lt; aLen; ++i, ++k) c[k] = a[i];</span><br><span class="line">  <span class="keyword">for</span> (; j &lt; bLen; ++j, ++k) c[k] = b[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>可用 <code>&lt;algorithm&gt;</code> 头文件中的 <code>merge</code>函数：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">merge</span>(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest);</span><br><span class="line"><span class="comment">//容器元素合并，并存储到另一个容器中</span></span><br><span class="line"><span class="comment">//注意：两个容器必须是有序的</span></span><br><span class="line"><span class="comment">//beg1 容器1开始迭代器</span></span><br><span class="line"><span class="comment">//end1 容器1结束迭代器</span></span><br><span class="line"><span class="comment">//beg2 容器2开始迭代器</span></span><br><span class="line"><span class="comment">//end2 容器2结束迭代器</span></span><br><span class="line"><span class="comment">//dest 目标容器开始迭代器</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>分治法实现归并排序</p>
+<ol>
+<li>当数组长度为 1 时，该数组就已经是有序的，不用再分解。</li>
+<li>当数组长度大于 1 时，该数组很可能不是有序的。此时将该数组分为两段，再分别检查两个数组是否有序（用第 1 条）。如果有序，则将它们合并为一个有序数组；否则对不有序的数组重复第 2 条，再合并。</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> l, <span class="type">int</span> r)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (r - l &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="comment">// 分解</span></span><br><span class="line">  <span class="type">int</span> mid = l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">merge_sort</span>(a, l, mid), <span class="built_in">merge_sort</span>(a, mid, r);</span><br><span class="line">  <span class="comment">// 合并</span></span><br><span class="line">  <span class="type">int</span> tmp[<span class="number">1024</span>] = &#123;&#125;;  <span class="comment">// 请结合实际情况设置 tmp 数组的长度（与 a 相同），或使用</span></span><br><span class="line">                       <span class="comment">// vector；先将合并的结果放在 tmp 里，再返回到数组 a</span></span><br><span class="line">  <span class="built_in">merge</span>(a + l, a + mid, a + mid, a + r, tmp + l);  <span class="comment">// pointer-style merge</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt; r; ++i) a[i] = tmp[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="1-5-堆排序"><a href="#1-5-堆排序" class="headerlink" title="1.5 堆排序"></a>1.5 堆排序</h3><p>堆排序（英语：Heapsort）是指利用 二叉堆 这种数据结构所设计的一种排序算法。堆排序的适用数据结构为数组。堆排序的本质是建立在堆上的选择排序。</p>
+<p>首先建立大顶堆，然后将堆顶的元素取出，作为最大值，与数组尾部的元素交换，并维持残余堆的性质；</p>
+<p>之后将堆顶的元素取出，作为次大值，与数组倒数第二位元素交换，并维持残余堆的性质；</p>
+<p>以此类推，在第 n-1 次操作后，整个数组就完成了排序。</p>
+<p>在数组上建立二叉堆</p>
+<p>从根节点开始，依次将每一层的节点排列在数组里。</p>
+<p>于是有数组中下标为 i 的节点，对应的父结点、左子结点和右子结点如下：</p>
+<h3 id="1-6-桶排序"><a href="#1-6-桶排序" class="headerlink" title="1.6 桶排序"></a>1.6 桶排序</h3><h3 id="1-7-排序的相关STL"><a href="#1-7-排序的相关STL" class="headerlink" title="1.7 排序的相关STL"></a>1.7 排序的相关STL</h3><h4 id="qsort-函数"><a href="#qsort-函数" class="headerlink" title="qsort 函数"></a>qsort 函数</h4><p>头文件：<code>&lt;cstdlib&gt;</code></p>
+<p>函数原型：<code>void qsort( void *ptr, size_t count, size_t size,int (*comp)(const void *, const void *) );</code></p>
+<p>qsort 函数有四个参数：数组名、元素个数、元素大小、比较规则。其中，比较规则通过指定比较函数来实现，指定不同的比较函数可以实现不同的排序规则。</p>
+<p>比较函数的参数限定为两个 const void 类型的指针。返回值规定为正数、负数和 0。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比较函数的一种写法</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">compare</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *p1, <span class="type">const</span> <span class="type">void</span> *p2)</span>  <span class="comment">// int 类型数组的比较函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> *a = (<span class="type">int</span> *)p1;</span><br><span class="line">  <span class="type">int</span> *b = (<span class="type">int</span> *)p2;</span><br><span class="line">  <span class="keyword">if</span> (*a &gt; *b)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">// 返回正数表示 a 大于 b</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (*a &lt; *b)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 返回负数表示 a 小于 b</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">// 返回 0 表示 a 与 b 等价</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="sort-函数"><a href="#sort-函数" class="headerlink" title="sort 函数"></a>sort 函数</h4><p>头文件：<code>&lt;algorithm&gt;</code></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a[0] .. a[n - 1] 为需要排序的数列</span></span><br><span class="line"><span class="comment">// 对 a 原地排序，将其按从小到大的顺序排列</span></span><br><span class="line">std::<span class="built_in">sort</span>(a, a + n);</span><br><span class="line"></span><br><span class="line"><span class="comment">// cmp 为自定义的比较函数</span></span><br><span class="line">std::<span class="built_in">sort</span>(a, a + n, cmp);</span><br></pre></td></tr></table></figure></div>
+
+<p>comp 比较函数对象，在第一参数小于（即先序于）第二参数时返回 true。<br><code>bool cmp(const Type1 &amp;a, const Type2 &amp;b);</code></p>
+<h4 id="nth-element-函数"><a href="#nth-element-函数" class="headerlink" title="nth_element 函数"></a>nth_element 函数</h4><p>头文件：<code>&lt;algorithm&gt;</code></p>
+<p>用法：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nth_element</span>(first, nth, last);</span><br><span class="line"><span class="built_in">nth_element</span>(first, nth, last, cmp);</span><br></pre></td></tr></table></figure></div>
+
+<p>它重排 <code>[first, last)</code> 中的元素，使得 <code>nth</code> 所指向的元素被更改为 <code>[first, last)</code> 排好序后该位置会出现的元素。这个新的 <code>nth</code> 元素前的所有元素小于或等于新的 <code>nth</code> 元素后的所有元素。此算法是未完成的内省排序。时间复杂度O(n)。</p>
+<p>它常用于构建 K-D Tree</p>
+<h4 id="partial-sort-函数"><a href="#partial-sort-函数" class="headerlink" title="partial_sort 函数"></a>partial_sort 函数</h4><p>头文件：<code>&lt;algorithm&gt;</code></p>
+<p>用法：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mid = first + k</span></span><br><span class="line">std::<span class="built_in">partial_sort</span>(first, mid, last);</span><br><span class="line">std::<span class="built_in">partial_sort</span>(first, mid, last, cmp);</span><br></pre></td></tr></table></figure></div>
+
+<p>将序列中前 <code>k</code> 元素按 <code>cmp</code> 给定的顺序进行原地排序，后面的元素不保证顺序。未指定 <code>cmp</code> 函数时，默认按从小到大的顺序排序。</p>
+<h4 id="自定义比较"><a href="#自定义比较" class="headerlink" title="自定义比较"></a>自定义比较</h4><p>内置类型（如 int）和用户定义的结构体允许定制调用 STL 排序函数时使用的比较函数。可以在调用该函数时，在最后一个参数中传入一个实现二元比较的函数。</p>
+<p>对于用户定义的结构体，对其使用 STL 排序函数前必须定义至少一种关系运算符，或是在使用函数时提供二元比较函数。通常推荐定义 <code>operator&lt;</code>。</p>
+<p>实例：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">1009</span>], n = <span class="number">10</span>;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">std::<span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n);                  <span class="comment">// 从小到大排序</span></span><br><span class="line">std::<span class="built_in">sort</span>(a + <span class="number">1</span>, a + <span class="number">1</span> + n, <span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());  <span class="comment">// 从大到小排序</span></span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">data</span> &#123;</span><br><span class="line">  <span class="type">int</span> a, b;</span><br><span class="line"></span><br><span class="line">  <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> data rhs) <span class="type">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (a == rhs.a) ? (b &lt; rhs.b) : (a &lt; rhs.a);</span><br><span class="line">  &#125;</span><br><span class="line">&#125; da[<span class="number">1009</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> data u1, <span class="type">const</span> data u2)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (u1.a == u2.a) ? (u1.b &gt; u2.b) : (u1.a &gt; u2.a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">std::<span class="built_in">sort</span>(da + <span class="number">1</span>, da + <span class="number">1</span> + <span class="number">10</span>);  <span class="comment">// 使用结构体中定义的 &lt; 运算符，从小到大排序</span></span><br><span class="line">std::<span class="built_in">sort</span>(da + <span class="number">1</span>, da + <span class="number">1</span> + <span class="number">10</span>, cmp);  <span class="comment">// 使用 cmp 函数进行比较，从大到小排序</span></span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h2 id="前缀和"><a href="#前缀和" class="headerlink" title="前缀和"></a>前缀和</h2><p>定义：数列的前n项和，是一种重要的预处理方式，能大大降低查询时间的复杂度。</p>
+<p>C++ 标准库中实现了前缀和函数 <code>partial_sum</code>，定义于头文件 <code>&lt;numeric&gt;</code>。</p>
+<h3 id="一维前缀和"><a href="#一维前缀和" class="headerlink" title="一维前缀和"></a>一维前缀和</h3><p>原数组：A[N]，前缀和数组：B[N]</p>
+<p>递推公式：<code>B[0] = A[0]</code>，对于 i&gt;0，则<code>B[i] = B[i-1] + A[i]</code>。</p>
+<h3 id="二维-多维前缀和"><a href="#二维-多维前缀和" class="headerlink" title="二维&#x2F;多维前缀和"></a>二维&#x2F;多维前缀和</h3><p>普遍求解方法几乎店铺是容斥原理。</p>
+<h4 id="一维前缀和拓展到二维前缀和"><a href="#一维前缀和拓展到二维前缀和" class="headerlink" title="一维前缀和拓展到二维前缀和"></a>一维前缀和拓展到二维前缀和</h4><p>示例：比如我们有这样一个矩阵 a，可以视为二维数组：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">3</span></span><br><span class="line"><span class="number">5</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span></span><br><span class="line"><span class="number">6</span> <span class="number">3</span> <span class="number">5</span> <span class="number">9</span></span><br></pre></td></tr></table></figure></div>
+
+<p>我们定义一个矩阵 $\textit{sum}$ 使得 $\textit{sum}<em>{x,y} &#x3D; \sum\limits</em>{i&#x3D;1}^x \sum\limits_{j&#x3D;1}^y a_{i,j}，$<br>那么这个矩阵长这样：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>  <span class="number">3</span>  <span class="number">7</span>  <span class="number">10</span></span><br><span class="line"><span class="number">6</span>  <span class="number">9</span>  <span class="number">15</span> <span class="number">22</span></span><br><span class="line"><span class="number">12</span> <span class="number">18</span> <span class="number">29</span> <span class="number">45</span></span><br></pre></td></tr></table></figure></div>
+
+<p>第一个问题就是递推求 $\textit{sum}$ 的过程，$\textit{sum}<em>{i,j} &#x3D; \textit{sum}</em>{i - 1,j} + \textit{sum}<em>{i,j - 1} - \textit{sum}</em>{i - 1,j - 1} + a_{i,j}$。</p>
+<p>因为同时加了 $\textit{sum}<em>{i - 1,j}$ 和 $\textit{sum}</em>{i,j - 1}$，故重复了 $\textit{sum}_{i - 1,j - 1}$，减去。</p>
+<p>第二个问题就是如何应用，譬如求 $(x_1,y_1) - (x_2,y_2)$ 子矩阵的和。</p>
+<p>类似的，易得答案为 $\textit{sum}<em>{x_2,y_2} - \textit{sum}</em>{x_1 - 1,y_2} - sum_{x_2,y_1 - 1} + sum_{x_1 - 1,y_1 - 1}$。</p>
+<p>例题：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1387" >洛谷 P1387 最大正方形 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>在一个 n*m 的只包含 0 和 1 的矩阵里找出一个不包含 0 的最大正方形，输出边长。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[<span class="number">103</span>][<span class="number">103</span>];</span><br><span class="line"><span class="type">int</span> b[<span class="number">103</span>][<span class="number">103</span>];  <span class="comment">// 前缀和数组，相当于上文的 sum[]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="type">int</span> n, m;</span><br><span class="line">  cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">      cin &gt;&gt; a[i][j];</span><br><span class="line">      b[i][j] =</span><br><span class="line">          b[i][j - <span class="number">1</span>] + b[i - <span class="number">1</span>][j] - b[i - <span class="number">1</span>][j - <span class="number">1</span>] + a[i][j];  <span class="comment">// 求前缀和</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> l = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">while</span> (l &lt;= <span class="built_in">min</span>(n, m)) &#123;  <span class="comment">// 判断条件</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = l; i &lt;= n; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> j = l; j &lt;= m; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b[i][j] - b[i - l][j] - b[i][j - l] + b[i - l][j - l] == l * l) &#123;</span><br><span class="line">          ans = <span class="built_in">max</span>(ans, l);  <span class="comment">// 在这里统计答案</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    l++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>另一种基于容斥原理的做法，可以降低时间复杂度。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	S[i]=S[i<span class="number">-1</span>]+A[i];</span><br><span class="line">	</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;++j)</span><br><span class="line">		S[i][j]=S[i][j<span class="number">-1</span>]+A[i][j];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i)</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=n;++j)</span><br><span class="line">		S[i][j]=S[i<span class="number">-1</span>][j]+S[i][j];</span><br></pre></td></tr></table></figure></div>
+
+<p>这种写法的思想其实就是一维一维的统计，这样的统计方法，复杂度就降到 $O(n^t×t)$ </p>
+<h4 id="基于-DP-计算高维前缀和"><a href="#基于-DP-计算高维前缀和" class="headerlink" title="基于 DP 计算高维前缀和"></a>基于 DP 计算高维前缀和</h4><p>基于 容斥原理 来计算 高维前缀和的方法，形式简单，但当维数升高时，起复杂度较高。所以有另一种写法，结合位运算能在高维前缀和统计时降低复杂度。SOS DP</p>
+<p>设高维空间 U 共有 D 维，需要对 $f[\cdot]$ 求高维前缀和 $\text{sum}[\cdot]$。令 $\text{sum}[i][\text{state}]$ 表示同 $\text{state}$ 后 D - i 维相同的所有点对于 $\text{state}$ 点高维前缀和的贡献。由定义可知 $\text{sum}[0][\text{state}] &#x3D; f[\text{state}]$，以及 $\text{sum}[\text{state}] &#x3D; \text{sum}[D][\text{state}]$。</p>
+<p>其递推关系为 $\text{sum}[i][\text{state}]$&#x3D; $\text{sum}[i - 1][\text{state}] + \text{sum}[i][\text{state}’]$，其中 $\text{state}’$ 为第 i 维恰好比 $\text{state}$ 少 1 的点。该方法的复杂度为 $O(D \times |U|)$，其中 |U| 为高维空间 U 的大小。</p>
+<p>伪代码：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> state</span><br><span class="line">  sum[state] = f[state];</span><br><span class="line"><span class="keyword">for</span>(i = <span class="number">0</span>;i &lt;= D;i += <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">for</span> 以字典序从小到大枚举 state</span><br><span class="line">    sum[state] += sum[state<span class="number">&#x27;</span>];</span><br></pre></td></tr></table></figure></div>
+
+<p>计算一维前缀和</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//内存优化，超级容易编码</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;N); ++i)</span><br><span class="line">    F[i] = A[i];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; N; ++i) <span class="keyword">for</span>(<span class="type">int</span> mask = <span class="number">0</span>; mask &lt; (<span class="number">1</span>&lt;&lt;N); ++mask)&#123;</span><br><span class="line">    <span class="keyword">if</span>(mask &amp; (<span class="number">1</span>&lt;&lt;i))</span><br><span class="line">        F[mask] += F[mask^(<span class="number">1</span>&lt;&lt;i)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>举例子：对于 ∀i,i∈[1,n] 都有一个权值 $A_i$，对于每一个 i ，请你输出 $∑A_j(j&amp;i&#x3D;&#x3D;j)$。$n≤10^6$。换句话说，对于每一个 i，找出所有二进制下与 i 相同或者是 i 的子集的数 j，将这些数的权值 $A_j$ 加起来，就是 $∑A_j(j&amp;i&#x3D;&#x3D;j)$ 的值。</p>
+<p>将数 i 转化为 二进制形式，以 0110101 为例，可以将其看成 7 维的坐标，然后 该数的权值就是这个坐标的权值，对于 0110101 来说，我们要统计所有坐标中 满足每一维度的坐标小于等于 0110101 每一维度的坐标的 权值和。</p>
+<h2 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h2><p>差分 是一种和前缀和相对的策略，可以当作是求和的逆运算。</p>
+<p>这种策略的定义是令   $b_i&#x3D;\begin{cases}a_i-a_{i-1},&amp;i \in[2,n] \ a_1,&amp;i&#x3D;1\end{cases}$</p>
+<p>性质</p>
+<ul>
+<li>$a_i$ 的值是 $b_i$ 的前缀和，即 $a_n&#x3D;\sum\limits_{i&#x3D;1}^nb_i$</li>
+<li>计算 $a_i$ 的前缀和 $sum&#x3D;\sum\limits_{i&#x3D;1}^na_i&#x3D;\sum\limits_{i&#x3D;1}^n\sum\limits_{j&#x3D;1}^{i}b_j&#x3D;\sum\limits_{i}^n(n-i+1)b_i$</li>
+</ul>
+<p>它可以维护多次对序列的一个区间加上一个数，并在最后询问某一位的数或是多次询问某一位的数。注意修改操作一定要在查询操作之前。</p>
+<blockquote>
+<p>譬如使 [l,r] 中的每个数加上一个 k，即$b_l \leftarrow b_l + k,b_{r + 1} \leftarrow b_{r + 1} - k$<br>其中 $b_l+k&#x3D;a_l+k-a_{l-1}，b_{r+1}-k&#x3D;a_{r+1}-(a_r+k)$</p>
+<p>最后做一遍前缀和就好了。</p>
+</blockquote>
+<p>C++ 标准库中的 差分函数：<code>adjacent_difference</code>，定义于头文件<code>&lt;numeric&gt;</code>中。</p>
+<h3 id="树上差分"><a href="#树上差分" class="headerlink" title="树上差分"></a>树上差分</h3><p>树上差分可以理解为对树上的某一段路径进行差分操作，这里的路径可以类比一维数组的区间进行理解。例如在对树上的一些路径进行频繁操作，并且询问某条边或者某个点在经过操作后的值的时候，就可以运用树上差分思想了。</p>
+<p>树上差分通常会结合 树基础 和 最近公共祖先 来进行考察。树上差分又分为 <strong>点差分</strong> 与 <strong>边差分</strong>，在实现上会稍有不同。</p>
+<h4 id="点差分"><a href="#点差分" class="headerlink" title="点差分"></a>点差分</h4><p>举例：对树上的一些路径 $\delta(s_1,t_1), \delta(s_2,t_2), \delta(s_3,t_3)\dots$ 进行访问，问一条路径 $\delta(s,t)$ 上的点被访问的次数。</p>
+<p>对于一次 $\delta(s,t)$ 的访问，需要 找到 s 与 t 的公共祖先，然后对这条路径上的点进行访问（点的权值加一），若采用 DFS 算法对每个点进行访问，由于有太多的路径需要访问，时间上承受不了。这里进行 <strong>差分操作</strong>：<br>$$<br>\begin{aligned}<br>&amp;d_s\leftarrow d_s+1\<br>&amp;d_{lca}\leftarrow d_{\textit{lca}}-1\<br>&amp;d_t\leftarrow d_t+1\<br>&amp;d_{f(\textit{lca})}\leftarrow d_{f(\textit{lca})}-1\<br>\end{aligned}<br>$$</p>
+<p>其中 f(x) 表示 x 的父亲节点，$d_i$ 为点权 $a_i$ 的差分数组。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://oi-wiki.org/basic/images/prefix_sum1.png"
+                      alt="img" style="zoom: 67%;" 
+                >
+
+<p>可以认为公式中的前两条是对蓝色方框内的路径进行操作，后两条是对红色方框内的路径进行操作。不妨令 $\textit{lca}$ 左侧的直系子节点为 $\textit{left}$。那么有 $d_{\textit{lca}}-1&#x3D;a_{\textit{lca}}-(a_{\textit{left}}+1)$，$d_{f(\textit{lca})}-1&#x3D;a_{f(\textit{lca})}-(a_{\textit{lca}}+1)$。可以发现实际上点差分的操作和上文一维数组的差分操作是类似的。</p>
+<h4 id="边差分"><a href="#边差分" class="headerlink" title="边差分"></a>边差分</h4><p>若是对路径中的边进行访问，就需要采用 <strong>边差分</strong> 策略了，使用以下公式：<br>$$<br>\begin{aligned}<br>&amp;d_s\leftarrow d_s+1\<br>&amp;d_t\leftarrow d_t+1\<br>&amp;d_{\textit{lca}}\leftarrow d_{\textit{lca}}-2\<br>\end{aligned}<br>$$<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://oi-wiki.org/basic/images/prefix_sum2.png"
+                      alt="img" style="zoom: 80%;" 
+                ></p>
+<p>由于在边上直接进行差分比较困难，所以将本来应当累加到红色边上的值向下移动到附近的点里，那么操作起来也就方便了。对于公式，有了点差分的理解基础后也不难推导，同样是对两段区间进行差分。</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>Monitor</strong> <a class="link"   target="_blank" rel="noopener" href="https://vjudge.net/problem/HDU-6514/origin" >HDU - 6514 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>题意：小腾有n∗m的田地，但是有小偷来偷东西，在一片矩形区域上，有一部分区域是监控可以覆盖到的，这部分区域由一个或多个包含于该矩形区域的小矩形构成；现在给你另一个包含在该矩形区域的小矩形A，问你这个小矩形能否被监控完全覆盖。</p>
+<p>普通暴力解法，三层循环必然导致 超时。</p>
+<p>应采用 前缀和+差分的知识 去解题</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m))</span><br><span class="line">    &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">f</span>(n + <span class="number">10</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(m + <span class="number">10</span>, <span class="number">0</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> p;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;p);</span><br><span class="line">        <span class="keyword">while</span>(p--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 给以(x1, y1)为左上角，(x2, y2)为右下角的子矩阵中的所有元素加上1</span></span><br><span class="line">            <span class="type">int</span> x1, y1, x2, y2;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>, &amp;x1, &amp;y1, &amp;x2, &amp;y2);</span><br><span class="line">            f[x1][y1]++;</span><br><span class="line">            f[x2 + <span class="number">1</span>][y1]--;</span><br><span class="line">            f[x1][y2 + <span class="number">1</span>]--;</span><br><span class="line">            f[x2 + <span class="number">1</span>][y2 + <span class="number">1</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 求差分数组的前缀和，得到原数组的值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">                f[i][j] += f[i - <span class="number">1</span>][j] + f[i][j - <span class="number">1</span>] - f[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果被监控覆盖了多次，则只记一次</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">                <span class="keyword">if</span>(f[i][j] &gt; <span class="number">1</span>) f[i][j] = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//再处理前缀和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)</span><br><span class="line">                f[i][j] += f[i - <span class="number">1</span>][j] + f[i][j - <span class="number">1</span>] - f[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> q;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q);</span><br><span class="line">        <span class="keyword">while</span>(q--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> x1, y1, x2, y2;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>, &amp;x1, &amp;y1, &amp;x2, &amp;y2);</span><br><span class="line">            </span><br><span class="line">            <span class="type">int</span> t1 = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> t2 = f[x2][y2] - f[x1 - <span class="number">1</span>][y2] - f[x2][y1 - <span class="number">1</span>] + f[x1 - <span class="number">1</span>][y1 - <span class="number">1</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(t1 == t2)    <span class="built_in">puts</span>(<span class="string">&quot;YES&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span>    <span class="built_in">puts</span>(<span class="string">&quot;NO&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>SOS DP 基于 DP 计算高维前缀和</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://codeforces.com/contest/165/problem/E" >Compatible Numbers <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>题目大意：对于一个数 x 找和它相与值为0的数，可以先将 x <strong>按位取反</strong>，将取反得到的数记为y，将要找的与x值为0的数记为z，那么y的二进制中，若某一位为0，z的这一位也要是0，若y的某一位为1，那么z的这一位可以是0也可以是1，这类似于一个 <strong>高维的前缀和</strong>。查找z的过程就是看 前缀和y是否为0。</p>
+<p>设 <code>f[state]</code> 表示 state 这个状态能否由 $a_i$ 中<strong>某一个的二进制的某些位 从0变成1</strong> 得来，<code>g[state]</code> 则用来记录这个 state 是由哪个初始的 $a_i$ 变化而来。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> A[N] , f[<span class="number">1</span> &lt;&lt; <span class="number">22</span>] , g[<span class="number">1</span> &lt;&lt; <span class="number">22</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		cin &gt;&gt; A[i]; <span class="comment">//获取数组</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">		f[A[i]] = <span class="number">1</span> , g[A[i]] = A[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span> ; i &lt; (<span class="number">1</span> &lt;&lt; <span class="number">22</span>) ; ++i) <span class="keyword">if</span>(f[i])</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span> ; j &lt; <span class="number">22</span> ; ++j)</span><br><span class="line">			<span class="keyword">if</span>(!(i &amp; (<span class="number">1</span> &lt;&lt; j)))</span><br><span class="line">				f[i | (<span class="number">1</span> &lt;&lt; j)] = <span class="number">1</span> , g[i | (<span class="number">1</span> &lt;&lt; j)] = g[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span> ; i &lt;= n ; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> y = (~A[i]) &amp; ((<span class="number">1</span> &lt;&lt; <span class="number">22</span>) - <span class="number">1</span>);</span><br><span class="line">		<span class="keyword">if</span>(f[y])</span><br><span class="line">			cout &lt;&lt; g[y] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			cout &lt;&lt; <span class="number">-1</span> &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 算法基础</li>
+        <li><strong>Author:</strong> 卡布叻_米菲</li>
+        <li><strong>Created at
+                :</strong> 2023-04-11 22:50:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2023-04-14 22:55:27
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://carolinebaby.github.io/2023/04/11/算法基础/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">#算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/04/27/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">回溯算法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/04/11/%E5%AD%97%E7%AC%A6%E4%B8%B2/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">字符串</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://caroline-world-42jy0ja18-carolinebaby.vercel.app',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">算法基础</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%8E%92%E5%BA%8F"><span class="nav-text">1 排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-text">1.1 计数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-text">1.2 基数排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-text">1.3 快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-text">1.4 归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-text">1.5 堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="nav-text">1.6 桶排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-%E6%8E%92%E5%BA%8F%E7%9A%84%E7%9B%B8%E5%85%B3STL"><span class="nav-text">1.7 排序的相关STL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">一维前缀和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4-%E5%A4%9A%E7%BB%B4%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-text">二维&#x2F;多维前缀和</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%88%86"><span class="nav-text">差分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86"><span class="nav-text">树上差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">卡布叻_米菲</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        16 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.1</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

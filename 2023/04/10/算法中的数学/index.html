@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="算法学习,数学">
+    
+    <meta name="author" content="卡布叻_米菲">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://carolinebaby.github.io/2023/04/10/算法中的数学/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="学习ing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法中的数学">
+<meta property="og:url" content="https://carolinebaby.github.io/2023/04/10/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/index.html">
+<meta property="og:site_name" content="Caroline&#39;s World">
+<meta property="og:description" content="学习ing">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oi-wiki.org/math/images/multiplication-long.png">
+<meta property="og:image" content="https://oi-wiki.org/math/images/division.png">
+<meta property="og:image" content="https://carolinebaby.github.io/2023/04/10/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/image-20230410232246169.png">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-1a11909fd74ad00baa7c6ad8ae83f19d_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-4853bd07a90d7af3c46f236d7bcdfcbe_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-27f61e6c8de5b0bb45e14369cecb4c7a_b.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-f009bc3dd1ee36af43e9a1b16e89d673_b.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-59316dd6046b17bb0dd8ddb2d84b16e0_b.gif">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-2944082cdcaa8d017ea24a39c287edb1_b.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/v2-c11d260375ef02f21b3748e17597921b_r.jpg">
+<meta property="article:published_time" content="2023-04-10T01:29:29.000Z">
+<meta property="article:modified_time" content="2023-07-01T12:05:56.849Z">
+<meta property="article:author" content="Caroline">
+<meta property="article:tag" content="算法学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oi-wiki.org/math/images/multiplication-long.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#0072BC">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            算法中的数学 -
+        
+        卡布叻_米菲的世界
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        卡布叻_米菲的世界
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"carolinebaby.github.io","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"18px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#0072BC","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/2.jpg","dark":"https://cdn.dynamicwallpaper.club/wallpapers/0lt9t1k10ae/thumbs/1600/5.jpg"},"title":"Welcome to Caroline's world!","subtitle":{"text":["这里是 卡布叻_米菲 的世界！"],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/Carolinebaby","instagram":null,"zhihu":null,"twitter":null,"email":"1474396199@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.1","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Blog":"https://carolinebaby.github.io/","Github":"https://github.com/Carolinebaby"}}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Hi~Welcome~","show_on_mobile":true,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"shuoshuo":{"path":"/shuoshuo","icon":"fa-regular fa-comment-dots"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/4/8 08:29:29"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://c-ssl.duitang.com/uploads/item/202004/28/20200428194223_rjvgr.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                卡布叻_米菲的世界
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="https://carolinebaby.github.io/">
+                                                    BLOG
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/Carolinebaby">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="https://carolinebaby.github.io/">BLOG</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/Carolinebaby">GITHUB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/tags"
+                        >
+                            <span>Tags</span>
+                            <i class="fa-regular fa-tags fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/categories"
+                        >
+                            <span>Categories</span>
+                            <i class="fa-regular fa-folder fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/shuoshuo"
+                        >
+                            <span>Shuoshuo</span>
+                            <i class="fa-regular fa-comment-dots fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="https://pica.zhimg.com/v2-ea509638c045734248f877b052aa21ac_720w.jpg?source=172ae18b" alt="算法中的数学" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">算法中的数学</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="https://wx1.sinaimg.cn/mw2000/0078huakly1hicqpzo0aoj326z2hy1kx.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">卡布叻_米菲</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-04-10 09:29:29</span>
+        <span class="mobile">2023-04-10 09:29:29</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-07-01 20:05:56</span>
+            <span class="mobile">2023-07-01 20:05:56</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>算法学习过程中积累数学知识真的很重要，可以极大地优化算法。</p>
+<p>content: 快速幂，极角排序，凸包</p>
+<span id="more"></span>
+
+<p>[TOC]</p>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><p>常用的位运算：</p>
+<ul>
+<li><p>获取一个数二进制的某一位</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 a 的第 b 位，最低编号为 0 </span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">getBit</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt;&gt; b)&amp;<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>将一个数二进制的某一位设置为 0</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 a 的第 b 位设置为 0，最低位编号为 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">unsetBit</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &amp; ~(<span class="number">1</span> &lt;&lt; b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>将一个数二进制的某一位设置为 1</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 a 的第 b 位设置为 1，最低位编号为 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">setBit</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a|(<span class="number">1</span>&lt;&lt;b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>将一个数二进制的某一位取反</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将 a 的第 b 位取反，最低编号为 0</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">flapBit</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a^(<span class="number">1</span>&lt;&lt;b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="汉明权重"><a href="#汉明权重" class="headerlink" title="汉明权重"></a>汉明权重</h3><p><strong>汉明权重</strong> 是一串符号中不同于零符号的个数。对于一个 <strong>二进制</strong>数，它的汉明权重就等于它 1 的个数</p>
+<p>求一个汉明权值可以循环求解：不断去掉这个数在二进制下的最后一位（即 右移一位），维护一个答案变量，在除的过程中根据最低位是否为 1 更新答案。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//求 x 的汉明权重</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">popcount</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x)</span><br><span class="line">    &#123;</span><br><span class="line">        cnt += x&amp;<span class="number">1</span>;</span><br><span class="line">        x &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>求一个数的汉明权值 还可以用 <code>lowbit</code> （一个数二进制表示从低往高的第一个 1 连同后面的零，如 $(1010)_2$ 的 lowbit 是 $(0010)_2$）：不断减去它的 <code>lowbit</code>，知道这个数为 0</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">popcount</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x)</span><br><span class="line">    &#123;</span><br><span class="line">        cnt++;</span><br><span class="line">        x -= x &amp; -x; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="构造汉明权重递增的排列"><a href="#构造汉明权重递增的排列" class="headerlink" title="构造汉明权重递增的排列"></a>构造汉明权重递增的排列</h4><p>在 状压dp 中，按照 popcount 递增的顺序枚举 有时可以避免重复枚举状态。这是构造汉明权重递增排列的一大作用。</p>
+<p><strong>在 O(n) 时间内构造 汉明权重递增的排列</strong></p>
+<p>我们知道，一个汉明权重为 n 的最小的整数为 $2^n-1$。只要可以在常数时间构造出一个整数汉明权重相等的后继，我们就可以通过枚举汉明权重，从 $2^n-1$ 开始不断寻找下一个数的方式，在 $O(n)$时间内构造出 $0\sim n$ 的符合要求的排列。</p>
+<p>而找出一个数 x 汉明权重相等的后继有这样的思路，以 $(10110)_2$ 为例：</p>
+<ul>
+<li><p>把 $(10110)_2$ 最右边的 1 向左移动，如果不能移动，移动它左边的 1，以此类推，得到 $(11010)_2$</p>
+</li>
+<li><p>将第一步得到的数的最后移动的 1 原先的位置一直到最低位的所有 1 都移到最右边。</p>
+<ol>
+<li>找到第一步中移动的最后一个 1 的位置，即从右往左数第 k 位。</li>
+<li>将第 k 位及其右边的所有 1 移到最右边，同时将第 k−1 位变成 1。</li>
+<li>将第 k−1位及其右边的所有 1 移到最右边，同时将第 k−2 位变成 1。</li>
+<li>重复上述步骤，直到所有从右往左数的 1 都移到了最右边。</li>
+</ol>
+<p>以 $(10110)_2$ 为例，第一步得到的数是 $(11010)_2$，最后移动的 1 原来在第三位，所以将最后三位 010 移到最右边，得到 $(11001)_2$。</p>
+</li>
+</ul>
+<p>算法优化：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> t = x + (x &amp; -x);</span><br><span class="line">x = t | ((((t&amp;-t)/(x&amp;-x))&gt;&gt;<span class="number">1</span>)<span class="number">-1</span>);</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>第一个步骤中，我们把数 x 加上它的 <code>lowbit</code>，在二进制表示下，就相当于把 x 的最右边的连续一段 1 换成它左边的一个 1。如刚才提到的 二进制数$(10110)_2$，它在加上它的 <code>lowbit</code> 后是 $(11000)_2$ 。这其实得到了我们答案的前半部分。</li>
+<li>我们接下来要把答案后面的 1 补齐，t 的 <code>lowbit</code> 是 x 最右边连续一段 1 最左边 1 移动后的位置，而 x 的 <code>lowbit</code> 则是 x 最右边连续一段 1 最左边的位置。还是以 $(10110)_2$ 为例，t &#x3D; $(11000)_2$，$\operatorname{lowbit}(t) &#x3D; (01000)_2$，$\operatorname{lowbit}(x)&#x3D;(00010)_2$。</li>
+<li>接下来的除法操作，最关键。<br>我们设<strong>原数</strong>最右边连续一段 1 最高位的 1 在第 r 位上（位数从 0 开始），最低位的 1 在第 $l$​ 位，t 的 <code>lowbit</code> 等于 <code>1 &lt;&lt; (r+1)</code> ，x 的 <code>lowbit</code> 等于 <code>1 &lt;&lt; l</code>， <code>(((t&amp;-t)/(x&amp;-x))&gt;&gt;1) </code>得到的，就是 <code>(1&lt;&lt;(r+1))/(1&lt;&lt;l)/2 = (1&lt;&lt;r)/(1&lt;&lt;l) = 1&lt;&lt;(r-l)</code> ，在二进制表示下就是 1 后面跟上 $r-l$ 个零，零的个数正好等于连续 1 的个数减去 1 。举我们刚才的数为例，$\frac{\operatorname{lowbit(t)\div 2}}{\operatorname{lowbit(x)}} &#x3D; \frac{(00100)_2}{(00010)_2} &#x3D; (00010)_2 $。把这个数减去 1 得到的就是我们要补全的低位，或上原来的数就可以得到答案。</li>
+</ul>
+<p>所以枚举 $0\sim n$ 按汉明权重递增的排列的完整代码为：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; (<span class="number">1</span> &lt;&lt; i)<span class="number">-1</span> &lt;= n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> x = (<span class="number">1</span> &lt;&lt; i)<span class="number">-1</span>, t; x&lt;=n; </span><br><span class="line">        t = x+(x&amp;-x), x = x? (t|((((t&amp;-t)/(x&amp;-x))&gt;&gt;<span class="number">1</span>)<span class="number">-1</span>)) : (n+<span class="number">1</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//...需要完成的操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>其中要注意 0 的特判，因为 0 没有相同汉明权重的后继。</p>
+<h2 id="高精度计算"><a href="#高精度计算" class="headerlink" title="高精度计算"></a>高精度计算</h2><p><strong>高精度计算</strong>（Arbitrary-Precision Arithmetic），也被称作 大整数（bignum）计算，运用了一些算法结构来支持更大整数间的运算（数字大小超过语言内建整型）</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<p>输入：一个形如 <code>a &lt;op&gt; b</code> 的表达式。</p>
+<ul>
+<li><code>a</code>、<code>b</code> 分别是长度不超过 1000 的十进制非负整数；</li>
+<li><code>&lt;op&gt;</code> 是一个字符（<code>+</code>、<code>-</code>、<code>*</code> 或 <code>/</code>），表示运算。</li>
+<li>整数与运算符之间由一个空格分隔。</li>
+</ul>
+<p>输出：运算结果。</p>
+<ul>
+<li>对于 <code>+</code>、<code>-</code>、<code>*</code> 运算，输出一行表示结果；</li>
+<li>对于 <code>/</code> 运算，输出两行分别表示商和余数。</li>
+<li>保证结果均为非负整数。</li>
+</ul>
+</blockquote>
+<p>在平常的实现中，高精度数字利用<strong>字符串</strong>表示，每一个字符表示数字的一个十进制位。因此可以说，高精度数值计算 实际上是一种特别的 <strong>字符串处理</strong>。</p>
+<p>读入字符串时，数字最高位在字符串首（下标小的位置）。但是习惯上，下标最小的位置存放的是数字的 <strong>最低位</strong>，即存储反转的字符串。这么做的原因在于，数字的长度可能发生变化，同时希望同样权值位始终保持对齐（例如，希望所有的个位都在下标 <code>[0]</code>，所有的十位都在下标 <code>[1]</code>…）；同时，加、减、乘的运算一般都从个位开始进行（回想小学的竖式运算～），这都给了「<strong>反转存储</strong>」以充分的理由。</p>
+<p>读入高精度数字的代码：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">clear</span><span class="params">(<span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;LEN; i++)</span><br><span class="line">        a[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">char</span> s[LEN+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">clear</span>(a);</span><br><span class="line">    <span class="type">int</span> len = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="comment">//反转存储</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;len; i++) a[len-i<span class="number">-1</span>] = s[i] - <span class="string">&#x27;0&#x27;</span>; <span class="comment">//字符对应的数字大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>输出也按照逆序输出。如果不想输出前导0，故从最高位向下寻找第一个非零位。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = LEN<span class="number">-1</span>; i &gt;= <span class="number">1</span>; i--)</span><br><span class="line">        <span class="keyword">if</span>(a[i] != <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">for</span>(; i&gt;=<span class="number">0</span>; i--) <span class="built_in">putchar</span>(a[i]+<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h3><p><strong>加法</strong>：高精度加法就是竖式加法。从最低位开始，将两个加数对应位置上的数码相加，并判断是否大于或等于 10。如果达到 那就进位，并使该位数-10。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> c[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; LEN - <span class="number">1</span>; ++i) </span><br><span class="line">  &#123;</span><br><span class="line">    c[i] += a[i] + b[i]; <span class="comment">// 将相应位上的数码相加</span></span><br><span class="line">    <span class="keyword">if</span> (c[i] &gt;= <span class="number">10</span>) <span class="comment">// 进位</span></span><br><span class="line">    &#123;</span><br><span class="line">      c[i + <span class="number">1</span>] += <span class="number">1</span>;</span><br><span class="line">      c[i] -= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>减法</strong>：竖式减法</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">sub</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> c[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; LEN - <span class="number">1</span>; ++i) </span><br><span class="line">  &#123;</span><br><span class="line">    c[i] += a[i] - b[i]; <span class="comment">// 逐位相减</span></span><br><span class="line">    <span class="keyword">if</span> (c[i] &lt; <span class="number">0</span>) </span><br><span class="line">    &#123;</span><br><span class="line">      c[i + <span class="number">1</span>] -= <span class="number">1</span>;    <span class="comment">// 借位</span></span><br><span class="line">      c[i] += <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><strong>乘法</strong>：</p>
+<ul>
+<li><p><strong>高精度—单精度</strong></p>
+<p>一个直观的思路是直接将 a 每一位上的数字乘以 b。之后从个位开始逐位向上处理进位。但是这里的进位可能非常大，甚至远大于 9，因为每一位被乘上之后都可能达到 9b 的数量级。所以这里的进位不能再简单地进行 -10 运算，而是要通过除以 10 的商以及余数计算。当然，也是出于这个原因，这个方法需要特别关注乘数 b 的范围。若它和 $10^9$（或相应整型的取值上界）属于同一数量级，那么需要慎用高精度—单精度乘法。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mul_short</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b, <span class="type">int</span> c[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; LEN - <span class="number">1</span>; ++i) </span><br><span class="line">  &#123;</span><br><span class="line">    c[i] += a[i] * b;    <span class="comment">// 直接把 a 的第 i 位数码乘以乘数，加入结果</span></span><br><span class="line">    <span class="keyword">if</span> (c[i] &gt;= <span class="number">10</span>)      <span class="comment">// 处理进位</span></span><br><span class="line">    &#123;</span><br><span class="line">      c[i + <span class="number">1</span>] += c[i] / <span class="number">10</span>; <span class="comment">//即除法的商数成为进位的增量值</span></span><br><span class="line">      c[i] %= <span class="number">10</span>; <span class="comment">//即除法的余数成为在当前位留下的值</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>高精度—高精度</strong></p>
+<p><strong>竖式乘法</strong>。竖式乘法的每一步，实际上是计算了若干 $a \times b_i \times 10^i$ 的和。例如计算 $1337 \times 42$，计算的就是 $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://oi-wiki.org/math/images/multiplication-long.png"
+                      alt="img" style="zoom: 80%;" 
+                >
+
+<p>于是可以将 b 分解为它的所有数码，其中每个数码都是单精度数，将它们分别与 a 相乘，再向左移动到各自的位置上相加即得答案。当然，最后也需要用与上例相同的方式处理进位。</p>
+<p>注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mul</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> c[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; LEN - <span class="number">1</span>; ++i) </span><br><span class="line">  &#123; <span class="comment">// 这里直接计算结果中的从低到高第 i 位，且一并处理了进位</span></span><br><span class="line">  <span class="comment">// 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和</span></span><br><span class="line"> <span class="comment">// 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= i; ++j) c[i] += a[j] * b[i - j];</span><br><span class="line">    <span class="keyword">if</span> (c[i] &gt;= <span class="number">10</span>) </span><br><span class="line">    &#123;</span><br><span class="line">      c[i + <span class="number">1</span>] += c[i] / <span class="number">10</span>;</span><br><span class="line">      c[i] %= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<p><strong>除法</strong>：竖式除法</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://oi-wiki.org/math/images/division.png"
+                      alt="img" style="zoom:50%;" 
+                > 
+
+<p>竖式长除法实际上可以看作一个逐次减法的过程。例如上图中商数十位的计算可以这样理解：将 45 减去三次 12 后变得小于 12，不能再减，故此位为 3。</p>
+<p>为了减少冗余运算，我们提前得到被除数的长度 $l_a$ 与除数的长度 $l_b$，从下标$ l_a - l_b$ 开始，从高位到低位来计算商。这和手工计算时将第一次乘法的最高位与被除数最高位对齐的做法是一样的。</p>
+<p>下面程序实现了一个函数 <code>greater_eq()</code> 用于判断被除数以下标 <code>last_dg</code> 为最低位，是否可以再减去除数而保持非负。此后对于商的每一位，不断调用 <code>greater_eq()</code>，并在成立的时候用高精度减法从余数中减去除数，也即模拟了竖式除法的过程。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 被除数 a 以下标 last_dg 为最低位，是否可以再减去除数 b 而保持非负</span></span><br><span class="line"><span class="comment">// len 是除数 b 的长度，避免反复计算</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">greater_eq</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> last_dg, <span class="type">int</span> len)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// 有可能被除数剩余的部分比除数长，这个情况下最多多出 1 位，故如此判断即可</span></span><br><span class="line">  <span class="keyword">if</span> (a[last_dg + len] != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  <span class="comment">// 从高位到低位，逐位比较</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span> (a[last_dg + i] &gt; b[i]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (a[last_dg + i] &lt; b[i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 相等的情形下也是可行的</span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">div</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> c[], <span class="type">int</span> d[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line">  <span class="built_in">clear</span>(d);</span><br><span class="line"></span><br><span class="line">  <span class="type">int</span> la, lb;</span><br><span class="line">  <span class="keyword">for</span> (la = LEN - <span class="number">1</span>; la &gt; <span class="number">0</span>; --la)</span><br><span class="line">    <span class="keyword">if</span> (a[la - <span class="number">1</span>] != <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">for</span> (lb = LEN - <span class="number">1</span>; lb &gt; <span class="number">0</span>; --lb)</span><br><span class="line">    <span class="keyword">if</span> (b[lb - <span class="number">1</span>] != <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">  <span class="keyword">if</span> (lb == <span class="number">0</span>) </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">puts</span>(<span class="string">&quot;&gt; &lt;&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;  <span class="comment">// 除数不能为零</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// c 是商</span></span><br><span class="line">  <span class="comment">// d 是被除数的剩余部分，算法结束后自然成为余数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; la; ++i) d[i] = a[i];</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = la - lb; i &gt;= <span class="number">0</span>; --i) </span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 计算商的第 i 位</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">greater_eq</span>(d, b, i, lb)) </span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 若可以减，则减</span></span><br><span class="line">      <span class="comment">// 这一段是一个高精度减法</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; lb; ++j) </span><br><span class="line">      &#123;</span><br><span class="line">        d[i + j] -= b[j];</span><br><span class="line">        <span class="keyword">if</span> (d[i + j] &lt; <span class="number">0</span>) </span><br><span class="line">        &#123;</span><br><span class="line">          d[i + j + <span class="number">1</span>] -= <span class="number">1</span>;</span><br><span class="line">          d[i + j] += <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 使商的这一位增加 1</span></span><br><span class="line">      c[i] += <span class="number">1</span>;</span><br><span class="line">      <span class="comment">// 返回循环开头，重新检查</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><p>快速幂（平方求幂）是一种简单有效的小算法，它可以以 O(logn) 的时间复杂度来计算乘方。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>让我们先来思考一个问题：<strong>7的10次方，怎样算比较快？</strong></p>
+<p><strong>方法1：</strong>最朴素的想法，7*7&#x3D;49，49*7&#x3D;343，… 一步一步算，共进行了<strong>9次</strong>乘法。</p>
+<p>这样算无疑太慢了，尤其对计算机的CPU而言，每次运算只乘上一个个位数，无疑太屈才了。这时我们想到，也许可以拆分问题。</p>
+<p><strong>方法2：</strong>先算7的5次方，即7*7*7*7*7，再算它的平方，共进行了<strong>5次</strong>乘法。</p>
+<p>但这并不是最优解，因为对于“7的5次方”，我们仍然可以拆分问题。</p>
+<p><strong>方法3：</strong>先算7*7得49，则7的5次方为49*49*7，再算它的平方，共进行了<strong>4次</strong>乘法。</p>
+<p>模仿这样的过程，我们得到一个在 O(log n) 时间内计算出幂的算法，也就是快速幂。</p>
+<h3 id="递归快速求幂"><a href="#递归快速求幂" class="headerlink" title="递归快速求幂"></a>递归快速求幂</h3><p>方法三用到的就是二分的思路，由此可以得到一个递归方程：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="算法中的数学/image-20230410232246169.png"
+                      alt="image-20230410232246169" style="zoom: 50%;" 
+                >
+
+<p>计算 a 的 n 次方，如果 n 是偶数（不为0），那么先计算 a 的 n&#x2F;2 次方，然后平方；如果n是奇数，那么先计算a的n-1次方，再乘上a；递归出口时 a 的0次方为 1。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归快速求幂</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">qpow</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">qpow</span>(a, n<span class="number">-1</span>)*a;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp = <span class="built_in">qpow</span>(a, n/<span class="number">2</span>); </span><br><span class="line">        <span class="keyword">return</span> temp*temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>第10行的temp变量十分重要，否则写成 qpow(a, n&#x2F;2)*qpow(a,n&#x2F;2) 会导致算法退化为 O(n)。</p>
+<p>在实际问题中，题目通常会要求对一个大数取模，这是因为计算结果可能非常大。在快速幂也应当进行取模，但是要注意：要<strong>步步取模</strong>，如果MOD较大，应开 long long </p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归快速求幂(同时取模)</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> <span class="title">qpow</span><span class="params">(<span class="type">long</span> <span class="type">long</span> <span class="type">int</span> a,<span class="type">long</span> <span class="type">long</span>  <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">qpow</span>(a, n<span class="number">-1</span>)*a % MOD;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp = <span class="built_in">qpow</span>(a, n/<span class="number">2</span>); </span><br><span class="line">        <span class="keyword">return</span> temp*temp%MOD;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>若将递归改写成循环，可以避免对栈空间的大量占用。</p>
+<h3 id="非递归快速幂"><a href="#非递归快速幂" class="headerlink" title="非递归快速幂"></a>非递归快速幂</h3><p>对于 $7^{10}$ ，这次我们选择把 10 写成 二进制形式 $(1010)_2$ 。</p>
+<p>现在我们要计算 $7^{(1010)_2}$ ，将它差分为 $7^{(1000)_2}$，$7^{(10)_2}$。实际上，对于任意的整数，我们都可以拆成若干 $x^{(100..)_2}$ 的形式相乘。而这些 $x^{(100..)_2}$ ，恰好就是 $x^1$，$x^2$，$x^4$，…我们只需要把底数的平方就可以算出它们。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//非递归快速幂</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">qpow</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> n)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&amp;<span class="number">1</span>)      <span class="comment">//如果 n 的当前末位为 1</span></span><br><span class="line">            ans*=a;  <span class="comment">//ans 乘上当前的 a</span></span><br><span class="line">        a*=a;        <span class="comment">//a自乘</span></span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;       <span class="comment">//n往右移一位</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="快速幂拓展"><a href="#快速幂拓展" class="headerlink" title="快速幂拓展"></a>快速幂拓展</h3><p>在算 $a^n$ 时，只要 a 的数据类型支持 乘法 且满足结合律，快速幂 的算法都是有效的。</p>
+<p>矩阵、高精度整数，都可以按照快速幂的思路计算。</p>
+<p>代码模板：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//泛型非递归快速幂</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">qpow</span><span class="params">(T a, <span class="type">long</span> <span class="type">long</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    T ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(n&amp;<span class="number">1</span>)</span><br><span class="line">            ans = ans*a; <span class="comment">//最好不要用自乘，自乘需要重载*=</span></span><br><span class="line">        n&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        a = a*a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>较复杂的快速幂的时间复杂度与它与底数相乘的时间复杂度有关。</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>斐波那契数列有以下性质<br>$$<br>F_n &#x3D;<br>\begin{cases}<br>1 &amp;{(n≤2)}\<br>F_{n-1}+F_{n-2} &amp;{(n≥3)}<br>\end{cases}<br>$$<br>请求出 $F_n mod 10^9+7$ 的值</p>
+<p><strong>分析</strong></p>
+<p>设矩阵 $A&#x3D;\begin{bmatrix}0&amp;1\1&amp;1\end{bmatrix}$ ，我们有$A\begin{bmatrix}F_n\F_{n+1}\end{bmatrix}&#x3D; \begin{bmatrix}F_{n+1}\F_{n+1}+F_n\end{bmatrix} &#x3D; \begin{bmatrix}F_{n+1}\F_{n+2}\end{bmatrix}$ ，于是：</p>
+<p>$\begin{bmatrix}F_n\F_{n+1}\end{bmatrix} &#x3D; A\begin{bmatrix}F_{n-1}\F_{n}\end{bmatrix} &#x3D; A^2\begin{bmatrix}F_{n-2}\F_{n-1}\end{bmatrix}&#x3D;…&#x3D;A^{n-1}\begin{bmatrix}F_1\F_2\end{bmatrix}&#x3D;A^{n-1}\begin{bmatrix}1\1\end{bmatrix}$ </p>
+<p>这个问题可以转化为矩阵幂的问题，这就可以应用 快速幂进行求解</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MOD 10e9+7</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">matrix</span></span><br><span class="line">&#123;</span><br><span class="line">    ll a1, a2, b1, b2;</span><br><span class="line">    <span class="built_in">matrix</span>(ll a1, ll a2, ll b1, ll b2) : <span class="built_in">a1</span>(a1), <span class="built_in">a2</span>(a2), <span class="built_in">b1</span>(b1), <span class="built_in">b2</span>(b2) &#123;&#125;</span><br><span class="line">    matrix <span class="keyword">operator</span>*(<span class="type">const</span> matrix&amp; y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">matrix <span class="title">ans</span><span class="params">((a1 * y.a1 + a2 * y.b1) % MOD,</span></span></span><br><span class="line"><span class="params"><span class="function">                   (a1 * y.a2 + a2 * y.b2) % MOD,</span></span></span><br><span class="line"><span class="params"><span class="function">                   (b1 * y.a1 + b2 * y.b1) % MOD,</span></span></span><br><span class="line"><span class="params"><span class="function">                   (b1 * y.a2 + b2 * y.b2) % MOD)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">matrix <span class="title">qpow</span><span class="params">(matrix a, ll n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">matrix <span class="title">ans</span><span class="params">(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>)</span></span>; <span class="comment">//单位矩阵</span></span><br><span class="line">    <span class="keyword">while</span> (n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n &amp; <span class="number">1</span>)</span><br><span class="line">            ans = ans * a;</span><br><span class="line">        a = a * a;</span><br><span class="line">        n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x;</span><br><span class="line">    <span class="function">matrix <span class="title">M</span><span class="params">(<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;x);</span><br><span class="line">    matrix ans = <span class="built_in">qpow</span>(M, x - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, (ans.a1 + ans.a2) % MOD);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+<h2 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h2><h3 id="IGG博弈"><a href="#IGG博弈" class="headerlink" title="IGG博弈"></a>IGG博弈</h3><p>所讨论的博弈问题满足以下条件：</p>
+<ul>
+<li>玩家只有两个人，轮流做出决策</li>
+<li>游戏的状态集有限，保证游戏在有限步后结束，这样必然会产生不能操作者</li>
+<li>对任何一种局面，胜负只决定于局面本身，而与哪位选手无关</li>
+</ul>
+<p>取石子游戏：组合数学领域的经典问题，基本上都是两个玩家，轮流抓石子，胜利的标准式抓走最后的石子。</p>
+<p>玩家设定：先取石子的是玩家A（先手A），后取石子的是玩家B（后手B）。</p>
+<p>三种经典玩法：</p>
+<ul>
+<li>巴什博奕(Bash Game)</li>
+<li>尼姆博奕(Nimm Game)</li>
+<li>威佐夫博奕(Wythoff Game)</li>
+</ul>
+<h3 id="（一）巴什博弈"><a href="#（一）巴什博弈" class="headerlink" title="（一）巴什博弈"></a>（一）巴什博弈</h3><p>设定条件：<strong>1 堆石子 每次最多取m个、至少取 1 个</strong></p>
+<p>分析：</p>
+<p><strong>CASE 1</strong>：如果 <code>n = m+1</code>，那么由于一次最多只能取 m 个，所以，无论先取者拿走多少个，后取者都能都拿走剩余的物品，<strong>后者取胜</strong>。</p>
+<p><strong>CASE 2</strong>：<code>n = (m+1)*r+s</code>（r 为 任意自然数，s ≤ m），那么 先取者 要拿走 s 个物品，如果后者拿走 k（1 ≤ k ≤ m）个，那么先取者再拿走 m+1-k 个，结果剩下 (m+1)(r-1) 个，以后保持这样的取法，那么<strong>先取者肯定获胜</strong>。</p>
+<p><strong>CASE 3</strong>：<code>n = r*(m+1)</code> ，先手拿走 k（1 ≤ k ≤ m）个，那么后手再拿走 m+1-k 个，结果剩下(m+1)(r-1)个，以后这样保持，则<strong>后手胜</strong>。</p>
+<p>总之，要保持给对手留下 （m+1）的倍数，就能获胜。</p>
+<blockquote>
+<p>（m+1）的局面为 奇异局势</p>
+</blockquote>
+<h3 id="（二）尼姆博弈"><a href="#（二）尼姆博弈" class="headerlink" title="（二）尼姆博弈"></a>（二）尼姆博弈</h3><p>设定条件：<strong>有 n 堆石子，每堆石子的数量是 a1, a2, a3, ……，两人 一次从这些石子堆中的任意一个取任意的石子，至少 1 个，最后一个拿光石子的人胜利。</strong></p>
+<p>分析</p>
+<p>n &#x3D; 1：先手全拿，先手必胜</p>
+<p>n &#x3D; 2：有两种情况，一种可能相同，一种情况比另一堆少（多）</p>
+<ul>
+<li>(m, m) 按照 “有一学一” 的方式，先手取多少个，后手取多少个，最终，后手必赢。</li>
+<li>(m, M) 先手先从 多的一堆中拿出 (M-m) 个，此时后手面对 (m,m) 的局势，先手必赢。</li>
+</ul>
+<p>n &#x3D; 3：</p>
+<ul>
+<li>(m, m, M) 先手可以先拿 M，之后变成 (m, m, 0) 的局面，按照上述做法，先手必赢。</li>
+<li>(a1, a2, a3) ，先手必败局为：a1, a2, a3 异或的结果为 0。其他情况有 先手赢的可能性。</li>
+</ul>
+<p>…</p>
+<p>最终的结论：</p>
+<p>所有数 异或为 0， 先手必败，否则 有赢的可能。</p>
+<p><strong>例题：Nim 游戏</strong></p>
+<p>给定 n 堆石子，两位玩家轮流操作，每次操作可以从任意一堆石子拿走任意数量的石子（至少一个），最后无法操作的人视为失败。两人均采用最优策略，先手是否必胜。</p>
+<p>输入： 第一行整数 n，第二行：n 个数字，其中第 i 个数字表示第 i 堆石子的数量。</p>
+<p>输出：先手必胜，”YES”，否则，”NO”。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">   	cin &gt;&gt; n;</span><br><span class="line">    <span class="type">int</span> a[n];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;n; i++) cin &gt;&gt; a[i];</span><br><span class="line">    <span class="type">int</span> ans = a[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;n; i++) ans^=a[i];</span><br><span class="line">    <span class="keyword">if</span>(ans == <span class="number">0</span>) cout &lt;&lt; <span class="string">&quot;NO&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;YES&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="（三）威佐夫博弈"><a href="#（三）威佐夫博弈" class="headerlink" title="（三）威佐夫博弈"></a>（三）威佐夫博弈</h3><p>设定条件：<strong>有两堆各若干个物品，两个人轮流从任一堆取至少一个或同时从两堆中取同样多的物品，规定每次至少取一个，多者不限，最后取光者得胜。</strong></p>
+<p>当局势是 (1, 2)，先手有四种取法，无论先手怎么取，后手都能赢。因此 (1, 2) 是奇异局势。</p>
+<p>哪些是奇异局势呢？</p>
+<ul>
+<li>第一种（0，0）</li>
+<li>第二种（1，2）</li>
+<li>第三种（3，5）</li>
+<li>第四种 (4 ，7）</li>
+<li>第五种（6，10）</li>
+<li>第六种 (8，13）       </li>
+<li>第七种 (9 ，15）</li>
+<li>第八种 (11 ，18）</li>
+<li>第n种（a，b）</li>
+</ul>
+<p>规律：*<em>a&#x3D;(b-a)<em>1.618向下取整</em></em> </p>
+<p>也就是：<code>a = (int)((b-a)*1.618)</code>这里的int是强制类型转换，注意这不是简单的四舍五入，假如后面的值是3.9，转换以后得到的不是4而是3，也就是说强制int类型转换得到的是不大于这个数值的最大整数。</p>
+<p>有些题目要求精度较高，我们可以用下述式子来表示这个值:<code>1.618 = (sqrt(5.0) + 1) / 2   </code></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> main</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line">    <span class="keyword">while</span>(cin &gt;&gt; a &gt;&gt; b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">double</span> flag = (<span class="built_in">sqrt</span>(<span class="number">5.0</span>)+<span class="number">1</span>)/<span class="number">2.0</span>;</span><br><span class="line">        <span class="keyword">if</span>(a &gt; b) <span class="built_in">swap</span>(a,b);</span><br><span class="line">        <span class="keyword">if</span>(a == (<span class="type">int</span>)((b-a)*flag)) cout &lt;&lt; <span class="string">&quot;A fail&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span> cout &lt;&lt; <span class="string">&quot;A win&quot;</span> &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="高斯消元"><a href="#高斯消元" class="headerlink" title="高斯消元"></a>高斯消元</h2><p>输入一个包含 n 个方程 n 个未知数 的 线性方程组，方程组中的系数为实数，求解这个方程。</p>
+<p>输入格式：第一行包含整数 n。接下来 n 行，每行包含 n+1 个实数，表示一个方程 的 n 个系数以及等号右侧的常数。</p>
+<p>输出格式：若给定方程组存在唯一解，则输出共有 n 行，其中第 i 行输出第 i 个未知数的解，结果保留两位小数。若存在无数解，则输出<code>Infinite group solutions</code>。若无解，则输出 <code>No solution</code>。</p>
+<ol>
+<li><p>枚举第 j 列：</p>
+</li>
+<li><ol>
+<li><p>从第 k 行开始，往下找一个非0数</p>
+</li>
+<li><ol>
+<li><p>如果没找到：</p>
+</li>
+<li><ol>
+<li>输出无解</li>
+</ol>
+</li>
+<li><p>如果找到了，设它在第 k 行：</p>
+</li>
+<li><ol>
+<li>交换第 j 行和第 k 行</li>
+<li>第 j 行除以 $A_{jj}$ ，使  $A_{jj}$&#x3D;1</li>
+<li>消掉第  j  列的其他元素</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>剩下的第 n+1 列即为答案。</p>
+</li>
+</ol>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 110</span></span><br><span class="line"><span class="type">const</span> <span class="type">double</span> eps = <span class="number">1e-8</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">double</span> a[N][N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">gauss</span><span class="params">()</span> <span class="comment">// 高斯消元，答案存于 a[i][n] 中，0 &lt;= 1 &lt;= n</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> col = <span class="number">0</span>, row = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(; col &lt; n; col++ ) <span class="comment">//枚举每一列</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> t = row; <span class="comment">//存绝对值最大的行</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = row; i&lt;n; i++) <span class="comment">//找到绝对值最大的一行</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(a[i][col]) &gt; <span class="built_in">fabs</span>(a[t][col])) t = i;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">fabs</span>(a[t][col]) &lt; eps) <span class="comment">//最大值为 0</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = col; i&lt;=n; i++)<span class="comment">//将绝对值最大的行交换到最顶端</span></span><br><span class="line">            <span class="built_in">swap</span>(a[t][i], a[row][i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = n; i&gt;=col; i--) <span class="comment">//将当前行的首位变成 1</span></span><br><span class="line">            a[row][i] /= a[row][col];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = row+<span class="number">1</span>; i&lt;n; i++)</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(a[i][col]) &gt; eps)</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j = n; j&gt;=col; j--)</span><br><span class="line">                    a[i][j] -= a[row][j]*a[i][col];</span><br><span class="line">        row++;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(row &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = row; i&lt;n; i++)</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(a[i][n]) &gt; eps) <span class="keyword">return</span> <span class="number">2</span>; <span class="comment">//无解</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//多解</span></span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = n<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = i+<span class="number">1</span>; j&lt;n; j++)</span><br><span class="line">            a[i][n] -= a[i][j]*a[j][n];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j&lt;=n; j++)</span><br><span class="line">            cin &gt;&gt; a[i][j];</span><br><span class="line">    <span class="type">int</span> t = <span class="built_in">gauss</span>();</span><br><span class="line">    <span class="keyword">if</span>(t == <span class="number">2</span>) cout &lt;&lt; <span class="string">&quot;No solution&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(t == <span class="number">1</span>) cout &lt;&lt; <span class="string">&quot;Infinite group solutions&quot;</span> &lt;&lt;endl;<span class="comment">//多解</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">fabs</span>(a[i][n]) &lt; eps) a[i][n] = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%.2lf\n&quot;</span>, a[i][n]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="拓展欧几里得算法"><a href="#拓展欧几里得算法" class="headerlink" title="拓展欧几里得算法"></a>拓展欧几里得算法</h2><p><strong>裴蜀定理</strong>：有任意一对正整数a、b，一定存在非零整数 x、y，使得 $a<em>x+b</em>y&#x3D;\gcd(a,b)$，且gcd(a,b)是a、b添加系数后凑出来的最小正整数。</p>
+<p><strong>拓展欧几里得算法</strong> 是为了算出这样的一组x，y。</p>
+<p>采用递归思路求解：</p>
+<p>当 b &#x3D;&#x3D; 0 时，任何数与 0 的最大公约数都是它本身，一组解为 x &#x3D; 1, y &#x3D; 0。</p>
+<p>其他情况一直递归：<code>int d = exgcd(b, a%b, y, x)</code>。我们就有了这个式子：<code>gcd(a,b) = gcd(b*y + a%b*x)</code>，而 a%b &#x3D; a - a&#x2F;b*b</p>
+<p><code>d = b*y + a*x - a/b*x = a*x + b(y-a/b*x)</code> 即 <code>y = y-a/b*x</code> ，<code>x = x</code>。</p>
+<p>函数代码</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">exgcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> &amp;x, <span class="type">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> d = <span class="built_in">exgcd</span>(b, a%b, y, x);</span><br><span class="line">    y -= a/b*x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><strong>例题</strong></p>
+<p>给定 a, b, m，求出 x，使得其满足 a*x &#x3D; b（mod m），有解输出符合条件的 x，若无解则输出 <code>impossible</code>。</p>
+<p>分析：上式等价于 <code>a*x = y*m+b</code> ，即<code>a*x-y*m = b</code> </p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">exgcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span>&amp; x, <span class="type">int</span>&amp; y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)</span><br><span class="line">    &#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> d = <span class="built_in">exgcd</span>(b, a%b, y, x);</span><br><span class="line">    y -= a/b*x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a, b, m;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b &gt;&gt; m;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">    <span class="type">int</span> d = <span class="built_in">exgcd</span>(a, m, x, y); <span class="comment">//求出 a, b 的最大公约数</span></span><br><span class="line">    <span class="keyword">if</span>( b%d != <span class="number">0</span>) <span class="comment">//即 b 不是 gcd(a, b) 的倍数</span></span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;impossible&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">else</span> cout &lt;&lt; (<span class="type">long</span> <span class="type">long</span>) x*(b/d)%m &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+<h2 id="极角排序"><a href="#极角排序" class="headerlink" title="极角排序"></a>极角排序</h2><p>极角排序：平面上有若干点，选一点作为极点，那么每个点都有极坐标 (ρ, θ)，将它们关于极角θ排序。进行极角排序有两种方法。</p>
+<p><strong>第一种</strong> 直接计算极角，极坐标和直角坐标转换公式中有 $tanθ&#x3D;\tfrac{y}{x}$ ，所以可以用 $arctan$ 来计算。然而，$arctan$ 的值域只有 $(-\tfrac{π}{2}, \tfrac{π}{2})$ ，而且当 $x&#x3D;0$ 时无定义，所以需要复杂的分类讨论。所幸，<code>&lt;cmath&gt;</code>中有一个 <code>atan2(y,x)</code> 函数，可以直接计算<code>(x,y)</code>的极角，值域为(-π, π]，所以可以直接使用，只不过要留心 第四象限的极角会比第一象限小。</p>
+<p>下面是原点和极点重合的情况。对于选定的极点，对它到每个点的向量进行极角排序即可。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Points = vector&lt;Point&gt;;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">theta</span><span class="params">(<span class="keyword">auto</span> p)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">atan2</span>(p.y, p.x);&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">psort</span><span class="params">(Points &amp;ps, Point c = <span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span> p1, <span class="keyword">auto</span> p2)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="built_in">theta</span>(p1-c), <span class="built_in">theta</span>(p2-c));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>如果想减少常数，可以提前算出每个点的极角。</p>
+<p><strong>第二种</strong> 叉乘，叉乘的正负遵循右手定则，按旋转方向弯曲右手四指，则若拇指向上叉乘为正，拇指向下为负。也就是说，如果一个向量通过劣角旋转到另一个向量的方向需要按逆时针方向，那么叉乘为正，否则叉乘为负。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic2.zhimg.com/v2-1a11909fd74ad00baa7c6ad8ae83f19d_b.jpg"
+                      alt="img" style="zoom: 80%;" 
+                >
+
+<p>仅依靠叉乘是不能进行排序的，因为它不符合偏序关系的条件。如果定义 $\vec{x}×\vec{y}&lt;0$ 则 $θ_{\vec{x}}&lt;θ_{\vec{y}}$ ，那么就会发现通过在坐标轴上旋转，一个向量的极角最终会小于自己。但是在同一象限内计算叉乘是可以的，所以要 先比较象限再作叉乘。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">qua</span><span class="params">(<span class="keyword">auto</span> p)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">lt</span>(p.y, <span class="number">0</span>) &lt;&lt; <span class="number">1</span> | <span class="built_in">lt</span>(p.x, <span class="number">0</span>) ^ <span class="built_in">lt</span>(p.y, <span class="number">0</span>); &#125;    <span class="comment">// 求象限</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">psort</span><span class="params">(Points &amp;ps, Point c = O)</span>                               <span class="comment">// 极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span> v1, <span class="keyword">auto</span> v2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">qua</span>(v1 - c) &lt; <span class="built_in">qua</span>(v2 - c) || <span class="built_in">qua</span>(v1 - c) == <span class="built_in">qua</span>(v2 - c) &amp;&amp; <span class="built_in">lt</span>(<span class="built_in">cross</span>(v1 - c, v2 - c), <span class="number">0</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这种方法常数可能稍微大一点，但是精度比较好，如果坐标都是整数的话是完全没有精度损失的。</p>
+<h2 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h2><p>平面上给定若干点，则 <strong>凸包</strong> 被定义为所 能包含所有点的 <strong>凸多边形的交集</strong>。</p>
+<p>在一切包含所有凸多边形中，凸包的面积是最小的，周长也是最小的。同时，凸包的每个顶点都是原有的点。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-4853bd07a90d7af3c46f236d7bcdfcbe_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>求凸包的方法有很多，包括 <strong>Graham 扫描法</strong> 和 <strong>Andrew 算法</strong></p>
+<h3 id="Graham-扫描法"><a href="#Graham-扫描法" class="headerlink" title="Graham 扫描法"></a>Graham 扫描法</h3><p>首先，容易发现，最左下角的一个点（这里指以横坐标为第一关键词、纵坐标为第二关键词排序后最小的点）是必然在凸包上的。我们以这个点为极点进行极角排序。显然，将极角排序后的点依次相连即可得到一个包围所有点的多边形。但是这个多边形不一定是凸的，我们需要进行调整。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic3.zhimg.com/v2-27f61e6c8de5b0bb45e14369cecb4c7a_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>首先维护一个 <strong>栈</strong>，按照极角排序后遍历每个点，如果栈中点数小于3，就直接进栈；否则，检查栈顶三个点组成的向量的旋转方向是否为 <strong>逆时针</strong>（可用叉乘判断），若是则进栈，若不是则弹出栈顶，直到栈中点数小于3 或者满足 逆时针 条件位置。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic4.zhimg.com/v2-f009bc3dd1ee36af43e9a1b16e89d673_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>弹出栈顶的过程，相当于把三角形的两边用第三遍代替，同时又能保证包含原来的顶点。</p>
+<p>具体过程：</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic1.zhimg.com/v2-59316dd6046b17bb0dd8ddb2d84b16e0_b.gif"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>实现时需要注意，要对极角排序的极点特殊处理，使它始终排在第一位。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DEPENDS eq, lt, cross, V-V, P&lt;P</span></span><br><span class="line"><span class="keyword">using</span> Points = vector&lt;Point&gt;;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">theta</span><span class="params">(Point p)</span></span>&#123;<span class="keyword">return</span> p==<span class="number">0</span>? <span class="number">-1</span>/<span class="number">0.</span> : <span class="built_in">atan2</span>(p.y, p.x);&#125; <span class="comment">//求极角</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">psort</span><span class="params">(Points &amp;ps, Point c)</span> <span class="comment">//极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span> p1, <span class="keyword">auto</span> p2)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="built_in">theta</span>(p1-c), <span class="built_in">theta</span>(p2-c));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(Point p, Point q, Point r)</span> <span class="comment">//检查三个点组成的两个向量旋转方向是否为逆时针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="number">0</span>, <span class="built_in">cross</span>(q-p, r-q));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Points <span class="title">chull</span><span class="params">(Points &amp;ps)</span><span class="comment">//以左下角的点为极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">psort</span>(ps, *<span class="built_in">min_element</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>())); <span class="comment">//以最左下角的点为极角排序</span></span><br><span class="line">    Points H&#123;ps[<span class="number">0</span>]&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;ps.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(H.<span class="built_in">size</span>()&gt;<span class="number">1</span> &amp;&amp; <span class="built_in">check</span>(H[H.<span class="built_in">size</span>()<span class="number">-2</span>], H.<span class="built_in">back</span>(), ps[i]))</span><br><span class="line">            H.<span class="built_in">pop_back</span>();</span><br><span class="line">        H.<span class="built_in">push_back</span>(ps[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> H;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>Andrew 算法</p>
+<p>另一种做法是不做极角排序，直接以横坐标为第一关键词，纵坐标为第二关键词，这样，将顶点依次相连（不首位相连）的话，也能保证不交叉。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic2.zhimg.com/v2-2944082cdcaa8d017ea24a39c287edb1_b.jpg"
+                      alt="img" style="zoom:50%;" 
+                >
+
+<p>按照这样的排序顺序，像刚刚那样调整，可以求得 <strong>下凸包</strong>。</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://pic4.zhimg.com/v2-c11d260375ef02f21b3748e17597921b_r.jpg"
+                      alt="img" style="zoom: 20%;" 
+                >
+
+<p>然后，再倒过来走一遍，则可以得到上凸包，两者组合即可得要求的凸包。</p>
+<p>需要注意的是，不要把起点当作已经走过的点跳过，这样才能保证最后能够回到起点的同时保持凸包性质。但这样会使得起点会被放进两次，最后稍微处理一下即可。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DEPENDS eq, lt, cross, V-V, P&lt;P</span></span><br><span class="line"><span class="keyword">using</span> Points = vector&lt;Point&gt;;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(Point p, Point q, Point r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="number">0</span>, <span class="built_in">cross</span>(q-p, r-q));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Points <span class="title">chull</span><span class="params">(Points&amp; ps)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>());</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; I&#123;<span class="number">0</span>&#125;, <span class="built_in">used</span>(ps.<span class="built_in">size</span>());</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i&lt;ps.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(I.<span class="built_in">size</span>()&gt;<span class="number">1</span> &amp;&amp; ！<span class="built_in">check</span>(ps[I[I.<span class="built_in">size</span>()<span class="number">-2</span>]], ps[I.<span class="built_in">back</span>()], ps[i]))</span><br><span class="line">            used[I.<span class="built_in">back</span>()] = <span class="number">0</span>, I.<span class="built_in">pop_back</span>();</span><br><span class="line">        used[i] = <span class="number">1</span>, I.<span class="built_in">push_back</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = ps.<span class="built_in">size</span>()<span class="number">-2</span>; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(used[i]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">while</span>(I.<span class="built_in">size</span>()&gt;<span class="number">1</span> &amp;&amp; ！<span class="built_in">check</span>(ps[I[I.<span class="built_in">size</span>()<span class="number">-2</span>]], ps[I.<span class="built_in">back</span>()], ps[i]))</span><br><span class="line">            I.<span class="built_in">pop_back</span>();</span><br><span class="line">        I.<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    Points H;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt; I.<span class="built_in">size</span>()<span class="number">-1</span>; i++)</span><br><span class="line">        H.<span class="built_in">push_back</span>(ps[I[i]]);</span><br><span class="line">    <span class="keyword">return</span> H;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个算法一般比前一种快一点。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 算法中的数学</li>
+        <li><strong>Author:</strong> 卡布叻_米菲</li>
+        <li><strong>Created at
+                :</strong> 2023-04-10 09:29:29</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2023-07-01 20:05:56
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://carolinebaby.github.io/2023/04/10/算法中的数学/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/">#算法学习</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2023/04/10/tarjan%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">图论Tarjan算法</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/04/08/%E5%9B%BE/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">图论学习</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://caroline-world-42jy0ja18-carolinebaby.vercel.app',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">算法中的数学</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-text">位运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%89%E6%98%8E%E6%9D%83%E9%87%8D"><span class="nav-text">汉明权重</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%B2%BE%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-text">高精度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97"><span class="nav-text">四则运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-text">快速幂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%BF%AB%E9%80%9F%E6%B1%82%E5%B9%82"><span class="nav-text">递归快速求幂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%80%92%E5%BD%92%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-text">非递归快速幂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E6%8B%93%E5%B1%95"><span class="nav-text">快速幂拓展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%BC%88%E8%AE%BA"><span class="nav-text">博弈论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IGG%E5%8D%9A%E5%BC%88"><span class="nav-text">IGG博弈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%B7%B4%E4%BB%80%E5%8D%9A%E5%BC%88"><span class="nav-text">（一）巴什博弈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B0%BC%E5%A7%86%E5%8D%9A%E5%BC%88"><span class="nav-text">（二）尼姆博弈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89%E5%A8%81%E4%BD%90%E5%A4%AB%E5%8D%9A%E5%BC%88"><span class="nav-text">（三）威佐夫博弈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83"><span class="nav-text">高斯消元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95"><span class="nav-text">拓展欧几里得算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E8%A7%92%E6%8E%92%E5%BA%8F"><span class="nav-text">极角排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%B8%E5%8C%85"><span class="nav-text">凸包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Graham-%E6%89%AB%E6%8F%8F%E6%B3%95"><span class="nav-text">Graham 扫描法</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">卡布叻_米菲</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        16 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.1</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
