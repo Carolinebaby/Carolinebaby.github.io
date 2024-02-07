@@ -627,7 +627,7 @@
             <p>这里主要是我刷 AcWing 题目的练习笔记</p>
 <span id="more"></span>
 
-<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="形成完全图"><a href="#形成完全图" class="headerlink" title="形成完全图"></a><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/348/" >形成完全图 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一棵 N 个节点的树，要求增加若干条边，把这棵树扩充为完全图，并满足图的唯一最小生成树仍然是这棵树。求 <u>增加的边的权值总</u> 和最小是多少。</p>
+<h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="形成完全图"><a href="#形成完全图" class="headerlink" title="形成完全图"></a><a class="link" target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/348/">形成完全图 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一棵 N 个节点的树，要求增加若干条边，把这棵树扩充为完全图，并满足图的唯一最小生成树仍然是这棵树。求 <u>增加的边的权值总</u> 和最小是多少。</p>
 <p><strong>注意：</strong> 树中的所有边权均为整数，且新加的所有边权也必须为整数。</p>
 <p><strong>输入格式</strong></p>
 <p>第一行包含整数 t，表示共有 t 组测试数据。</p>
@@ -656,12 +656,7 @@
 <li><p>为了保证 $(x,y)$ 一定在最小生成树中，就必须让 $(x,y)$ 是连接集合 $S_x$ 与 $S_y$ 的权值最小的边（否则就有 “用 $(u,v)$ 代替 $(x,y)$” 的方案）。因此，$(u,v)$ 的边权应该定为 $z+1$。</p>
 </li>
 </ul>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./AcWing/image-20230514103914465.png"
-                      alt="image-20230514103914465" style="zoom: 33%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./AcWing/image-20230514103914465.png" alt="image-20230514103914465" style="zoom: 33%;">
 
 <ul>
 <li>$S_x$ 与 $S_y$ 之间一共会增加 $|S_x|<em>|S_y|-1$ 条边，所以我们把 $(z+1)</em>(|S_x|*|S_y|-1)$ 累加到答案中。算法时间复杂度：$O(N\log N)$ 。</li>
@@ -670,7 +665,7 @@
 
 
 
-<h3 id="限度最小生成树"><a href="#限度最小生成树" class="headerlink" title="限度最小生成树"></a><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/349/" >限度最小生成树 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一张 N 个点M条边的无向图，求出无向图的一颗最小生成树，满足一号节点的度数不超过给定的整数 S。</p>
+<h3 id="限度最小生成树"><a href="#限度最小生成树" class="headerlink" title="限度最小生成树"></a><a class="link" target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/349/">限度最小生成树 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一张 N 个点M条边的无向图，求出无向图的一颗最小生成树，满足一号节点的度数不超过给定的整数 S。</p>
 <p><strong>分析</strong></p>
 <p>首先,我们要知道两个性质.</p>
 <ul>

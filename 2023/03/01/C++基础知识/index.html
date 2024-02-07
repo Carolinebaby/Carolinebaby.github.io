@@ -966,7 +966,7 @@
 <li><strong>左值引用声明符</strong>：声明 S&amp; D; 是将 <code>D</code> 声明为 <em>声明说明符序列</em> <code>S</code> 所确定的类型的<em>左值引用</em>。</li>
 <li><strong>右值引用声明符</strong>：声明 S&amp;&amp; D; 是将 <code>D</code> 声明为 <em>声明说明符序列</em> <code>S</code> 所确定的类型的<em>右值引用</em>。</li>
 </ul>
-<p><a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/reference" >引用的详解 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/reference">引用的详解 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>示例：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//程序RefSwap</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">swap</span><span class="params">(<span class="type">int</span> &amp;x, <span class="type">int</span> &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> temp;</span><br><span class="line">    temp = x;</span><br><span class="line">    x = y;</span><br><span class="line">    y = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a, b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    <span class="built_in">swap</span>(a, b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;max = &quot;</span> &lt;&lt; a&lt;&lt; <span class="string">&quot; &quot;</span>&lt;&lt; <span class="string">&quot;min = &quot;</span> &lt;&lt; b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
@@ -984,22 +984,12 @@
 <p><strong>返回值非引用示例</strong></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">f</span><span class="params">( <span class="type">double</span> x )</span>     </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">double</span> y;</span><br><span class="line"></span><br><span class="line">    y = <span class="built_in">sin</span>(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">double</span> a = <span class="number">3.14</span>/<span class="number">6</span>;</span><br><span class="line">    <span class="type">double</span> y;</span><br><span class="line"></span><br><span class="line">    y = <span class="built_in">f</span>( a );</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;y = &quot;</span> &lt;&lt; y &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="C++基础知识/image-20230223160434402.png"
-                      alt="image-20230223160434402" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="C++基础知识/image-20230223160434402.png" alt="image-20230223160434402" style="zoom:50%;"> 
 
 <p><strong>使用引用的返回值示例</strong></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span>&amp; <span class="title">f</span><span class="params">( <span class="type">double</span> x )</span> <span class="comment">//程序ref2</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">static</span> <span class="type">double</span> y;</span><br><span class="line"></span><br><span class="line">    y = <span class="built_in">sin</span>(x);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">double</span> a = <span class="number">3.14</span>/<span class="number">6</span>;</span><br><span class="line">    <span class="type">double</span> y;</span><br><span class="line"></span><br><span class="line">    y = <span class="built_in">f</span>( a );</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;y = &quot;</span> &lt;&lt; y &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="C++基础知识/image-20230223160619812.png"
-                      alt="image-20230223160619812" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="C++基础知识/image-20230223160619812.png" alt="image-20230223160619812" style="zoom:50%;"> 
 
 <p>注：引用型返回值，不能返回 auto变量</p>
 <p><strong>左值引用：</strong></p>
@@ -1017,7 +1007,7 @@
 </ol>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span>&amp;&amp; vec = <span class="built_in">foo</span>();       <span class="comment">// foo() 可以是左值或右值，vec 是转发引用</span></span><br><span class="line"><span class="keyword">auto</span> i = std::<span class="built_in">begin</span>(vec); <span class="comment">// 也可以</span></span><br><span class="line">(*i)++;                   <span class="comment">// 也可以</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">g</span>(std::forward&lt;<span class="keyword">decltype</span>(vec)&gt;(vec)); <span class="comment">// 转发，保持值类别</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span>&amp;&amp; x: <span class="built_in">f</span>())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// x 是转发引用；这是使用范围 for 循环最安全的方式</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span>&amp;&amp; z = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;; <span class="comment">// *不是*转发引用（初始化器列表的特殊情形）</span></span><br></pre></td></tr></table></figure></div></li>
 </ol>
-<h2 id="悬垂引用"><a href="#悬垂引用" class="headerlink" title="悬垂引用"></a>悬垂引用</h2><p>尽管引用一旦初始化就始终指代一个有效的对象或函数，但有可能创建一个程序，其中被指代对象的<a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/lifetime" >生存期 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>结束而引用仍保持可访问（<em>悬垂（dangling）</em>）。访问这种引用是<strong>未定义行为</strong>。 一个常见例子是返回自动变量的引用的函数：</p>
+<h2 id="悬垂引用"><a href="#悬垂引用" class="headerlink" title="悬垂引用"></a>悬垂引用</h2><p>尽管引用一旦初始化就始终指代一个有效的对象或函数，但有可能创建一个程序，其中被指代对象的<a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/lifetime">生存期 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>结束而引用仍保持可访问（<em>悬垂（dangling）</em>）。访问这种引用是<strong>未定义行为</strong>。 一个常见例子是返回自动变量的引用的函数：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::string&amp; <span class="title">f</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::string s = <span class="string">&quot;Example&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> s; <span class="comment">// 退出 s 的作用域：调用其析构函数并解分配其存储</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">std::string&amp; r = <span class="built_in">f</span>(); <span class="comment">// 悬垂引用</span></span><br><span class="line">std::cout &lt;&lt; r;       <span class="comment">// 未定义行为：从悬垂引用读取</span></span><br><span class="line">std::string s = <span class="built_in">f</span>();  <span class="comment">// 未定义行为：从悬垂引用复制初始化</span></span><br></pre></td></tr></table></figure></div>
 
 <p>注意，右值引用和到 const 的左值引用能延长临时对象的生存期。</p>
@@ -1123,12 +1113,7 @@
 </ul>
 </li>
 </ol>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="C++基础知识/image-20230323142945866.png"
-                      alt="image-20230323142945866" style="zoom: 50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="C++基础知识/image-20230323142945866.png" alt="image-20230323142945866" style="zoom: 50%;">
 
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* s1 = <span class="string">&quot;Literal&quot;</span>; <span class="comment">//文字在代码区，仅分配了字符指针</span></span><br><span class="line"><span class="comment">// s1[0] = &#x27;I&#x27;; //Segmentation fault</span></span><br><span class="line"><span class="type">char</span> s2[] = <span class="string">&quot;Initial Literal&quot;</span>; <span class="comment">//分配数组空间</span></span><br><span class="line">Point po = Point&#123;<span class="number">2</span>,<span class="number">3</span>&#125;; <span class="comment">//分配结构空间</span></span><br></pre></td></tr></table></figure></div>
 
@@ -1323,12 +1308,7 @@
 <li>C库基础设施的C++标头，即在 std 空间中的 c标准库</li>
 <li>C标准库，即不仅可以用 g++编译C风格的cpp程序，也可以使用C库函数</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230302152610758.png"
-                      alt="image-20230302152610758"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230302152610758.png" alt="image-20230302152610758"></p>
 <p><strong>const 和 constexpr(C++)</strong></p>
 <p>C语言中 const 关键字限定变量不可修改。</p>
 <p>const有两个语义：</p>
@@ -1417,12 +1397,7 @@
 <li>函数 在一个类中被称为 类的成员</li>
 </ul>
 <p>定义一个类，其效果是定义一个数据类型的蓝图。这实际上并没有定义任何数据，但它定义了类的对象包括了什么，以及可以在这个对象上执行哪些操作。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230309143844748.png"
-                      alt="image-20230309143844748"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230309143844748.png" alt="image-20230309143844748"></p>
 <p>类的例子</p>
 <p>类定义是以关键字 <strong>class</strong> 开头，后跟类的名称。类的主体是包含在一对花括号中类定义后必须跟着一个分号或一个声明列表。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DATE</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Set</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getMonth</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getDay</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">getYear</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Increment</span><span class="params">()</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">Decrement</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">int</span> month;</span><br><span class="line">        <span class="type">int</span> day;</span><br><span class="line">        <span class="type">int</span> year;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
@@ -1732,12 +1707,7 @@
 
 <h2 id="对象的内存布局"><a href="#对象的内存布局" class="headerlink" title="对象的内存布局"></a>对象的内存布局</h2><p>对象不存储指向成员函数的指针，类的成员函数存储在代码段，是所有类对象的共用空间</p>
 <p>构造对象时为数据成员提供存储空间。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230330150856153.png"
-                      alt="image-20230330150856153"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230330150856153.png" alt="image-20230330150856153"></p>
 <p>对象方法的 <strong>静态联编</strong></p>
 <p>指在编译阶段，就能直接使用代码f段函数地址调用动态对象的方法。该方法仅需要<strong>向非静态成员函数传送 this 指针</strong>，即可用静态函数调用实现动态调用的效果。</p>
 <p>优势：</p>
@@ -1759,12 +1729,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="可以重载的运算符"><a href="#可以重载的运算符" class="headerlink" title="可以重载的运算符"></a>可以重载的运算符</h3><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="C++基础知识/能重载的运算符.png"
-                      alt="能重载的运算符" style="zoom:50%;" 
-                >
+<h3 id="可以重载的运算符"><a href="#可以重载的运算符" class="headerlink" title="可以重载的运算符"></a>可以重载的运算符</h3><img lazyload src="/images/loading.svg" data-src="C++基础知识/能重载的运算符.png" alt="能重载的运算符" style="zoom:50%;">
 
 <p>大多数 运算符都可以通过成员函数 或 非成员函数进行重载。</p>
 <p>但下面的运算符只能通过成员函数重载。</p>
@@ -1809,12 +1774,7 @@
 <li>内建运算符的 前置版本 返回 引用，而 后置版本 返回 值。</li>
 <li>用户自定义的重载中，能以任何形式为返回类型。</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%87%AA%E5%A2%9E%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png"
-                      alt="自增减运算符重载"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%87%AA%E5%A2%9E%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png" alt="自增减运算符重载"></p>
 <ul>
 <li>重载前置 ++x 的方法<ul>
 <li>保持语义：x 的值加1。作为表达式，返回加1之后的值</li>
@@ -1851,12 +1811,7 @@
 </li>
 <li>返回值：使用引用返回是为了效率</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png"
-                      alt="赋值运算符重载"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.png" alt="赋值运算符重载"></p>
 <p>在用户自定义类中，如果有指针类型的数据成员，则最好 自定义拷贝构造函数 和 <strong>重载赋值运算符</strong>，实现深拷贝，避免使用 默认的拷贝构造函数 和 默认的缺省的赋值运算符（均为浅拷贝，可能导致重复释放已经释放过的指针指向的空间）。</p>
 <h3 id="移位运算符"><a href="#移位运算符" class="headerlink" title="移位运算符"></a>移位运算符</h3><ul>
 <li>第一操作数 不是 *this，只能类外定义</li>
@@ -1944,35 +1899,15 @@
 <li>继承提供了一种通过修改（演化）一个或多个现有类来构造新类的方法。</li>
 </ul>
 <p><strong>继承与派生的优势</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102514795.png"
-                      alt="image-20230504102514795" style="zoom:40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102514795.png" alt="image-20230504102514795" style="zoom:40%;">
 
 <h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><p>4个表示两个类继承关系的术语</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504101943996.png"
-                      alt="image-20230504101943996" style="zoom: 40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504101943996.png" alt="image-20230504101943996" style="zoom: 40%;">
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102105604.png"
-                      alt="image-20230504102105604" style="zoom:40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102105604.png" alt="image-20230504102105604" style="zoom:40%;">
 
 <p><strong>C++中继承关系图解</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102614055.png"
-                      alt="image-20230504102614055" style="zoom:40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504102614055.png" alt="image-20230504102614055" style="zoom:40%;">
 
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><strong>C++继承关系语法基础</strong></p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">eat</span><span class="params">()</span></span>&#123;</span><br><span class="line">        isEaten = <span class="literal">true</span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;I have eaten&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="built_in">Animal</span>()&#123; cout &lt;&lt; <span class="string">&quot;Animal is constructing&quot;</span>&lt;&lt; endl; &#125;</span><br><span class="line">    <span class="type">bool</span> isEaten = <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>: <span class="keyword">public</span> Animal&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(): <span class="built_in">Animal</span>()&#123;cout &lt;&lt; <span class="string">&quot;Dog is constructing&quot;</span>&lt;&lt; endl; &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">bark</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(isEaten)</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;I am barking, wang wang wang&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;I am starving, wow&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
@@ -2014,12 +1949,7 @@
 <li>定义派生类时指定的 <strong>继承访问控制</strong></li>
 <li>该成员在 <strong>基类</strong> 中所具有的成员访问控制</li>
 </ul>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504115449591.png"
-                      alt="image-20230504115449591" style="zoom:40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230504115449591.png" alt="image-20230504115449591" style="zoom:40%;">
 
 <ul>
 <li>无论采用什么继承方式，基类的私有成员在派生类中都是不可访问的。</li>
@@ -2298,12 +2228,7 @@
 </ul>
 </li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230518155822471.png"
-                      alt="image-20230518155822471"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230518155822471.png" alt="image-20230518155822471"></p>
 <h3 id="多态的概念"><a href="#多态的概念" class="headerlink" title="多态的概念"></a>多态的概念</h3><p>程序语言中，哪些标识符有哪些会满足多态定义？</p>
 <ul>
 <li><p>函数重载（Function Overload）</p>
@@ -2318,12 +2243,7 @@
 <p>多态标识符必须指派具体的函数或方法以实现规定的语义。</p>
 <p><strong>静态绑定</strong>：如果在运行前由编译完成这个指派，称为静态绑定</p>
 <p><strong>动态绑定</strong>：如果在运行期间完成这个指派，称为动态绑定</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230518160058527.png"
-                      alt="image-20230518160058527"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230518160058527.png" alt="image-20230518160058527"></p>
 <p><strong>静态类型</strong>：对程序进行编译时分析所得到的表达式的类型被称为表达式的静态类型。程序执行时静态类型不会更改。</p>
 <p><strong>动态类型</strong>：若某个泛左值表达式（如指针、引用）指代某个多态对象，则其最终派生对象的类型被称为其动态类型。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">B</span> &#123; <span class="keyword">virtual</span> ~<span class="built_in">B</span>() &#123;&#125; &#125;; <span class="comment">// 多态类型：至少包含一个虚函数</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">D</span>: B &#123;&#125;; <span class="comment">// 多态类型</span></span><br><span class="line">D d; <span class="comment">// 最终派生对象</span></span><br><span class="line">B* ptr = &amp;d;</span><br><span class="line"><span class="comment">// (*ptr) 的静态类型为 B 。什么条件下 *Ptr 是静态类型？final 类</span></span><br><span class="line"><span class="comment">// (*ptr) 的动态类型为 D</span></span><br></pre></td></tr></table></figure></div>
@@ -2515,93 +2435,38 @@
 <p>容器分为四种：<br>• 序列式容器<br>• 关联式容器<br>• 无序关联式容器<br>• 容器适配器<br>简单来说，每个容器提供了一种适配大部分类型的数据结构</p>
 <p>迭代器：迭代器是每种容器各自定义的一个或多个不同于容器的类，比如<br><code>vector&lt;T&gt;::iterator</code>，它主要用于访问、修改、增加、删除容器中的元素。</p>
 <p>按照功能的不同，C++17之前的迭代器分为:<br>LegacyInputIterator（输入迭代器）,<br>LegacyOutputIterator（输出迭代器）,<br>LegacyForwardIterator（单向迭代器）,<br>LegacyBidirectionalIterator（双向迭代器）,<br>LegacyRandomAccessIterator（随机迭代器）<br>五种，C++17加入了 LegacyContiguousIterator （连续迭代器）</p>
-<h4 id="序列式容器类型"><a href="#序列式容器类型" class="headerlink" title="序列式容器类型"></a>序列式容器类型</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615150811607.png"
-                      alt="image-20230615150811607"
-                ></p>
+<h4 id="序列式容器类型"><a href="#序列式容器类型" class="headerlink" title="序列式容器类型"></a>序列式容器类型</h4><p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615150811607.png" alt="image-20230615150811607"></p>
 <p><strong>构造函数</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151036096.png"
-                      alt="image-20230615151036096"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151036096.png" alt="image-20230615151036096"></p>
 <p><strong>访问元素</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151216828.png"
-                      alt="image-20230615151216828" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151216828.png" alt="image-20230615151216828" style="zoom:50%;"> 
 
 <p>注：对于list容器不支持随机访问。</p>
 <p><strong>使用迭代器访问</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151337749.png"
-                      alt="image-20230615151337749" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151337749.png" alt="image-20230615151337749" style="zoom:50%;">
 
 <p><strong>插入元素</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151449580.png"
-                      alt="image-20230615151449580"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615151449580.png" alt="image-20230615151449580"></p>
 <p>还有：<code>c.emplace_back(t)</code> </p>
 <p><strong>删除元素</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152153340.png"
-                      alt="image-20230615152153340"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152153340.png" alt="image-20230615152153340"></p>
 <p><strong>容器比较</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152240917.png"
-                      alt="image-20230615152240917" style="zoom: 50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152240917.png" alt="image-20230615152240917" style="zoom: 50%;"> 
 
 <p><strong>容量操作</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152339676.png"
-                      alt="image-20230615152339676"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152339676.png" alt="image-20230615152339676"></p>
 <p><strong>容器的赋值和交换</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152414454.png"
-                      alt="image-20230615152414454" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152414454.png" alt="image-20230615152414454" style="zoom:50%;"> 
 
 
 
 
 
-<h4 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152546198.png"
-                      alt="image-20230615152546198"
-                ></p>
+<h4 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h4><p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152546198.png" alt="image-20230615152546198"></p>
 <p><strong>std::pair</strong></p>
 <p><code>std::map</code>的某些函数使用了<code>&lt;utility&gt;</code>中的类<code>std::pair，pair&lt;T1, T2&gt;</code>代表一个由类型T1和类型T2组成的有序对。<br>可以直接用构造函数 <code>std::pair&lt;T1, T2&gt; (v1, v2)</code> 进行构造，也可以用make_pair进行构造：<br><code>auto p = make_pair(v1, v2);</code><br>通过p.first访问第一个元素，通过p.second访问第二个元素</p>
 <h5 id="map"><a href="#map" class="headerlink" title="map"></a>map</h5><p><strong>map的构造函数</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152726812.png"
-                      alt="image-20230615152726812" style="zoom: 50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152726812.png" alt="image-20230615152726812" style="zoom: 50%;"> 
 
 
 
@@ -2610,22 +2475,12 @@
 
 <p>最简便的方法是直接用operator[]来插入元素：<code>m[&quot;me&quot;] = 10</code></p>
 <p><strong>在 map 中查找元素</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152959585.png"
-                      alt="image-20230615152959585" style="zoom: 40%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615152959585.png" alt="image-20230615152959585" style="zoom: 40%;"> 
 
 
 
 <p><strong>在map中删除元素</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153058006.png"
-                      alt="image-20230615153058006" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153058006.png" alt="image-20230615153058006" style="zoom:50%;">
 
 
 
@@ -2637,12 +2492,7 @@
 <li>find 操作返回的迭代器指向与被查找键相关联的第一个元素。</li>
 <li>结合使用count和find操作依次访问，multimap容器中与特定键关联的所有元素。</li>
 </ul>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153510895.png"
-                      alt="image-20230615153510895" style="zoom:40%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153510895.png" alt="image-20230615153510895" style="zoom:40%;"> 
 
 
 
@@ -2654,28 +2504,13 @@
 
 
 <h4 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h4><p>容器适配器提供顺序容器之上的不同功能接口（界面）。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153803274.png"
-                      alt="image-20230615153803274" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153803274.png" alt="image-20230615153803274" style="zoom:50%;"> 
 
 <p><strong>队列 (queue) 功能接口（操作）</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153832106.png"
-                      alt="image-20230615153832106"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615153832106.png" alt="image-20230615153832106"></p>
 <p>还有<code>emplace()</code> </p>
 <p><strong>优先队列（priority_queue）的功能接口（操作）</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154012292.png"
-                      alt="image-20230615154012292"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154012292.png" alt="image-20230615154012292"></p>
 <p><strong>适配器与容器</strong></p>
 <ul>
 <li><p>标准库中定义的容器适配器都是基于顺序容器建立的</p>
@@ -2701,24 +2536,9 @@
 </li>
 </ul>
 <h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p><strong>类别</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154900417.png"
-                      alt="image-20230615154900417"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154828914.png"
-                      alt="image-20230615154828914"
-                ></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615155036568.png"
-                      alt="image-20230615155036568" style="zoom:50%;" 
-                > 
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154900417.png" alt="image-20230615154900417"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615154828914.png" alt="image-20230615154828914"></p>
+<img lazyload src="/images/loading.svg" data-src="./C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/image-20230615155036568.png" alt="image-20230615155036568" style="zoom:50%;"> 
 
 
 

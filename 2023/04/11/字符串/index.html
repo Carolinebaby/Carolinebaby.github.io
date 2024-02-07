@@ -654,18 +654,13 @@
 
 <p>[TOC]</p>
 <h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="C-标准库"><a href="#C-标准库" class="headerlink" title="C 标准库"></a>C 标准库</h3><p>C 标准库操作字符数组。</p>
-<h4 id="char-const-char"><a href="#char-const-char" class="headerlink" title="char[]&#x2F;const char*"></a><code>char[]</code>&#x2F;<code>const char*</code></h4><p>参见：<a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/io/fprintf" >fprintf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/io/fscanf" >fscanf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/string/byte" >空终止字节字符串 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="char-const-char"><a href="#char-const-char" class="headerlink" title="char[]&#x2F;const char*"></a><code>char[]</code>&#x2F;<code>const char*</code></h4><p>参见：<a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/io/fprintf">fprintf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/io/fscanf">fscanf <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>、<a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/c/string/byte">空终止字节字符串 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <ul>
 <li><code>printf(&quot;%s&quot;, s)</code>：用 <code>%s</code> 来输出一个字符串（字符数组）。</li>
 <li><code>scanf(&quot;%s&quot;, &amp;s)</code>：用 <code>%s</code> 来读入一个字符串（字符数组）。</li>
 <li><code>sscanf(const char *__source, const char *__format, ...)</code>：从字符串 <code>__source</code> 里读取变量，比如 <code>sscanf(str,&quot;%d&quot;,&amp;a)</code>。</li>
 <li><code>sprintf(char *__stream, const char *__format, ...)</code>：将 <code>__format</code> 字符串里的内容输出到 <code>__stream</code> 中，比如 <code>sprintf(str,&quot;%d&quot;,i)</code>。</li>
-<li><code>strlen(const char *str)</code>：返回从 <code>str[0]</code> 开始直到 <code>&#39;\0&#39;</code> 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      alt="\Theta(N)"
-                > 的。</li>
+<li><code>strlen(const char *str)</code>：返回从 <code>str[0]</code> 开始直到 <code>&#39;\0&#39;</code> 的字符数。注意，未开启 O2 优化时，该操作写在循环条件中复杂度是 <img lazyload src="/images/loading.svg" data-src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="\Theta(N)"> 的。</li>
 <li><code>strcmp(const char *str1, const char *str2)</code>：按照字典序比较 <code>str1 str2</code> 若 <code>str1</code> 字典序小返回负值，两者一样返回 <code>0</code>，<code>str1</code> 字典序更大则返回正值。请注意，不要简单的认为返回值只有 <code>0</code>、<code>1</code>、<code>-1</code> 三种，在不同平台下的返回值都遵循正负，但并非都是 <code>0</code>、<code>1</code>、<code>-1</code>。</li>
 <li><code>strcpy(char *str, const char *src)</code>: 把 <code>src</code> 中的字符复制到 <code>str</code> 中，<code>str</code> <code>src</code> 均为字符数组头指针，返回值为 <code>str</code> 包含空终止符号 <code>&#39;\0&#39;</code>。</li>
 <li><code>strncpy(char *str, const char *src, int cnt)</code>：复制至多 <code>cnt</code> 个字符到 <code>str</code> 中，若 <code>src</code> 终止而数量未达 <code>cnt</code> 则写入空字符到 <code>str</code> 直至写入总共 <code>cnt</code> 个字符。</li>
@@ -675,7 +670,7 @@
 <li><code>strrchr(const char *str, char c)</code>：找到在字符串 <code>str</code> 中最后一次出现字符 <code>c</code> 的位置，并返回这个位置的地址。如果未找到该字符则返回 <code>NULL</code>。</li>
 </ul>
 <h3 id="C-标准库-1"><a href="#C-标准库-1" class="headerlink" title="C++ 标准库"></a>C++ 标准库</h3><p>C++ 标准库操作字符串对象，同时也提供对字符数组的兼容。</p>
-<h4 id="std-string"><a href="#std-string" class="headerlink" title="std::string"></a><code>std::string</code></h4><p>参见：<a class="link"   target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/string/basic_string" >std::basic_string <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="std-string"><a href="#std-string" class="headerlink" title="std::string"></a><code>std::string</code></h4><p>参见：<a class="link" target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/string/basic_string">std::basic_string <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <ul>
 <li>重载了赋值运算符 <code>+</code>，当 <code>+</code> 两边是 <code>string/char/char[]/const char*</code> 类型时，可以将这两个变量连接，返回连接后的字符串（<code>string</code>）。</li>
 <li>赋值运算符 <code>=</code> 右侧可以是 <code>const string/string/const char*/char*</code>。</li>
@@ -700,47 +695,22 @@
 <p>假设 文本串为 <code>abababcabaa</code>，模式串为 <code>ababcabaa</code></p>
 <p>j 应该被赋予多少值，是只与模式串自身有关的。每个模式串，都对应着一张PMT，比如：</p>
 <p>模式串 <code>ababcabaa</code>对应的PMT如下：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-b5eda0e3764d25f39b0675c3056b5c9e_b.jpg"
-                      alt="img" style="zoom: 20%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-b5eda0e3764d25f39b0675c3056b5c9e_b.jpg" alt="img" style="zoom: 20%;">
 
 <p><code>pmt[i]</code> 就是，从 p[0] 往后数，同时从 p[i] 往前数相同的位数，在保证前后缀相同的情况下，最多能数多少位。（但要小于p的长度）</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-747f4be1f49f4fdc5e4fc3e80594bb3b_b.jpg"
-                      alt="img" style="zoom: 50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-747f4be1f49f4fdc5e4fc3e80594bb3b_b.jpg" alt="img" style="zoom: 50%;">
 
 <p>专业点说，它是 真前缀 与 真后缀 的集合的中，最长元素的长度。</p>
 <p>实例说明：</p>
 <p>在暴力匹配中的情形：</p>
 <center class="half">
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-9d1c23a01a1f37510fda43475a8ed969_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-91d8b7d6082d758ebac1ab378717270f_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+    <img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-9d1c23a01a1f37510fda43475a8ed969_b.jpg" alt="img" style="zoom:40%;">
+    <img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-91d8b7d6082d758ebac1ab378717270f_b.jpg" alt="img" style="zoom:40%;">
 </center>
 
 <p>遇到不同的字母，暴力选择将 j 前移，但是观察可知，前面 abab 匹配成功，它的前缀和后缀有重叠部分 ‘ab’，我们可以将这个与前缀相同的后缀利用起来得到，在第二张图中，pmt[4] &#x3D; 2，当遇到 这种不匹配的情况时，j 的变化为：<code>j = ptm[4] = ptm[i-1]</code> 。</p>
 <p>再举个例子：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-bcb634c9d7b2eeb2d4886bf549f0acdb_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-bcb634c9d7b2eeb2d4886bf549f0acdb_b.jpg" alt="img" style="zoom:50%;">
 
 <p>发生失配时，我们可以直接令 <code>j = pmt[i-1]</code>（也就是符合条件的<strong>最长前缀</strong>所<strong>紧接</strong>着的下一位）。</p>
 <p>代码过程为：</p>
@@ -750,68 +720,28 @@
 <h3 id="求PMT数组"><a href="#求PMT数组" class="headerlink" title="求PMT数组"></a>求PMT数组</h3><p>如果暴力求解时间复杂度 $O(m^2)$ ，并不理想。精妙的做法是：错开一位后，让 p 自己匹配自己（这相当于 用前缀去匹配后缀）。我们知道 <code>pmt[0] = 0</code>，而之后的每一位则可以通过在匹配过程中记录 j 值得到。</p>
 <p>还是以下面的模式串为例：</p>
 <center class="half">
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-7715906edbd181b2def0b8f1883b0d9c_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-756dfd984818b1cfca7420b64cab847c_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+    <img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-7715906edbd181b2def0b8f1883b0d9c_b.jpg" alt="img" style="zoom:40%;">
+    <img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-756dfd984818b1cfca7420b64cab847c_b.jpg" alt="img" style="zoom:40%;">
 </center>
 
 
 
 <p>匹配失败，则<code>pmt[1] = -1+1 = 0</code>，i指针右移，接下来匹配成功，<code>pmt[2] = 1</code>，然后两个指针都右移</p>
 <center class="half">
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-d10fec4b1e91dec7e1b189cb295a13ae_b.jpg"
-                      style="zoom:40%;" 
-                >
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-c4769fb332833124b50057505dfb5d95_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+    <img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-d10fec4b1e91dec7e1b189cb295a13ae_b.jpg" style="zoom:40%;">
+    <img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-c4769fb332833124b50057505dfb5d95_b.jpg" alt="img" style="zoom:40%;">
 </center>
 
 <p>继续匹配成功，j指针右移，<code>pmt[3] = 2</code>，下一位失配，因为前面的 <code>pmt</code> 已经算出来了，我们可以像文本串匹配时那样使用它。<code>pmt[2-1]</code>即<code>pmt[1]</code>等于0，所以退回到开头。</p>
 <center class="half">
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-7ae53ad16124c052441568f2df895b81_b.jpg"
-                      style="zoom:40%;" 
-                >
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-c4769fb332833124b50057505dfb5d95_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+    <img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-7ae53ad16124c052441568f2df895b81_b.jpg" style="zoom:40%;">
+    <img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-c4769fb332833124b50057505dfb5d95_b.jpg" alt="img" style="zoom:40%;">
 </center>
 
 <p>j指针已经到了开头，仍未匹配成功，所以不再移动，<code>pmt[4]=j=0</code>。接下来也按这种方法操作</p>
 <center class="half">
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-2bfca9e441f95030be16b74c0b9fbb2a_b.jpg"
-                      style="zoom:40%;" 
-                >
-    <img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-e3a3860d27d3cb45ffb7e884d64d246c_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+    <img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-2bfca9e441f95030be16b74c0b9fbb2a_b.jpg" style="zoom:40%;">
+    <img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-e3a3860d27d3cb45ffb7e884d64d246c_b.jpg" alt="img" style="zoom:40%;">
 </center>
 
 <p>最后一位出现失配，这次我们先令<code>j=pmt[j-1]=1</code>，再次匹配，匹配成功，j指针右移一位，<code>pmt[i]=j=1</code>。自此，我们通过一趟<strong>自我匹配</strong>，求出了PMT。</p>
@@ -820,7 +750,7 @@
 
 
 
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>（<a class="link"   href="https://link.zhihu.com/?target=https://www.luogu.com.cn/problem/P3375" >洛谷P3375 【模板】KMP字符串匹配 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>）</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>（<a class="link" href="https://link.zhihu.com/?target=https://www.luogu.com.cn/problem/P3375">洛谷P3375 【模板】KMP字符串匹配 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>）</p>
 <blockquote>
 <p><strong>题目描述</strong></p>
 <p>给出两个字符串 s1 和 s2，若 s2 的区间[l, r]子串与 s2 完全相同，则称 s2 在 s1 中出现了，其出现位置为 l。<br>现在请你求出 s2 在 s1 中所有出现的位置。</p>
@@ -844,44 +774,24 @@
 <p>KMP算法 的核心就是那张 部分匹配表，其实它被称为 <strong>前缀函数</strong>，记作 $\pi$。对一个字符串而言，我们定义 既是它前缀又是它后缀的字符串是它的 border，那  $\pi(i)$ 就表示 $s[0..i]$ 的最大border  的长度。或者说， $\pi(i)$ 是满足 $s[0…x-1] &#x3D; s[i-x+1…i]$ 的最大的 $x$ （特别地，令 $\pi(0) &#x3D; 0$ ）</p>
 <p>而 Z算法的核心 是 <strong>Z函数</strong>，它的定义与  $\pi$ 非常相似。 $z(i)$ 定义为 $s$ 与 $s[i…n-1]$ 的<strong>最长公共前缀</strong>（LCP）。或者说，$z(i)$ 是满足 $s[0…x-1]&#x3D;s[i…i+x-1]$ 的最大的 x（特别地，令$z(0)&#x3D;0$ ）</p>
 <p>例如，设有字符串<code>aabcaabcaaaab</code>，那么它的Z函数值如下表所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-60e17daa70312eb1481cf63b79ddd939_b.jpg"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-60e17daa70312eb1481cf63b79ddd939_b.jpg" alt="img"></p>
 <h3 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h3><p>设 $z(i)≠0$，那么我们定义区间 $[i, i+Z[i]-1]$ 为一个 <strong>Z-Box</strong>，显然，Z-Box 对应的子串一定也是整个字符串的一个前缀。例如，上表中 [4, 9] 就是一个 Z-Box，它对应的子串是 aabcaa，也是整个字符串的一个前缀。 </p>
 <p>我们从左往右枚举下标 $i$，同时维护 $l$ 和 $r$，用 $[l, r]$ 表示 $l≤i$ 且 $r$ 最大的 Z-Box。那么就可能出现三种情况：</p>
 <ul>
 <li><p>如果 $i&gt;r$，说明我们已经完全越过了上一个 Z-Box，任何一个新的Z-Box 的 r 都会更大，这时 我们直接逐个比较，暴力计算 $Z[i]$ 的值。计算完成后，如果 $Z[i]≠0$，则更新 $l$ 和 $r$。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i &gt; r)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">while</span>(i+z[i] &lt; n &amp;&amp; s[z[i]] == s[i+z[i]])</span><br><span class="line">          z[i]++;</span><br><span class="line">      l = i, r = i+z[i]<span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></div>
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-98c281d98a105ebc7b02d0df0ff19e77_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-98c281d98a105ebc7b02d0df0ff19e77_b.jpg" alt="img" style="zoom:50%;">
 </li>
 <li><p>如果 $i≤r$，此时已经知道了 $s[l…r]$ 与 $s[0…r-l]$ 是相等的，因此 $s[i…r]$ 与 $s[i-l…r-l]$ 也是相等的。所以我们考虑 $Z[i-l]＜r-i+1$ ，说明从 $i$ 开始匹配 和 从 $i-l$ 开始匹配是 一样的——匹配一定会在离开 Z-Box 前停止。即， $Z[i] &#x3D; Z[i-l]$ 。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(z[i-l] &lt; r-i+<span class="number">1</span>)</span><br><span class="line">    z[i] = z[i-l];</span><br></pre></td></tr></table></figure></div>
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-d00a0043fb3279e843fadb668364222e_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-d00a0043fb3279e843fadb668364222e_b.jpg" alt="img" style="zoom:50%;">
 </li>
 <li><p>如果 $Z[i-l] ≥ r-i+1$，说明整个 Z-Box 的剩余部分都可以匹配，但后面的情况我们不清楚，所以不能说 $Z[i]&#x3D;Z[i-l]$。但我们知道 $Z[i]$ 至少有 $r-i+1$，接下来我们暴力计算 Z-Box 还能向后延长多少即可</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    z[i] = r-i+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i+z[i] &lt; n &amp;&amp; s[z[i]] == s[i+z[i]])</span><br><span class="line">        z[i]++;</span><br><span class="line">    l = i, r = i+z[i]<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-d00a0043fb3279e843fadb668364222e_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                ></li>
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-d00a0043fb3279e843fadb668364222e_b.jpg" alt="img" style="zoom:50%;"></li>
 </ul>
 <p>综合分析可以发现 第一种和第三种情况可以合并，最终得到：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>, l = <span class="number">0</span>, r = <span class="number">0</span>; i&lt;n; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(z[i-l] &lt; r-i+<span class="number">1</span>)</span><br><span class="line">        z[i] = z[i-l]</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        z[i] = <span class="built_in">max</span>(r-i+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">while</span>(i+z[i]&lt;n &amp;&amp; s[z[i]] == s[i+z[i]])</span><br><span class="line">            z[i]++;</span><br><span class="line">        l = i, r = i+z[i]<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -915,32 +825,17 @@
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>Manacher算法其实和 [Z算法](#Z 算法) 的流程非常类似。从左往右枚举 $i$，并维护 $l$ 和 $r$，使得 $s[l…r]$ 是满足$ l≤r$ 且 $r$ 最靠右的 奇回文串。当我们枚举到一个新的 $i$ 时，我们进行分类讨论：</p>
 <ul>
 <li><p>如果 $i＞r$，则直接暴击计算 d[i]，同时更新 l 和 r。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-03603be191c5e02006797416d5364af8_b.jpg"
-                      alt="img" style="zoom: 67%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-03603be191c5e02006797416d5364af8_b.jpg" alt="img" style="zoom: 67%;">
 
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i &gt; r)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(i-d[i]&gt;=<span class="number">0</span> &amp;&amp; i+d[i]&lt;n &amp;&amp; s[i-d[i]] == s[i+d[i]])</span><br><span class="line">        d[i]++;</span><br><span class="line">    l = i-d[i]+<span class="number">1</span>, r = i+d[i]<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>如果 $i≤r$，找到 $i$ 关于 $s[l…r]$ 中心的对称点 $j$，这时如果以 $j$ 为中心的最长奇回文串的左边界大于 $l$，则直接令 $d[i] &#x3D; d[j]$。这是因为，在 $s[l…r]$ 的范围内，关于中心点对称的子串一定是相等的。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-b6de0a2932d2980a1f5855fc5c913421_b.jpg"
-                      alt="img" style="zoom: 80%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-b6de0a2932d2980a1f5855fc5c913421_b.jpg" alt="img" style="zoom: 80%;">
 
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//i&lt;= r int j = l+r-i;</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(j - d[j] &gt;= l) <span class="comment">//即 j-d[j]+1 &gt; l</span></span><br><span class="line">&#123;</span><br><span class="line">    d[i] = d[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>如果以 $j$ 为中心的最长奇回文串的左边界小于等于 $l$，那么我们知道 $d[i]$ 至少有 $j-l+1$（或$r-l+1$），但会不会更长还不清楚，所以要进行左右拓展，同时更新 $l$ 和 $r$。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-533422b099c77c8216fd541872b97438_b.jpg"
-                      alt="img" style="zoom:80%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-533422b099c77c8216fd541872b97438_b.jpg" alt="img" style="zoom:80%;">
 
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    d[i] = j-l+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(i-d[i] &gt;= <span class="number">0</span> &amp;&amp; i+d[i] &lt; n &amp;&amp; s[i-d[i]] == s[i+d[i]])</span><br><span class="line">        d[i]++;</span><br><span class="line">    l = i-d[i]+<span class="number">1</span>, r = i+d[i]<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
 </ul>
@@ -949,18 +844,13 @@
 
 <p>时间复杂度为： $O(n)$ </p>
 <h2 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h2><p>字典树(Trie) 是一种比较简单的数据结构，也叫 前缀树，用来存储和查询字符串。例如：<code>water</code>，<code>wish</code>，<code>win</code>，<code>tie</code>，<code>tired</code>这几个单词可以用以下方式存储：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-09eb3d3980f61e573d47daf4fa329d14_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-09eb3d3980f61e573d47daf4fa329d14_b.jpg" alt="img" style="zoom:50%;">
 
 <p>其中每个字符占据一个节点，拥有相同前缀的字符串可以公用部分节点。起点是特殊点（设为1号点），不存储字符。建树的代码如下：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">trie</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> nex[<span class="number">100000</span>][<span class="number">26</span>], cnt;</span><br><span class="line">    <span class="type">bool</span> exist[<span class="number">100000</span>];  <span class="comment">// 该结点结尾的字符串是否存在</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">char</span> *s, <span class="type">int</span> l)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;  <span class="comment">// 插入字符串</span></span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> c = s[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) nex[p][c] = ++cnt;  <span class="comment">// 如果没有，就添加结点</span></span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">        exist[p] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find</span><span class="params">(<span class="type">char</span> *s, <span class="type">int</span> l)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;  <span class="comment">// 查找字符串</span></span><br><span class="line">        <span class="type">int</span> p = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; l; i++) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> c = s[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span> (!nex[p][c]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            p = nex[p][c];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> exist[p];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><h4 id="检索字符串"><a href="#检索字符串" class="headerlink" title="检索字符串"></a>检索字符串</h4><p>字典树最基础的应用——查找一个字符串是否在「字典」中出现过。</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580" >于是他错误的点名开始了 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">于是他错误的点名开始了 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
 <p>给你 n 个名字串，然后进行 m 次点名，每次你需要回答「名字不存在」、「第一次点到这个名字」、「已经点过这个名字」之一。</p>
 <p>$1\le n\le 10^4$，$1\le m\le 10^5$，所有字符串长度不超过 50。</p>
 <p>分析：对所有名字建 trie，再在 trie 中查询字符串是否存在、是否已经点过名，第一次点名时标记为点过名。</p>
@@ -970,7 +860,7 @@
 
 
 <h4 id="维护异或极值"><a href="#维护异或极值" class="headerlink" title="维护异或极值"></a>维护异或极值</h4><p>将数的二进制表示看作一个字符串，就可以建出字符集为 {0, 1} 的 trie 树</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4551" >BZOJ1954 最长异或路径 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4551">BZOJ1954 最长异或路径 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>给你一棵带边权的树，求 (u, v) 使得 u 到 v 的路径上的边权异或和最大，输出这个最大值。</p>
 <p>点数不超过 $10^5$，边权在 $[0,2^{31})$ 内。</p>
 <p>分析：</p>
@@ -1028,30 +918,15 @@
 <h2 id="后缀数组"><a href="#后缀数组" class="headerlink" title="后缀数组"></a>后缀数组</h2><p>后缀数组（Suffix Array, SA）是解决很多与字符相关的问题的有力工具。它实际上就是把字符串所有 <strong>后缀</strong> 按 <strong>字典序</strong> 排序后得到的数组。</p>
 <p>显然，直接使用 <code>std::sort</code> 函数 时间复杂度 $O(n^2log n)$ 。用倍增的思想，可以把复杂度优化为 $O(nlog^2n)$ 。</p>
 <p>首先，把字符串的长度扩充一倍，保证往后填充的字符比所有已有的字符都小（记为 0）。注意，这样填充后并不会影响原先 两个后缀的大小相对关系。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-e0900e42b832bc99439f46c622159e32_b.jpg"
-                      alt="img" style="zoom: 50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-e0900e42b832bc99439f46c622159e32_b.jpg" alt="img" style="zoom: 50%;">
 
 <p>设 $rk_w(i)$ 表示 第 $i$ 位开始、长度为 $w$ 的子串在 所有长度为 $w$ 的子串中的排名（全 0 串的排名记为 0），$sa_w(i)$ 表示长度为 $w$ 的子串中字典序第 $i$ 小的一个的开始位置。</p>
 <p>我们可以轻松地求出  $rk_1(i)$ 和 $sa_1(i)$ </p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-a0ac222743cb6400a63dad27dd8d464f_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-a0ac222743cb6400a63dad27dd8d464f_b.jpg" alt="img" style="zoom:50%;">
 
 <p>如果我们已经知道了  $rk_w(i)$ ，那么我们可以求出 $sa_{2w}(i)$ ——只需要以 $rk_w(sa_w(i))$ 为第一关键词、$rk_w(sa_w(i)+w)$ 为第二关键词对 $sa_w$ 进行一次排序就好。而，如果我们得到 $sa_{2w}$，自然可以得到 $rk_{2w}$。</p>
 <p>原理：对于两个等长的字符串 s 和 t，如果 s 的字典序小于 t，那么要么 s 的前半段的字典序小于 t 的后半段的字段序。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-640cb5df5b7268c4fe808f88f6828d2b_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-640cb5df5b7268c4fe808f88f6828d2b_b.jpg" alt="img" style="zoom:50%;">
 
 <p>所以我们可以从 $rk_1&#x2F;sa_1$ 出发， 进一步得到 $rk_2&#x2F;sa_2，rk_4&#x2F;sa_4,$…… 。当 $w≥n$ 时，$rk_w$ 也可以表示每个后缀的排名，$sa_w$ 也可以表示每个 后缀 排序后的结果，也就是我们要的后缀数组。</p>
 <p>在实际实现过程中，我们不需要求出 $rk_1&#x2F;sa_1$ 。因为除了最后一步外，我们只需要知道 $rk_w$  的相对大小关系，所以 $rk_i(i)$ 可以用字符本身代替。而除了最后一步外，$sa_w$ 的唯一作用就是求 $rk_w$ ，但 $sa_1$ 没有被用来求 $rk_1$，只是一个待排序数组，所以把待排序的下标按任意顺序放进去即可。不过 当n&#x3D;1时，这样做会得到错误的 rk，可以特判一下。</p>
@@ -1097,7 +972,7 @@
 <li>按字典序遍历所有本质不同的子串。只需要遍历 $sa[i]$ 的前缀，但是跳过前 height[i] 个，因为这 height[i] 个前缀是与 sa[i-1] 共有的，之前一定已经被遍历过。按此道理，也可以知道字符串本质不同的字符串数量为 $\cfrac{n(n-1)}{2} - \sum height[i]$ 。</li>
 <li>可以求两个子串的 LCP。显然设两个子串为 $s_1 &#x3D; s[l_1…r_1] 和 s_2 &#x3D; s[l_2…r_2]$ 。则它们的最长公共前缀为 min(|s1|, |s2|, lcp(sa[l1], sa[l2]))。所以我们只需要求两个后缀的 LCP，而很容易发现这正是 min(height[k]) （l1 &lt;&#x3D; k &lt;&#x3D; l2）</li>
 </ul>
-<h2 id="题"><a href="#题" class="headerlink" title="题"></a>题</h2><h3 id="串联所有单词的子串"><a href="#串联所有单词的子串" class="headerlink" title="串联所有单词的子串"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/description/?orderBy=most_votes" >串联所有单词的子串 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一个字符串 <code>s</code> 和一个字符串数组 <code>words</code><strong>。</strong> <code>words</code> 中所有字符串 <strong>长度相同</strong>。</p>
+<h2 id="题"><a href="#题" class="headerlink" title="题"></a>题</h2><h3 id="串联所有单词的子串"><a href="#串联所有单词的子串" class="headerlink" title="串联所有单词的子串"></a><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/description/?orderBy=most_votes">串联所有单词的子串 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><p>给定一个字符串 <code>s</code> 和一个字符串数组 <code>words</code><strong>。</strong> <code>words</code> 中所有字符串 <strong>长度相同</strong>。</p>
 <p> <code>s</code> 中的 <strong>串联子串</strong> 是指一个包含 <code>words</code> 中所有字符串以任意顺序排列连接起来的子串。</p>
 <ul>
 <li>例如，如果 <code>words = [&quot;ab&quot;,&quot;cd&quot;,&quot;ef&quot;]</code>， 那么 <code>&quot;abcdef&quot;</code>， <code>&quot;abefcd&quot;</code>，<code>&quot;cdabef&quot;</code>， <code>&quot;cdefab&quot;</code>，<code>&quot;efabcd&quot;</code>， 和 <code>&quot;efcdab&quot;</code> 都是串联子串。 <code>&quot;acdbef&quot;</code> 不是串联子串，因为他不是任何 <code>words</code> 排列的连接。</li>

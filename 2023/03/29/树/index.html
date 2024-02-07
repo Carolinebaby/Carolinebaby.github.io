@@ -646,37 +646,22 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>树结构的学习：(摘抄<a class="link"   target="_blank" rel="noopener" href="https://www.programmercarl.com/" >代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的部分笔记)</p>
+            <p>树结构的学习：(摘抄<a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/">代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 的部分笔记)</p>
 <p>starting !</p>
 <span id="more"></span>
 
 <h1 id="叉树理论基础篇"><a href="#叉树理论基础篇" class="headerlink" title="叉树理论基础篇"></a>叉树理论基础篇</h1><p>题目分类大纲如下：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210219190809451.png"
-                      alt="二叉树大纲"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210219190809451.png" alt="二叉树大纲"></p>
 <h2 id="二叉树的种类"><a href="#二叉树的种类" class="headerlink" title="二叉树的种类"></a>二叉树的种类</h2><p>在我们解题过程中二叉树有两种主要的形式：满二叉树和完全二叉树。</p>
 <h3 id="满二叉树"><a href="#满二叉树" class="headerlink" title="满二叉树"></a>满二叉树</h3><p>满二叉树：如果一棵二叉树只有度为0的结点和度为2的结点，并且度为0的结点在同一层上，则这棵二叉树为满二叉树。</p>
 <p>如图所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806185805576.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806185805576.png" alt="img"></p>
 <p>这棵二叉树为满二叉树，也可以说深度为k，有2^k-1个节点的二叉树。</p>
 <h3 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h3><p>什么是完全二叉树？</p>
 <p>完全二叉树的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2^(h-1) 个节点。</p>
 <p><strong>大家要自己看完全二叉树的定义，很多同学对完全二叉树其实不是真正的懂了。</strong></p>
 <p>一个典型的例子：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920221638903.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920221638903.png" alt="img"></p>
 <p><strong>之前我们刚刚讲过优先级队列其实是一个堆，堆就是一棵完全二叉树，同时保证父子节点的顺序关系。</strong></p>
 <h3 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h3><p>前面介绍的树，都没有数值的，而二叉搜索树是有数值的了，<strong>二叉搜索树是一个有序树</strong>。</p>
 <ul>
@@ -685,39 +670,19 @@
 <li>它的左、右子树也分别为二叉排序树</li>
 </ul>
 <p>下面这两棵树都是搜索树</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190304693.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190304693.png" alt="img"></p>
 <h3 id="平衡二叉搜索树"><a href="#平衡二叉搜索树" class="headerlink" title="平衡二叉搜索树"></a>平衡二叉搜索树</h3><p>平衡二叉搜索树：又被称为AVL（Adelson-Velsky and Landis）树，且具有以下性质：它是一棵空树或它的左右两个子树的高度差的绝对值不超过1，并且左右两个子树都是一棵平衡二叉树。</p>
 <p>如图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190511967.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806190511967.png" alt="img"></p>
 <p>最后一棵 不是平衡二叉树，因为它的左右两个子树的高度差的绝对值超过了1。</p>
 <p><strong>C++中map、set、multimap，multiset的底层实现都是平衡二叉搜索树</strong>，所以map、set的增删操作时间时间复杂度是logn，注意我这里没有说unordered_map、unordered_set，unordered_map、unordered_set底层实现是哈希表。</p>
 <h2 id="二叉树的存储方式"><a href="#二叉树的存储方式" class="headerlink" title="二叉树的存储方式"></a>二叉树的存储方式</h2><p><strong>二叉树可以链式存储，也可以顺序存储。</strong></p>
 <p>那么链式存储方式就用指针， 顺序存储的方式就是用数组。</p>
 <p>顾名思义就是顺序存储的元素在内存是连续分布的，而链式存储则是通过指针把分布在各个地址的节点串联一起。</p>
 <p>链式存储如图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/2020092019554618.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/2020092019554618.png" alt="img"></p>
 <p>链式存储其实就是用数组来存储二叉树，顺序存储的方式如图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920200429452.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200920200429452.png" alt="img"></p>
 <p>用数组来存储二叉树如何遍历的呢？</p>
 <p><strong>如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。</strong></p>
 <p>但是用链式表示的二叉树，更有利于我们理解，所以一般我们都是用链式存储二叉树。</p>
@@ -750,12 +715,7 @@
 <li>后序遍历：左右中</li>
 </ul>
 <p>大家可以对着如下图，看看自己理解的前后中序有没有问题。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806191109896.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20200806191109896.png" alt="img"></p>
 <p>最后再说一说二叉树中深度优先和广度优先遍历实现方式，我们做二叉树相关题目，经常会使用递归的方式来实现深度优先遍历，也就是实现前中后序遍历，使用递归是比较方便的。</p>
 <p><strong>之前我们讲栈与队列的时候，就说过栈其实就是递归的一种实现结构</strong>，也就说前中后序遍历的逻辑其实都是可以借助栈使用非递归的方式来实现的。</p>
 <p>而广度优先遍历的实现一般使用队列来实现，这也是队列先进先出的特点所决定的，因为需要先进先出的结构，才能一层一层的来遍历二叉树。</p>
@@ -806,12 +766,7 @@
 <div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">traversal</span><span class="params">(TreeNode* cur, vector&lt;<span class="type">int</span>&gt;&amp; vec)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cur == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;left, vec);  <span class="comment">// 左</span></span><br><span class="line">    <span class="built_in">traversal</span>(cur-&gt;right, vec); <span class="comment">// 右</span></span><br><span class="line">    vec.<span class="built_in">push_back</span>(cur-&gt;val);    <span class="comment">// 中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h2 id="迭代遍历"><a href="#迭代遍历" class="headerlink" title="迭代遍历"></a>迭代遍历</h2><h3 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h3><p>先序遍历是中左右，每次处理的是中间结点先将根节点放入栈中，然后将右孩子加入栈，再加入左孩子。先加入右孩子才能保证出栈时中左右的顺序。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking.cdn.bcebos.com/gifs/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%88%E8%BF%AD%E4%BB%A3%E6%B3%95%EF%BC%89.gif"
-                      alt="二叉树前序遍历（迭代法）" style="zoom: 67%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="https://code-thinking.cdn.bcebos.com/gifs/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%EF%BC%88%E8%BF%AD%E4%BB%A3%E6%B3%95%EF%BC%89.gif" alt="二叉树前序遍历（迭代法）" style="zoom: 67%;"> 
 
 <p>代码：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        stack&lt;TreeNode*&gt; st;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt;result;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> result;</span><br><span class="line">        st.<span class="built_in">push</span>(root);</span><br><span class="line">        <span class="keyword">while</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            TreeNode* node = st.<span class="built_in">top</span>();</span><br><span class="line">            st.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;right) st.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;left) st.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
@@ -839,12 +794,7 @@
 <p>需要借助数据结构 <strong>队列</strong> 来实现二叉树的层序迭代遍历，队列先进先出，符合一层一层遍历的逻辑，而用 栈先进后出的逻辑 适合模拟 深度优先搜索，也就是递归的逻辑。</p>
 <p>而这种层序遍历方式就是图论中的 <strong>广度优先遍历</strong>，这种思想可以应用于 二叉树上。</p>
 <p>使用 <strong>队列</strong> 实现 <strong>二叉树的广度优先遍历</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking.cdn.bcebos.com/gifs/102%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.gif"
-                      alt="102二叉树的层序遍历"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking.cdn.bcebos.com/gifs/102%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.gif" alt="102二叉树的层序遍历"></p>
 <p>模板代码：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">levelOrder</span>(TreeNode* root)&#123;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        <span class="keyword">if</span>(root != <span class="literal">NULL</span>) que.<span class="built_in">push</span>(root);</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">while</span>(!que.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; vec;</span><br><span class="line">	<span class="comment">//这里一定要使用固定大小 size，不要使用 que.size()，因为 que.size()是变化的</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;size; i++)&#123;</span><br><span class="line">                TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">                que.<span class="built_in">pop</span>();</span><br><span class="line">                vec.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(node-&gt;left) que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                <span class="keyword">if</span>(node-&gt;right) que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            res.<span class="built_in">push_back</span>(v);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
@@ -856,22 +806,12 @@
 <p>给定二叉搜索树（BST）的根节点 <code>root</code> 和一个整数值 <code>val</code>。</p>
 <p>你需要在 BST 中找到节点值等于 <code>val</code> 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 <code>null</code> 。</p>
 <p><strong>示例 1:</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https:////assets.leetcode.com/uploads/2021/01/12/tree1.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https:////assets.leetcode.com/uploads/2021/01/12/tree1.jpg" alt="img" style="zoom:50%;">
 
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,7,1,3], val = 2</span><br><span class="line">输出：[2,1,3]</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 2:</strong></p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https:////assets.leetcode.com/uploads/2021/01/12/tree2.jpg"
-                      alt="img" style="zoom: 50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https:////assets.leetcode.com/uploads/2021/01/12/tree2.jpg" alt="img" style="zoom: 50%;">
 
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,7,1,3], val = 5</span><br><span class="line">输出：[]</span><br></pre></td></tr></table></figure></div>
 
@@ -907,21 +847,11 @@
 
 <h2 id="二叉树的最近公共祖先"><a href="#二叉树的最近公共祖先" class="headerlink" title="二叉树的最近公共祖先"></a>二叉树的最近公共祖先</h2><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p><strong>示例 1：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode.com/uploads/2018/12/14/binarytree.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode.com/uploads/2018/12/14/binarytree.png" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1</span><br><span class="line">输出：3</span><br><span class="line">解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 2：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode.com/uploads/2018/12/14/binarytree.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode.com/uploads/2018/12/14/binarytree.png" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4</span><br><span class="line">输出：5</span><br><span class="line">解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 3：</strong></p>
@@ -942,12 +872,7 @@
 
 <h2 id="二叉搜索树的最近公共祖先"><a href="#二叉搜索树的最近公共祖先" class="headerlink" title="二叉搜索树的最近公共祖先"></a>二叉搜索树的最近公共祖先</h2><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
 <p>例如，给定如下二叉搜索树: root &#x3D; [6,2,8,0,4,7,9,null,null,3,5]</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png" alt="img"></p>
 <p><strong>示例 1:</strong></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8</span><br><span class="line">输出: 6 </span><br><span class="line">解释: 节点 2 和节点 8 的最近公共祖先是 6。</span><br></pre></td></tr></table></figure></div>
 
@@ -966,12 +891,7 @@
 <h2 id="二叉搜索树中的插入操作"><a href="#二叉搜索树中的插入操作" class="headerlink" title="二叉搜索树中的插入操作"></a>二叉搜索树中的插入操作</h2><p>给定二叉搜索树（BST）的根节点 <code>root</code> 和要插入树中的值 <code>value</code> ，将值插入二叉搜索树。 返回插入后二叉搜索树的根节点。 输入数据 <strong>保证</strong> ，新值和原始二叉搜索树中的任意节点值都不同。</p>
 <p><strong>注意</strong>，可能存在多种有效的插入方式，只要树在插入后仍保持为二叉搜索树即可。 你可以返回 <strong>任意有效的结果</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode.com/uploads/2020/10/05/insertbst.jpg"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode.com/uploads/2020/10/05/insertbst.jpg" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：root = [4,2,7,1,3], val = 5</span><br><span class="line">输出：[4,2,7,1,3,5]</span><br><span class="line">解释：另一个满足题目要求可以通过的树是：</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 2：</strong></p>
@@ -992,15 +912,10 @@
 <p>时间复杂度：$O(n)$ 空间复杂度: $O(1)$</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">insertIntoBST</span><span class="params">(TreeNode* root, <span class="type">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">TreeNode</span>(val);</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt; val) root-&gt;right = <span class="built_in">insertIntoBST</span>(root-&gt;right, val);</span><br><span class="line">        <span class="keyword">else</span> root-&gt;left = <span class="built_in">insertIntoBST</span>(root-&gt;left, val);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="从中序与后序遍历序列构造二叉树"><a href="#从中序与后序遍历序列构造二叉树" class="headerlink" title="从中序与后序遍历序列构造二叉树"></a>从中序与后序遍历序列构造二叉树</h2><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" >力扣106 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<h2 id="从中序与后序遍历序列构造二叉树"><a href="#从中序与后序遍历序列构造二叉树" class="headerlink" title="从中序与后序遍历序列构造二叉树"></a>从中序与后序遍历序列构造二叉树</h2><p><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">力扣106 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
 <p>给定两个整数数组 <code>inorder</code> 和 <code>postorder</code> ，其中 <code>inorder</code> 是二叉树的中序遍历， <code>postorder</code> 是同一棵树的后序遍历，请你构造并返回这颗 <em>二叉树</em> 。</p>
 <p><strong>示例 1:</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：inorder = [9,3,15,20,7], postorder = [9,15,7,20,3]</span><br><span class="line">输出：[3,9,20,null,null,15,7]</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 2:</strong></p>
@@ -1021,12 +936,7 @@
 <p><strong>思路:</strong></p>
 <p>以 后序数组的最后一个元素为切割点，先切中序数组，根据中序数组，反过来再切后序数组。一层一层切下去，每次后序数组最后一个元素就是节点元素。</p>
 <p>流程如图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210203154249860.png"
-                      alt="106.从中序与后序遍历序列构造二叉树"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://code-thinking-1253855093.file.myqcloud.com/pics/20210203154249860.png" alt="106.从中序与后序遍历序列构造二叉树"></p>
 <p>那么代码应该怎么写呢？</p>
 <p>说到一层一层切割，就应该想到了递归</p>
 <p>一共分六步：</p>
@@ -1038,18 +948,8 @@
 <li>第五步：切割后序数组，切成后序左数组和后序右数组</li>
 <li>第六步：递归处理左区间和右区间</li>
 </ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic.leetcode-cn.com/3293e7ccb41baaf52adca7e13cc0f258e1c83a4c588f9b6cb3e86410a540f298-%E6%A0%91%E7%9A%84%E7%89%B9%E6%80%A7.png"
-                      alt="树的特性.png"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic.leetcode-cn.com/ac050d257073f47285353d7ad412fb832326237ea85948a8b69d338171d67543-%E6%A0%91%E7%9A%84%E8%BF%98%E5%8E%9F.png"
-                      alt="树的还原.png"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://pic.leetcode-cn.com/3293e7ccb41baaf52adca7e13cc0f258e1c83a4c588f9b6cb3e86410a540f298-%E6%A0%91%E7%9A%84%E7%89%B9%E6%80%A7.png" alt="树的特性.png"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://pic.leetcode-cn.com/ac050d257073f47285353d7ad412fb832326237ea85948a8b69d338171d67543-%E6%A0%91%E7%9A%84%E8%BF%98%E5%8E%9F.png" alt="树的还原.png"></p>
 <ul>
 <li>为了高效查找根节点元素在中序遍历数组中的下标，我们选择创建哈希表来存储中序序列，即建立一个（元素，下标）键值对的哈希表。</li>
 <li>定义递归函数 <code>helper(in_left, in_right)</code> 表示当前递归到中序序列中当前子树的左右边界，递归入口为<code>helper(0, n - 1)</code> ：<ul>
@@ -1068,35 +968,20 @@
 
 
 <p>力扣1631.最小体力消耗路径</p>
-<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-with-minimum-effort/description/" >原题链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-with-minimum-effort/description/">原题链接 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>你准备参加一场远足活动。给你一个二维 <code>rows x columns</code> 的地图 <code>heights</code> ，其中 <code>heights[row][col]</code> 表示格子 <code>(row, col)</code> 的高度。一开始你在最左上角的格子 <code>(0, 0)</code> ，且你希望去最右下角的格子 <code>(rows-1, columns-1)</code> （注意下标从 <strong>0</strong> 开始编号）。你每次可以往 <strong>上</strong>，<strong>下</strong>，<strong>左</strong>，<strong>右</strong> 四个方向之一移动，你想要找到耗费 <strong>体力</strong> 最小的一条路径。</p>
 <p>一条路径耗费的 <strong>体力值</strong> 是路径上相邻格子之间 <strong>高度差绝对值</strong> 的 <strong>最大值</strong> 决定的。</p>
 <p>请你返回从左上角走到右下角的最小 <strong>体力消耗值</strong> 。</p>
 <p><strong>示例 1：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex1.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex1.png" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：heights = [[1,2,2],[3,8,2],[5,3,5]]</span><br><span class="line">输出：2</span><br><span class="line">解释：路径 [1,3,5,3,5] 连续格子的差值绝对值最大为 2 。</span><br><span class="line">这条路径比路径 [1,2,2,2,5] 更优，因为另一条路径差值最大值为 3 。</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 2：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex2.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex2.png" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：heights = [[1,2,3],[3,8,4],[5,3,5]]</span><br><span class="line">输出：1</span><br><span class="line">解释：路径 [1,2,3,4,5] 的相邻格子差值绝对值最大为 1 ，比路径 [1,3,5,3,5] 更优。</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>示例 3：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex3.png"
-                      alt="img"
-                ></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2020/10/25/ex3.png" alt="img"></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]</span><br><span class="line">输出：0</span><br><span class="line">解释：上图所示路径不需要消耗任何体力。</span><br></pre></td></tr></table></figure></div>
 
 <p><strong>提示：</strong></p>

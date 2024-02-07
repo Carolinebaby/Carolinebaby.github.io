@@ -733,24 +733,14 @@
 </li>
 <li><p><strong>高精度—高精度</strong></p>
 <p><strong>竖式乘法</strong>。竖式乘法的每一步，实际上是计算了若干 $a \times b_i \times 10^i$ 的和。例如计算 $1337 \times 42$，计算的就是 $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://oi-wiki.org/math/images/multiplication-long.png"
-                      alt="img" style="zoom: 80%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://oi-wiki.org/math/images/multiplication-long.png" alt="img" style="zoom: 80%;">
 
 <p>于是可以将 b 分解为它的所有数码，其中每个数码都是单精度数，将它们分别与 a 相乘，再向左移动到各自的位置上相加即得答案。当然，最后也需要用与上例相同的方式处理进位。</p>
 <p>注意这个过程与竖式乘法不尽相同，我们的算法在每一步乘的过程中并不进位，而是将所有的结果保留在对应的位置上，到最后再统一处理进位，但这不会影响结果。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mul</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> c[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">clear</span>(c);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; LEN - <span class="number">1</span>; ++i) </span><br><span class="line">  &#123; <span class="comment">// 这里直接计算结果中的从低到高第 i 位，且一并处理了进位</span></span><br><span class="line">  <span class="comment">// 第 i 次循环为 c[i] 加上了所有满足 p + q = i 的 a[p] 与 b[q] 的乘积之和</span></span><br><span class="line"> <span class="comment">// 这样做的效果和直接进行上图的运算最后求和是一样的，只是更加简短的一种实现方式</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= i; ++j) c[i] += a[j] * b[i - j];</span><br><span class="line">    <span class="keyword">if</span> (c[i] &gt;= <span class="number">10</span>) </span><br><span class="line">    &#123;</span><br><span class="line">      c[i + <span class="number">1</span>] += c[i] / <span class="number">10</span>;</span><br><span class="line">      c[i] %= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
 </ul>
 <p><strong>除法</strong>：竖式除法</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://oi-wiki.org/math/images/division.png"
-                      alt="img" style="zoom:50%;" 
-                > 
+<img lazyload src="/images/loading.svg" data-src="https://oi-wiki.org/math/images/division.png" alt="img" style="zoom:50%;"> 
 
 <p>竖式长除法实际上可以看作一个逐次减法的过程。例如上图中商数十位的计算可以这样理解：将 45 减去三次 12 后变得小于 12，不能再减，故此位为 3。</p>
 <p>为了减少冗余运算，我们提前得到被除数的长度 $l_a$ 与除数的长度 $l_b$，从下标$ l_a - l_b$ 开始，从高位到低位来计算商。这和手工计算时将第一次乘法的最高位与被除数最高位对齐的做法是一样的。</p>
@@ -768,12 +758,7 @@
 <p><strong>方法3：</strong>先算7*7得49，则7的5次方为49*49*7，再算它的平方，共进行了<strong>4次</strong>乘法。</p>
 <p>模仿这样的过程，我们得到一个在 O(log n) 时间内计算出幂的算法，也就是快速幂。</p>
 <h3 id="递归快速求幂"><a href="#递归快速求幂" class="headerlink" title="递归快速求幂"></a>递归快速求幂</h3><p>方法三用到的就是二分的思路，由此可以得到一个递归方程：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="算法中的数学/image-20230410232246169.png"
-                      alt="image-20230410232246169" style="zoom: 50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="算法中的数学/image-20230410232246169.png" alt="image-20230410232246169" style="zoom: 50%;">
 
 <p>计算 a 的 n 次方，如果 n 是偶数（不为0），那么先计算 a 的 n&#x2F;2 次方，然后平方；如果n是奇数，那么先计算a的n-1次方，再乘上a；递归出口时 a 的0次方为 1。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归快速求幂</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">qpow</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(n%<span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">qpow</span>(a, n<span class="number">-1</span>)*a;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp = <span class="built_in">qpow</span>(a, n/<span class="number">2</span>); </span><br><span class="line">        <span class="keyword">return</span> temp*temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -940,12 +925,7 @@
 
 <p>如果想减少常数，可以提前算出每个点的极角。</p>
 <p><strong>第二种</strong> 叉乘，叉乘的正负遵循右手定则，按旋转方向弯曲右手四指，则若拇指向上叉乘为正，拇指向下为负。也就是说，如果一个向量通过劣角旋转到另一个向量的方向需要按逆时针方向，那么叉乘为正，否则叉乘为负。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-1a11909fd74ad00baa7c6ad8ae83f19d_b.jpg"
-                      alt="img" style="zoom: 80%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-1a11909fd74ad00baa7c6ad8ae83f19d_b.jpg" alt="img" style="zoom: 80%;">
 
 <p>仅依靠叉乘是不能进行排序的，因为它不符合偏序关系的条件。如果定义 $\vec{x}×\vec{y}&lt;0$ 则 $θ_{\vec{x}}&lt;θ_{\vec{y}}$ ，那么就会发现通过在坐标轴上旋转，一个向量的极角最终会小于自己。但是在同一象限内计算叉乘是可以的，所以要 先比较象限再作叉乘。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">qua</span><span class="params">(<span class="keyword">auto</span> p)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">lt</span>(p.y, <span class="number">0</span>) &lt;&lt; <span class="number">1</span> | <span class="built_in">lt</span>(p.x, <span class="number">0</span>) ^ <span class="built_in">lt</span>(p.y, <span class="number">0</span>); &#125;    <span class="comment">// 求象限</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">psort</span><span class="params">(Points &amp;ps, Point c = O)</span>                               <span class="comment">// 极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span> v1, <span class="keyword">auto</span> v2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">qua</span>(v1 - c) &lt; <span class="built_in">qua</span>(v2 - c) || <span class="built_in">qua</span>(v1 - c) == <span class="built_in">qua</span>(v2 - c) &amp;&amp; <span class="built_in">lt</span>(<span class="built_in">cross</span>(v1 - c, v2 - c), <span class="number">0</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -953,38 +933,18 @@
 <p>这种方法常数可能稍微大一点，但是精度比较好，如果坐标都是整数的话是完全没有精度损失的。</p>
 <h2 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h2><p>平面上给定若干点，则 <strong>凸包</strong> 被定义为所 能包含所有点的 <strong>凸多边形的交集</strong>。</p>
 <p>在一切包含所有凸多边形中，凸包的面积是最小的，周长也是最小的。同时，凸包的每个顶点都是原有的点。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-4853bd07a90d7af3c46f236d7bcdfcbe_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-4853bd07a90d7af3c46f236d7bcdfcbe_b.jpg" alt="img" style="zoom:50%;">
 
 <p>求凸包的方法有很多，包括 <strong>Graham 扫描法</strong> 和 <strong>Andrew 算法</strong></p>
 <h3 id="Graham-扫描法"><a href="#Graham-扫描法" class="headerlink" title="Graham 扫描法"></a>Graham 扫描法</h3><p>首先，容易发现，最左下角的一个点（这里指以横坐标为第一关键词、纵坐标为第二关键词排序后最小的点）是必然在凸包上的。我们以这个点为极点进行极角排序。显然，将极角排序后的点依次相连即可得到一个包围所有点的多边形。但是这个多边形不一定是凸的，我们需要进行调整。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-27f61e6c8de5b0bb45e14369cecb4c7a_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-27f61e6c8de5b0bb45e14369cecb4c7a_b.jpg" alt="img" style="zoom:50%;">
 
 <p>首先维护一个 <strong>栈</strong>，按照极角排序后遍历每个点，如果栈中点数小于3，就直接进栈；否则，检查栈顶三个点组成的向量的旋转方向是否为 <strong>逆时针</strong>（可用叉乘判断），若是则进栈，若不是则弹出栈顶，直到栈中点数小于3 或者满足 逆时针 条件位置。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-f009bc3dd1ee36af43e9a1b16e89d673_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-f009bc3dd1ee36af43e9a1b16e89d673_b.jpg" alt="img" style="zoom:50%;">
 
 <p>弹出栈顶的过程，相当于把三角形的两边用第三遍代替，同时又能保证包含原来的顶点。</p>
 <p>具体过程：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-59316dd6046b17bb0dd8ddb2d84b16e0_b.gif"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-59316dd6046b17bb0dd8ddb2d84b16e0_b.gif" alt="img" style="zoom:50%;">
 
 <p>实现时需要注意，要对极角排序的极点特殊处理，使它始终排在第一位。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//DEPENDS eq, lt, cross, V-V, P&lt;P</span></span><br><span class="line"><span class="keyword">using</span> Points = vector&lt;Point&gt;;</span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">theta</span><span class="params">(Point p)</span></span>&#123;<span class="keyword">return</span> p==<span class="number">0</span>? <span class="number">-1</span>/<span class="number">0.</span> : <span class="built_in">atan2</span>(p.y, p.x);&#125; <span class="comment">//求极角</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">psort</span><span class="params">(Points &amp;ps, Point c)</span> <span class="comment">//极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">sort</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>(), [&amp;](<span class="keyword">auto</span> p1, <span class="keyword">auto</span> p2)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="built_in">theta</span>(p1-c), <span class="built_in">theta</span>(p2-c));</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(Point p, Point q, Point r)</span> <span class="comment">//检查三个点组成的两个向量旋转方向是否为逆时针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">lt</span>(<span class="number">0</span>, <span class="built_in">cross</span>(q-p, r-q));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Points <span class="title">chull</span><span class="params">(Points &amp;ps)</span><span class="comment">//以左下角的点为极角排序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">psort</span>(ps, *<span class="built_in">min_element</span>(ps.<span class="built_in">begin</span>(), ps.<span class="built_in">end</span>())); <span class="comment">//以最左下角的点为极角排序</span></span><br><span class="line">    Points H&#123;ps[<span class="number">0</span>]&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i&lt;ps.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(H.<span class="built_in">size</span>()&gt;<span class="number">1</span> &amp;&amp; <span class="built_in">check</span>(H[H.<span class="built_in">size</span>()<span class="number">-2</span>], H.<span class="built_in">back</span>(), ps[i]))</span><br><span class="line">            H.<span class="built_in">pop_back</span>();</span><br><span class="line">        H.<span class="built_in">push_back</span>(ps[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> H;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -993,20 +953,10 @@
 
 <p>Andrew 算法</p>
 <p>另一种做法是不做极角排序，直接以横坐标为第一关键词，纵坐标为第二关键词，这样，将顶点依次相连（不首位相连）的话，也能保证不交叉。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-2944082cdcaa8d017ea24a39c287edb1_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-2944082cdcaa8d017ea24a39c287edb1_b.jpg" alt="img" style="zoom:50%;">
 
 <p>按照这样的排序顺序，像刚刚那样调整，可以求得 <strong>下凸包</strong>。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-c11d260375ef02f21b3748e17597921b_r.jpg"
-                      alt="img" style="zoom: 20%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-c11d260375ef02f21b3748e17597921b_r.jpg" alt="img" style="zoom: 20%;">
 
 <p>然后，再倒过来走一遍，则可以得到上凸包，两者组合即可得要求的凸包。</p>
 <p>需要注意的是，不要把起点当作已经走过的点跳过，这样才能保证最后能够回到起点的同时保持凸包性质。但这样会使得起点会被放进两次，最后稍微处理一下即可。</p>

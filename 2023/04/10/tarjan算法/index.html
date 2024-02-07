@@ -642,19 +642,9 @@
 <span id="more"></span>
 
 <h2 id="无向图的割点与桥"><a href="#无向图的割点与桥" class="headerlink" title="无向图的割点与桥"></a>无向图的割点与桥</h2><p>如果删除<strong>无向图</strong>中的某个<strong>点</strong>会使无向图的<strong>连通分量数</strong>增多，则把这个点称为<strong>割点</strong>。类似地，如果删除无向图中的某条<strong>边</strong>会使无向图的连通分量数增多，则把这个点称为<strong>割边</strong>或<strong>桥</strong>。割点与桥可以用<strong>Tarjan算法</strong>求出。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-b06934dc0dccf224a8575007535ba72c_b.jpg"
-                      alt="img" style="zoom: 40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-b06934dc0dccf224a8575007535ba72c_b.jpg" alt="img" style="zoom: 40%;">
 
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-69d14f7ee63e2eb2f913331fcb639206_b.jpg"
-                      alt="img" style="zoom:40%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-69d14f7ee63e2eb2f913331fcb639206_b.jpg" alt="img" style="zoom:40%;">
 
 <h3 id="桥"><a href="#桥" class="headerlink" title="桥"></a>桥</h3><p>Tarjan 算法在求解无向图的割点与桥的工作原理</p>
 <p><strong>时间戳</strong>：时间戳是用来标记图中每个节点在进行深度优先搜索时被访问的时间顺序（相当于一个序号，这个序号由小到大），用 <code>dfn[x]</code> 来表示</p>
@@ -675,29 +665,14 @@
 
 
 <h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><p>对于一张<strong>有向图</strong>而言，它是<strong>强连通</strong>的当且仅当其上 <strong>每个顶点都相互可达</strong>。强连通图类似于嵌套的环，强连通图一定有环，但 n 个节点的强连通图不一定有n元环。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-1ee69fda43f2f259e69196c86bf05175_b.jpg"
-                      alt="img" style="zoom:33%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-1ee69fda43f2f259e69196c86bf05175_b.jpg" alt="img" style="zoom:33%;">
 
 <p><strong>强连通分量</strong> 是 有向图的极大的强连通子图，所谓“极大”意味着，把图划分为若干个强连通分量后，不存在两个强连通分量相互可达。</p>
 <p>处理 强连通分量 的一个有力的工具是 dfs 生成树。在dfs时，每当通过某条边 e 访问到一个新节点v，就加入这个点和这条边，最后得到的便是 dfs 生成树。例如对于下面这张有向图：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-982771c34df616d9ba6dcfebb56e888a_b.jpg"
-                      alt="img" style="zoom:33%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-982771c34df616d9ba6dcfebb56e888a_b.jpg" alt="img" style="zoom:33%;">
 
 <p>它的 dfs 生成树可能时这样的（黑色实线）：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-1bb53360d6bf83944deb8dd49b9ce514_b.jpg"
-                      alt="img" style="zoom:33%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-1bb53360d6bf83944deb8dd49b9ce514_b.jpg" alt="img" style="zoom:33%;">
 
 <p>除了生成树的树边外，原图剩下的边可以分为三种：</p>
 <ul>
@@ -707,21 +682,11 @@
 </ul>
 <p><strong>反向边</strong> 和 <strong>横叉边</strong> 都有一个特点：<strong>起点的dfs序 必然大于 终点的dfs序</strong>。</p>
 <p>结论：<strong>对于每个强连通分量，存在一个点是其他所有点的祖先。</strong>若不然，则可以把强连通分量划成 n 个分支，使各分支的祖先节点互相不为彼此的祖先，这些分支间不能通过树边相连，只能通过至少 n 条横叉边相连，但这必然违背上一段的性质。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-952dc1ef3f9d318829b5be4378cc88da_b.jpg"
-                      alt="img" style="zoom:67%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-952dc1ef3f9d318829b5be4378cc88da_b.jpg" alt="img" style="zoom:67%;">
 
 <p>我们把这个唯一的祖先节点称为强连通分量的<strong>根</strong>。显然，根是强连通分量中dfs序最小的节点。</p>
 <p>为了求强连通分量，我们常常使用 <strong>Tarjan 算法</strong>。首先，我们把 low(p) 定义为 p 所在子树的节点经过最多一条非树边 u→v（其中 v 可达 u）能到达的节点中最小的 dfs序。根据这样的定义，某个点 p 是强连通分量的根，等价于 <code>dfsn(p) = low(p)</code>。我们这里必须强调 v 可达 u，否则会使 low(5)&#x3D;2，但它实际应是一个强连通分量的根。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-f0cfe5afc683abe08fa5324a2571141a_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-f0cfe5afc683abe08fa5324a2571141a_b.jpg" alt="img" style="zoom:50%;">
 
 <p>low(p) 可以通过动态规划得到，对于以某个点p为起点的边 p→q：</p>
 <ul>
@@ -732,60 +697,25 @@
 <p>但是我们怎么确认一个点能不能到达另一个点呢？因为 <strong>反向边</strong> 和 <strong>横向边</strong> 都是指向dfs序较小的节点，而 <strong>前向边</strong> 的存在又不影响状态转移方程，所以我们只需要确认 比该点dfs序小 的哪些点能到达该点即可，这可以用一个 <strong>栈</strong> 动态地维护。</p>
 <p>每当搜索到新店，就令它入栈。在对 p 的搜索结束时，如果 <code>low(p) = n&lt;dfsn(q)</code>，设dfs序为n的点为q，则 p 点到达 q点都可达，考虑对 q 点的搜索很可能没有结束，所以 p 应该留在栈中。如果发现 p 满足<code>low(p) = dfsn(p)</code>，则说明 p 是某个强连通分量的根，它和栈中的子孙相互可达。但同时，它可栈中子孙点也无法到达 p 的祖先节点，以及祖先节点其他尚未搜索的分支，所以不断从栈顶弹出元素，知道弹出p（注意这样维护的栈中的dfs序是单调增的），同时记录答案。</p>
 <p>举例：（这里为了方便，直接用dfs序作为点的编号）</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-e7e7a4b03fac528b20756592334e03e2_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-e7e7a4b03fac528b20756592334e03e2_b.jpg" alt="img" style="zoom:50%;">
 
 <p>沿着 1 → 2 → 3 搜索（节点右上角表示当前的 low，下方为栈）：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic2.zhimg.com/v2-1b0818d2abbcfea950fd1390ad586015_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic2.zhimg.com/v2-1b0818d2abbcfea950fd1390ad586015_b.jpg" alt="img" style="zoom:50%;">
 
 <p>发现反向边 3 → 1，更新 low(3)，然后回到2搜索4：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-e2b4c99d05ef1eaf70694e84faa3e5d6_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-e2b4c99d05ef1eaf70694e84faa3e5d6_b.jpg" alt="img" style="zoom:50%;">
 
 <p>4没有出边，返回，这时发现 low(4) &#x3D; dfsn(4) &#x3D; 4，于是出栈，标记它属于第一个强连通分量。</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic1.zhimg.com/v2-66181d0d7c5bc2cdb00d115f40b10400_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic1.zhimg.com/v2-66181d0d7c5bc2cdb00d115f40b10400_b.jpg" alt="img" style="zoom:50%;">
 
 <p>回到2，它对应的子树已搜索完毕，更新 low(2)；接下来搜索 5 → 6 → 7 → 8：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-77a2155112072f2fd9705d77a9c5f1c2_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-77a2155112072f2fd9705d77a9c5f1c2_b.jpg" alt="img" style="zoom:50%;">
 
 <p>反顺序更新它们的 low，到5发现 low(5) &#x3D; dfsn(5) &#x3D; 5，于是把它放入新的强连通分量：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic4.zhimg.com/v2-9ee5d25070ba745ba6479898b4eb8b63_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic4.zhimg.com/v2-9ee5d25070ba745ba6479898b4eb8b63_b.jpg" alt="img" style="zoom:50%;">
 
 <p>最后回到1 ，把剩下还在栈内的节点都归入最后一个强连通分量：</p>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://pic3.zhimg.com/v2-b9d5bb59070317978fbfff3b224f3402_b.jpg"
-                      alt="img" style="zoom:50%;" 
-                >
+<img lazyload src="/images/loading.svg" data-src="https://pic3.zhimg.com/v2-b9d5bb59070317978fbfff3b224f3402_b.jpg" alt="img" style="zoom:50%;">
 
 <p>代码：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="type">int</span>&gt; stk;</span><br><span class="line"><span class="comment">// instk：是否在栈中  scc：每个点所属的强连通分量编号  cscc：强连通分量的数量</span></span><br><span class="line"><span class="type">int</span> dfsn[MAXN], low[MAXN], instk[MAXN], scc[MAXN], cnt, cscc;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tarjan</span><span class="params">(<span class="type">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    low[p] = dsfn[p] = ++cnt;</span><br><span class="line">    instk[p] = <span class="number">1</span>;</span><br><span class="line">    stk.<span class="built_in">push</span>(p);<span class="comment">//入栈</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q: edges[p])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfsn[q]) <span class="comment">//未访问过</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(q); <span class="comment">//递归搜索</span></span><br><span class="line">            low[p] = <span class="built_in">min</span>(low[p], low[q]);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(instk[q]) <span class="comment">//访问过</span></span><br><span class="line">        	low[p] = <span class="built_in">min</span>(low[p], dfsn[q]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low[p] == dfsn[p]) <span class="comment">//发现强连通分量的根</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> top;</span><br><span class="line">        cscc++;</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">        &#123;</span><br><span class="line">            top = stk.<span class="built_in">top</span>();</span><br><span class="line">            stk.<span class="built_in">pop</span>();</span><br><span class="line">            instk[top] = <span class="number">0</span>;</span><br><span class="line">            scc[top] = cscc;</span><br><span class="line">        &#125;<span class="keyword">while</span>(top != p) <span class="comment">//知道弹出p才停止</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -863,7 +793,7 @@
 
 
 
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="tarjan算法与无向图连通性"><a href="#tarjan算法与无向图连通性" class="headerlink" title="tarjan算法与无向图连通性"></a>tarjan算法与无向图连通性</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/365/" >ACWing363.B城 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="tarjan算法与无向图连通性"><a href="#tarjan算法与无向图连通性" class="headerlink" title="tarjan算法与无向图连通性"></a>tarjan算法与无向图连通性</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/365/">ACWing363.B城 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
 <p><strong>题目描述</strong><br>B 城有 n 个城镇，m 条双向道路。每条道路连结两个不同的城镇，没有重复的道路，所有城镇连通。把城镇看作节点，把道路看作边，容易发现，整个城市构成了一个无向图。</p>
 <p>输入格式：第一行包含两个整数 n 和 m。接下来 m 行，每行包含两个整数 a 和 b，表示城镇 a 和 b 之间存在一条道路。</p>
 <p><strong>输出格式</strong>：输出共 n 行，每行输出一个整数。第 i 行输出的整数表示把与节点 i 关联的所有边去掉以后（不去掉节点 i 本身），无向图有多少个有序点 (x,y)，满足 x 和 y 不连通。</p>
@@ -876,7 +806,7 @@
 <li>由除了上述两种连通块之外的所有节点构成的连通块。</li>
 </ol>
 <p>对于一个大小为 p 的连通块，它对答案的贡献为 p×(n-p)。我们可以在执行 <code>Tarjan</code> 算法时顺便统计子树大小和这些信息即可。</p>
-<h4 id="tarjan算法与有向图连通性"><a href="#tarjan算法与有向图连通性" class="headerlink" title="tarjan算法与有向图连通性"></a>tarjan算法与有向图连通性</h4><p><a class="link"   target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/369/" >ACWing367.学校网络 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<h4 id="tarjan算法与有向图连通性"><a href="#tarjan算法与有向图连通性" class="headerlink" title="tarjan算法与有向图连通性"></a>tarjan算法与有向图连通性</h4><p><a class="link" target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/369/">ACWing367.学校网络 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
 <p><strong>问题</strong>：一些学校连接在一个计算机网络上，学校之间存在软件支援协议，每个学校都有它应支援的学校名单（学校 A 支援学校 B，并不表示学校 B 一定要支援学校 A）。</p>
 <p>当某校获得一个新软件时，无论是直接获得还是通过网络获得，该校都应立即将这个软件通过网络传送给它应支援的学校。因此，一个新软件若想让所有学校都能使用，只需将其提供给一些学校即可。现在请问最少需要将一个新软件直接提供给多少个学校，才能使软件能够通过网络被传送到所有学校？最少需要添加几条新的支援关系，使得将一个新软件提供给任何一个学校，其他所有学校就都可以通过网络获得该软件？</p>
 <p><strong>输入格式</strong><br>第 1 行包含整数 N，表示学校数量。<br>第 2 … N+1 行，每行包含一个或多个整数，第 i+1 行表示学校 i 应该支援的学校名单，每行最后都有一个 0 表示名单结束（只有一个 0 即表示该学校没有需要支援的学校）。</p>
