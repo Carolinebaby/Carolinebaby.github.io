@@ -18,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="题1. 重排后为2的幂题目描述 为了平衡卷王对课程压力的影响，一些反卷斗士自发地组成了反卷者联盟。在反卷者联盟中，每一个反卷斗士都是二进制天选之子。为了防止卷王发现潜伏在其中的反卷斗士，反卷斗士之间有自己独特的相互验证方式。具体验证方式为：如果一个学生的学工号（一个整数）的各个数字经过重新排序后，并且前导数字不能为0，得到的新数字是2的幂次方，则这个学生就是反卷斗士，这也是二进制天选之子名字的由来">
+        <meta name="description" content="题1. 重排后为2的幂 题目描述 为了平衡卷王对课程压力的影响，一些反卷斗士自发地组成了反卷者联盟。在反卷者联盟中，每一个反卷斗士都是二进制天选之子。为了防止卷王发现潜伏在其中的反卷斗士，反卷斗士之间有自己独特的相互验证方式。具体验证方式为：如果一个学生的学工号（一个整数）的各个数字经过重新排序后，并且前导数字不能为0，得到的新数字是2的幂次方，则这个学生就是反卷斗士，这也是二进制天选之子名字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="善用STL">
 <meta property="og:url" content="https://carolinebaby.github.io/2023/07/02/%E5%96%84%E7%94%A8STL/index.html">
 <meta property="og:site_name" content="Caroline&#39;s World">
-<meta property="og:description" content="题1. 重排后为2的幂题目描述 为了平衡卷王对课程压力的影响，一些反卷斗士自发地组成了反卷者联盟。在反卷者联盟中，每一个反卷斗士都是二进制天选之子。为了防止卷王发现潜伏在其中的反卷斗士，反卷斗士之间有自己独特的相互验证方式。具体验证方式为：如果一个学生的学工号（一个整数）的各个数字经过重新排序后，并且前导数字不能为0，得到的新数字是2的幂次方，则这个学生就是反卷斗士，这也是二进制天选之子名字的由来">
+<meta property="og:description" content="题1. 重排后为2的幂 题目描述 为了平衡卷王对课程压力的影响，一些反卷斗士自发地组成了反卷者联盟。在反卷者联盟中，每一个反卷斗士都是二进制天选之子。为了防止卷王发现潜伏在其中的反卷斗士，反卷斗士之间有自己独特的相互验证方式。具体验证方式为：如果一个学生的学工号（一个整数）的各个数字经过重新排序后，并且前导数字不能为0，得到的新数字是2的幂次方，则这个学生就是反卷斗士，这也是二进制天选之子名字">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-02T01:29:29.000Z">
-<meta property="article:modified_time" content="2023-07-03T05:15:31.185Z">
+<meta property="article:modified_time" content="2024-02-08T03:44:20.978Z">
 <meta property="article:author" content="Caroline">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -251,7 +251,119 @@
     
     
     
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.1.1"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 
 <body>
@@ -567,8 +679,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-07-03 13:15:31</span>
-            <span class="mobile">2023-07-03 13:15:31</span>
+            <span class="desktop">2024-02-08 11:44:20</span>
+            <span class="mobile">2024-02-08 11:44:20</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -622,7 +734,8 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="题1-重排后为2的幂"><a href="#题1-重排后为2的幂" class="headerlink" title="题1. 重排后为2的幂"></a>题1. 重排后为2的幂</h2><p><strong>题目描述</strong></p>
+            <h2 id="题1.-重排后为2的幂">题1. 重排后为2的幂</h2>
+<p><strong>题目描述</strong></p>
 <p>为了平衡卷王对课程压力的影响，一些反卷斗士自发地组成了反卷者联盟。在反卷者联盟中，每一个反卷斗士都是二进制天选之子。为了防止卷王发现潜伏在其中的反卷斗士，反卷斗士之间有自己独特的相互验证方式。具体验证方式为：如果一个学生的学工号（一个整数）的各个数字经过重新排序后，并且前导数字不能为0，得到的新数字是2的幂次方，则这个学生就是反卷斗士，这也是二进制天选之子名字的由来。现在你是反卷者联盟的一员，给你一个整数n，即学生的学工号，你需要验证这个学生是否是反卷斗士。如果是则输出1，否则输出0。</p>
 <p>输入数据说明：</p>
 <ul>
@@ -630,14 +743,14 @@
 </ul>
 <p><strong>样例</strong></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入：10</span><br><span class="line">输出：0</span><br><span class="line"></span><br><span class="line">输入：1</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure></div>
-
 <p><strong>答案</strong></p>
-<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123; <span class="comment">// 判断n是否是2的幂次方</span></span><br><span class="line">    <span class="keyword">return</span> (n &amp; (n - <span class="number">1</span>)) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    string str = <span class="built_in">to_string</span>(n); <span class="comment">// 将整数转换为字符串方便排序</span></span><br><span class="line">    <span class="built_in">sort</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>()); <span class="comment">// 排序</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span>) <span class="keyword">continue</span>; <span class="comment">// 如果排序后的数字以0开头，直接跳过</span></span><br><span class="line">        <span class="type">int</span> num = <span class="built_in">stoi</span>(str); <span class="comment">// 将字符串转换为整数</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(num)) &#123; <span class="comment">// 判断是否是2的幂次方</span></span><br><span class="line">            cout &lt;&lt; <span class="number">1</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="built_in">next_permutation</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>())); <span class="comment">// 生成下一个排列</span></span><br><span class="line">    cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> n)</span> </span>{ <span class="comment">// 判断n是否是2的幂次方</span></span><br><span class="line">    <span class="keyword">return</span> (n &amp; (n - <span class="number">1</span>)) == <span class="number">0</span>;</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    string str = <span class="built_in">to_string</span>(n); <span class="comment">// 将整数转换为字符串方便排序</span></span><br><span class="line">    <span class="built_in">sort</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>()); <span class="comment">// 排序</span></span><br><span class="line">    <span class="keyword">do</span> {</span><br><span class="line">        <span class="keyword">if</span> (str[<span class="number">0</span>] == <span class="string">'0'</span>) <span class="keyword">continue</span>; <span class="comment">// 如果排序后的数字以0开头，直接跳过</span></span><br><span class="line">        <span class="type">int</span> num = <span class="built_in">stoi</span>(str); <span class="comment">// 将字符串转换为整数</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(num)) { <span class="comment">// 判断是否是2的幂次方</span></span><br><span class="line">            cout &lt;&lt; <span class="number">1</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        }</span><br><span class="line">    } <span class="keyword">while</span> (<span class="built_in">next_permutation</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>())); <span class="comment">// 生成下一个排列</span></span><br><span class="line">    cout &lt;&lt; <span class="number">0</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></div>
 <p>使用的STL有：</p>
 <ul>
 <li>string 类</li>
-<li><code>sort()</code> 函数，保证str中的字母按照字典顺序排列，为使用<code>next_permutation()</code> 函数准备</li>
+<li><code>sort()</code>
+函数，保证str中的字母按照字典顺序排列，为使用<code>next_permutation()</code>
+函数准备</li>
 <li><code>next_permutation(beg, end)</code>，将当前序列转换称下一个排列，序列必须已经按照字典序从小到大排序，否则该函数无法正常工作。</li>
 </ul>
 
@@ -654,7 +767,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-07-03 13:15:31
+                    :</strong> 2024-02-08 11:44:20
             </li>
         
         <li>
@@ -777,7 +890,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">善用STL</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%981-%E9%87%8D%E6%8E%92%E5%90%8E%E4%B8%BA2%E7%9A%84%E5%B9%82"><span class="nav-text">题1. 重排后为2的幂</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%981.-%E9%87%8D%E6%8E%92%E5%90%8E%E4%B8%BA2%E7%9A%84%E5%B9%82"><span class="nav-text">题1. 重排后为2的幂</span></a></li></ol>
 
     </div>
 </div>
