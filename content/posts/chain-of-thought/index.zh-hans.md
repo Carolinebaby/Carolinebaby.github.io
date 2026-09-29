@@ -3,7 +3,7 @@ title: Chain of Thought
 date: "2025-03-10T21:19:00+08:00"
 draft: false
 lastmod: "2025-03-27T21:14:18+08:00"
-slug: chain-of-thought
+slug: "chain-of-thought"
 summary: 思维链学习
 categories:
 - 生成式人工智能

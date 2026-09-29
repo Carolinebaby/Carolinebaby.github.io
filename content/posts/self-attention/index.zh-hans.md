@@ -3,7 +3,7 @@ title: Self-Attention
 date: "2024-11-03T22:58:00+08:00"
 draft: false
 lastmod: "2024-11-04T00:05:06+08:00"
-slug: self-attention
+slug: "self-attention"
 summary: self-attention 机制介绍
 categories:
 - 生成式人工智能

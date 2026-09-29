@@ -3,7 +3,7 @@ title: Diffusion Model
 date: "2024-10-20T17:17:00+08:00"
 draft: false
 lastmod: "2024-10-21T10:52:27+08:00"
-slug: diffusion-model
+slug: "diffusion-model"
 summary: Diffusion Model 的学习笔记
 categories:
 - 生成式人工智能

@@ -3,7 +3,7 @@ title: GAN
 date: "2024-11-04T12:36:00+08:00"
 draft: false
 lastmod: "2024-11-10T19:10:33+08:00"
-slug: gan
+slug: "gan"
 summary: GAN 学习笔记
 categories:
 - 生成式人工智能

@@ -3,7 +3,7 @@ title: Exponential Moving Average
 date: "2024-11-17T16:39:00+08:00"
 draft: false
 lastmod: "2024-11-17T16:40:10+08:00"
-slug: exponential-moving-average
+slug: "exponential-moving-average"
 summary: EMA 的学习笔记。
 categories:
 - 生成式人工智能

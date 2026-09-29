@@ -3,7 +3,7 @@ title: Stable Diffusion Fine-tuning
 date: "2025-02-23T16:03:00+08:00"
 draft: false
 lastmod: "2025-02-23T16:05:00+08:00"
-slug: stable-diffusion-fine-tuning
+slug: "stable-diffusion-fine-tuning"
 summary: Stable Diffusion 微调代码学习
 categories:
 - 生成式人工智能

@@ -1,0 +1,38 @@
+UPDATE a-stochastic-grammar-of-images (slug only) <- A stochastic grammar of images
+UPDATE chain-of-thought (slug only) <- Chain of Thought
+UPDATE controlnet (slug only) <- ControlNet
+UPDATE deepseek (slug only) <- DeepSeek
+UPDATE diffusion-model (slug only) <- Diffusion Model
+UPDATE exponential-moving-average (slug only) <- Exponential Moving Average
+UPDATE gan (slug only) <- GAN
+UPDATE llm-fine-tuning (slug only) <- LLM Fine-tuning
+UPDATE lora (slug only) <- LoRA
+UPDATE mixture-of-experts (slug only) <- Mixture of Experts
+UPDATE self-attention (slug only) <- Self-Attention
+UPDATE stable-diffusion-fine-tuning (slug only) <- Stable Diffusion Fine-tuning
+RENAME attention-calibration-for-disentangled-text-to-image-personalization-cvpr-2024-o -> attention-calibration-cvpr-2024 <- Attention Calibration for Disentangled Text-to-Image Personalization [CVPR 2024 Oral]
+RENAME autoregressive-image-generation-with-vision-full-view-prompt -> autoregressive-image-generation-vfprompt <- Autoregressive Image Generation with Vision Full-view Prompt
+RENAME cot-报告-课题组汇报 -> cot-group-report <- CoT 报告 [课题组汇报]
+RENAME decoder-only-llms-are-better-controllers-for-diffusion-models -> decoder-only-llms-for-diffusion <- Decoder-Only LLMs are Better Controllers for Diffusion Models
+RENAME diffusion-model-论文学习 -> diffusion-model-papers <- Diffusion Model 论文学习
+RENAME hcp-diffusion-学习和理解 -> hcp-diffusion <- HCP Diffusion 学习和理解
+RENAME occt-vtk-产生的冲突问题 -> occt-vtk-conflicts <- OCCT + VTK 产生的冲突问题
+RENAME occt-vtk-可视化 -> occt-vtk-visualization <- OCCT: VTK 可视化
+RENAME seq2seq-model-transformer -> seq2seq-transformer <- Seq2Seq Model (transformer)
+RENAME stable-diffusion-解读 -> stable-diffusion-overview <- Stable Diffusion 解读
+RENAME vq-vae-代码实践 -> vq-vae-practice <- VQ-VAE 代码实践
+RENAME vtk基本数据结构摘录 -> vtk-basic-data-structures <- vtk基本数据结构（摘录）
+RENAME 与或图论文阅读 -> and-or-graph-paper <- 与或图论文阅读
+RENAME 人工智能-机器学习 -> ai-machine-learning <- 人工智能-机器学习
+RENAME 人工智能复习笔记 -> ai-review-notes <- 人工智能复习笔记
+RENAME 同步与互斥 -> sync-and-mutex <- 同步与互斥
+RENAME 大模型时代的视觉知识-回顾与展望 -> visual-knowledge-in-llm-era <- 大模型时代的视觉知识：回顾与展望
+RENAME 操作系统概念解析 -> operating-system-concepts <- 操作系统概念解析
+RENAME 数据结构与算法 -> data-structures-and-algorithms <- 数据结构与算法
+RENAME 本地部署-mathjax -> local-mathjax-setup <- 本地部署 Mathjax
+RENAME 神经网络模型学习 -> neural-network-models <- 神经网络模型学习
+RENAME 计算机网络课程笔记 -> computer-networks-notes <- 计算机网络课程笔记
+RENAME 论文阅读-object-detection-in-20-years-a-survey -> object-detection-survey <- 论文阅读：《Object Detection in 20 Years: A Survey》
+RENAME 高性能程序设计笔记 -> high-performance-programming <- 高性能程序设计笔记
+
+Total: 36

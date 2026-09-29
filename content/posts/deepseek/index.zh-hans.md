@@ -3,7 +3,7 @@ title: DeepSeek
 date: "2025-03-04T17:39:00+08:00"
 draft: false
 lastmod: "2025-03-27T21:15:22+08:00"
-slug: deepseek
+slug: "deepseek"
 summary: DeepSeek技术报告摘抄
 categories:
 - 论文学习

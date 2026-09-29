@@ -3,7 +3,7 @@ title: LoRA
 date: "2025-02-21T21:53:00+08:00"
 draft: false
 lastmod: "2025-02-21T23:25:52+08:00"
-slug: lora
+slug: "lora"
 summary: LoRA微调方法学习
 categories:
 - 论文学习

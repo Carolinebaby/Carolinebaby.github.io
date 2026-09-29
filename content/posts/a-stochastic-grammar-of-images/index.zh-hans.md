@@ -3,7 +3,7 @@ title: A stochastic grammar of images
 date: "2025-05-20T21:25:00+08:00"
 draft: false
 lastmod: "2025-06-12T21:30:01+08:00"
-slug: a-stochastic-grammar-of-images
+slug: "a-stochastic-grammar-of-images"
 summary: 论文阅读
 categories:
 - 论文学习

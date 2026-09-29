@@ -3,7 +3,7 @@ title: ControlNet
 date: "2025-02-23T22:14:00+08:00"
 draft: false
 lastmod: "2025-02-23T22:16:16+08:00"
-slug: controlnet
+slug: "controlnet"
 summary: ControlNet 学习笔记
 categories:
 - 论文学习

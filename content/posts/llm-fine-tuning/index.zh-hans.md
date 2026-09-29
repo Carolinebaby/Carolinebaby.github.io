@@ -3,7 +3,7 @@ title: LLM Fine-tuning
 date: "2025-02-22T10:59:00+08:00"
 draft: false
 lastmod: "2025-02-23T16:04:30+08:00"
-slug: llm-fine-tuning
+slug: "llm-fine-tuning"
 summary: 李宏毅《生成式AI导论》HW5代码
 categories:
 - 生成式人工智能

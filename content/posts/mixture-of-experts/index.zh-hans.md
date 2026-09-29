@@ -3,7 +3,7 @@ title: Mixture of Experts
 date: "2025-03-03T17:28:00+08:00"
 draft: false
 lastmod: "2025-03-03T17:46:26+08:00"
-slug: mixture-of-experts
+slug: "mixture-of-experts"
 summary: MoE学习笔记
 categories:
 - 论文学习
