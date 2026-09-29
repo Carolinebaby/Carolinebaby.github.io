@@ -1,0 +1,90 @@
+=== REMOVED DEMO ===
+(none)
+
+=== BRANDING ===
+copied F:\website\old-blog\icon\assets\myicon.png -> F:\website\blog\static\images\avatar.png
+copied F:\website\old-blog\icon\assets\my_icon.png -> F:\website\blog\static\images\avatar-alt.png
+copied F:\website\old-blog\icon\assets\icon.png -> F:\website\blog\static\images\logo.png
+copied F:\website\old-blog\icon\assets\my_paint.png -> F:\website\blog\static\images\brand.png
+copied F:\website\old-blog\icon\assets\grey.png -> F:\website\blog\static\images\grey.png
+copied F:\website\old-blog\cover\assets\flower.jpg -> F:\website\blog\static\images\og-default.jpg
+
+=== POSTS ===
+cleared a-stochastic-grammar-of-images
+cleared attention-calibration-for-disentangled-text-to-image-personalization-cvpr-2024-o
+cleared autoregressive-image-generation-with-vision-full-view-prompt
+cleared chain-of-thought
+cleared controlnet
+cleared cot-报告-课题组汇报
+cleared decoder-only-llms-are-better-controllers-for-diffusion-models
+cleared deepseek
+cleared diffusion-model
+cleared diffusion-model-论文学习
+cleared exponential-moving-average
+cleared gan
+cleared hcp-diffusion-学习和理解
+cleared llm-fine-tuning
+cleared lora
+cleared mixture-of-experts
+cleared occt-+-vtk-产生的冲突问题
+cleared occt-vtk-可视化
+cleared self-attention
+cleared seq2seq-model-(transformer)
+cleared stable-diffusion-fine-tuning
+cleared stable-diffusion-解读
+cleared vq-vae-代码实践
+cleared vtk基本数据结构(摘录)
+cleared 与或图论文阅读
+cleared 人工智能-机器学习
+cleared 人工智能复习笔记
+cleared 同步与互斥
+cleared 大模型时代的视觉知识-回顾与展望
+cleared 操作系统概念解析
+cleared 数据结构与算法
+cleared 本地部署-mathjax
+cleared 神经网络模型学习
+cleared 计算机网络课程笔记
+cleared 论文阅读-object-detection-in-20-years-a-survey
+cleared 高性能程序设计笔记
+OK 2024\01\数据结构与算法.md -> posts/数据结构与算法/ (89 images)
+OK 2024\07\人工智能-机器学习.md -> posts/人工智能-机器学习/ (36 images)
+OK 2024\07\人工智能复习笔记.md -> posts/人工智能复习笔记/ (40 images)
+OK 2024\07\同步与互斥.md -> posts/同步与互斥/ (22 images)
+OK 2024\07\操作系统概念解析.md -> posts/操作系统概念解析/ (7 images)
+OK 2024\10\Diffusion Model.md -> posts/diffusion-model/ (32 images)
+OK 2024\10\HCP Diffusion 学习和理解.md -> posts/hcp-diffusion-学习和理解/ (2 images)
+OK 2024\10\Stable Diffusion 解读.md -> posts/stable-diffusion-解读/ (15 images)
+OK 2024\10\本地部署 Mathjax.md -> posts/本地部署-mathjax/ (1 images)
+OK 2024\10\论文阅读：《Object Detection in 20 Years- A Survey》.md -> posts/论文阅读-object-detection-in-20-years-a-survey/ (9 images)
+OK 2024\11\Diffusion Model 论文学习.md -> posts/diffusion-model-论文学习/ (4 images)
+OK 2024\11\Exponential Moving Average.md -> posts/exponential-moving-average/ (1 images)
+OK 2024\11\GAN.md -> posts/gan/ (9 images)
+OK 2024\11\Self-Attention.md -> posts/self-attention/ (14 images)
+OK 2024\11\Seq2Seq Model (transformer).md -> posts/seq2seq-model-transformer/ (15 images)
+OK 2024\11\神经网络模型学习.md -> posts/神经网络模型学习/ (9 images)
+OK 2025\01\计算机网络课程笔记.md -> posts/计算机网络课程笔记/ (137 images)
+OK 2025\01\高性能程序设计笔记.md -> posts/高性能程序设计笔记/ (53 images)
+OK 2025\02\ControlNet.md -> posts/controlnet/ (3 images)
+OK 2025\02\LLM Fine-tuning.md -> posts/llm-fine-tuning/ (1 images)
+OK 2025\02\LoRA.md -> posts/lora/ (1 images)
+OK 2025\02\Stable Diffusion Fine-tuning.md -> posts/stable-diffusion-fine-tuning/ (1 images)
+OK 2025\03\Attention Calibration for Disentangled Text-to-Image Personalization [CVPR 2024 Oral].md -> posts/attention-calibration-for-disentangled-text-to-image-personalization-cvpr-2024-o/ (2 images)
+OK 2025\03\Autoregressive Image Generation with Vision Full-view Prompt.md -> posts/autoregressive-image-generation-with-vision-full-view-prompt/ (3 images)
+OK 2025\03\Chain of Thought.md -> posts/chain-of-thought/ (1 images)
+OK 2025\03\CoT 报告 [课题组汇报].md -> posts/cot-报告-课题组汇报/ (16 images)
+OK 2025\03\Decoder-Only LLMs are Better Controllers for Diffusion Models.md -> posts/decoder-only-llms-are-better-controllers-for-diffusion-models/ (2 images)
+OK 2025\03\DeepSeek.md -> posts/deepseek/ (6 images)
+OK 2025\03\Mixture of Experts.md -> posts/mixture-of-experts/ (5 images)
+OK 2025\03\VQ-VAE 代码实践.md -> posts/vq-vae-代码实践/ (0 images)
+OK 2025\04\大模型时代的视觉知识：回顾与展望.md -> posts/大模型时代的视觉知识-回顾与展望/ (3 images)
+OK 2025\05\A stochastic grammar of images.md -> posts/a-stochastic-grammar-of-images/ (15 images)
+OK 2025\05\与或图论文阅读.md -> posts/与或图论文阅读/ (2 images)
+OK 2025\12\OCCT- VTK 可视化.md -> posts/occt-vtk-可视化/ (1 images)
+OK 2025\12\vtk基本数据结构（摘录）.md -> posts/vtk基本数据结构摘录/ (4 images)
+OK 2026\04\OCCT + VTK 产生的冲突问题.md -> posts/occt-vtk-产生的冲突问题/ (0 images)
+
+Migrated posts: 36
+
+=== WARNINGS ===
+MISSING in 人工智能-机器学习: ['人工智能笔记/assets/image-20240614210854544.png']
+MISSING in stable-diffusion-fine-tuning: ['HW10/assets/modelfigure.png']

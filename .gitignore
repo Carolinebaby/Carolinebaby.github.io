@@ -1,0 +1,14 @@
+# Generated site
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node (if theme tooling is run locally)
+node_modules/
