@@ -9,7 +9,7 @@ images:
 
 # Favicon
 favicon:
-  svg: "/favicon.svg" # SVG format favicon (recommended)
+  svg: "/images/grey.png" # browser tab icon (png)
 
 # Author info
 author:
