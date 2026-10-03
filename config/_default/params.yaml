@@ -11,6 +11,18 @@ images:
 favicon:
   svg: "/images/grey.png" # browser tab icon (png)
 
+# ICP 备案（中国大陆域名）
+beian:
+  enabled: true
+  # 网站备案号（页脚展示）
+  icp: "赣ICP备2024043307号-1"
+  icpUrl: "https://beian.miit.gov.cn/"
+  # 主体备案号（备查）
+  icpEntity: "赣ICP备2024043307号"
+  approvedAt: "2024-09-11"
+  entityType: "个人"
+  domain: "carolineworld.cn"
+
 # Author info
 author:
   name: "caroline"
